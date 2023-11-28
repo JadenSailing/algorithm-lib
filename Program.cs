@@ -25,7 +25,7 @@ public class Program
         while (count-- > 0) Solve();
         CE();
 #else
-        string[] lines = File.ReadAllLines("Input.txt");
+        string[] lines = File.ReadAllLines("../../../LeetCodeSolution/Input.txt");
         Util.Call<Solution>(new Solution(), lines);
 #endif
     }
