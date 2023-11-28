@@ -16,7 +16,7 @@
  ## 字符串
  ## 排序
  ## 二分
- 1 基础模板 [搜索插入位置](https://github.com/JadenSailing/algorithm-lib/blob/main/BinarySearch/Solution_LC_35_%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE.cs)
+ 1. 基础模板 [搜索插入位置](https://github.com/JadenSailing/algorithm-lib/blob/main/BinarySearch/Solution_LC_35_%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE.cs)
  ```
 int low = 0, high = n - 1;
 while(low <= high)
@@ -30,6 +30,7 @@ return low
  ## 树
  ## 图
  ## 并查集
+ 1. [基础模板](https://github.com/JadenSailing/algorithm-lib/blob/main/UnionFind/UnionFind.cs)
  ## 数论
  ## 位运算
  ## 动态规划
