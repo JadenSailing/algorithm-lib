@@ -1,7 +1,7 @@
 
 
 
-# AutumnMist's Algorithm Library
+# AutumnMist's Algorithm Library(C#)
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
  2.  工程主类里处理了ACM模式下的常用输入输出   [Program](https://github.com/JadenSailing/algorithm-lib/blob/main/Program.cs)
