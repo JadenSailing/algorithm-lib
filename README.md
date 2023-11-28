@@ -1,5 +1,5 @@
 
-# algorithm-lib
+# 云上寒烟的算法之路
  ## LeetCode C# Solution IO
 用于LeetCode上处理各种情况的输入输出，自动调用Solution。可直接复制粘贴Solution和Input运行。
  [LeetCodeSolution](https://github.com/JadenSailing/algorithm-lib/tree/main/LeetCodeSolution)
