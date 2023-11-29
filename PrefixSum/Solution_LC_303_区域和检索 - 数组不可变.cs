@@ -1,7 +1,7 @@
-public class NumArray
+public class NumArray_303
 {
     int[] pre;
-    public NumArray(int[] nums)
+    public NumArray_303(int[] nums)
     {
         int n = nums.Length;
         pre = new int[n + 1];
