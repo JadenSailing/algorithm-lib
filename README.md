@@ -7,6 +7,8 @@
  2.  工程主类里处理了ACM模式下的常用输入输出   [Program](https://github.com/JadenSailing/algorithm-lib/blob/main/Program.cs)
  3. LeetCodeSolution目录下是核心代码模式的支持。得益于C#强大的反射机制，能处理各种情况的输入输出，自动调用Solution和Input  [LeetCodeSolution](https://github.com/JadenSailing/algorithm-lib/tree/main/LeetCodeSolution)
  ## 基础
+ ### 前缀和
+ ### 差分
  ## 数组
  ## 哈希表
  ## 栈
