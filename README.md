@@ -32,7 +32,7 @@
  - 一维前缀和 
  ```
  int[] pre = new int[n + 1];
- for(int i = 0; i < n; i++) pre[i + 1] = pre[i] + nums[i - 1];
+ for(int i = 0; i < n; i++) pre[i + 1] = pre[i] + nums[i];
  ```
  ```
  //区间和
