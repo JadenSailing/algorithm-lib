@@ -42,7 +42,7 @@
  [区域和检索-数组不可变](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_303_%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2%20-%20%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98.cs)
  
  - 二维前缀和
- > $二维前缀和pre[i][j]定义为从左上角到(i,j)位置围成的矩形范围内的元素和$
+ $二维前缀和pre[i][j]定义为从左上角到(i,j)位置围成的矩形范围内的元素和$
  ```
 //构建前缀和
 int[][] pre = new int[n + 1][];
