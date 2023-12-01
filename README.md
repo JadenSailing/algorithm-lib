@@ -110,6 +110,7 @@ for(int i = 1; i < n; i++)
 	diff[i] += diff[i - 1];
 }
  ```
+ [航班预订统计](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_1109_%E8%88%AA%E7%8F%AD%E9%A2%84%E8%AE%A2%E7%BB%9F%E8%AE%A1.cs)
  
 - 二维差分
  
