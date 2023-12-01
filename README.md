@@ -6,6 +6,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -54,6 +55,35 @@ for (int i = 0; i < n; i++)
 	for (int j = 0; j < m; j++)
 	{
 		pre[i + 1][j + 1] = pre[i + 1][j] + pre[i][j + 1] - pre[i][j] + matrix[i][j];
+	}
+}
+```
+```
+//另外一种构建方式
+int[][] pre = new int[n + 1][];
+for(int i = 0; i <= n; i++) pre[i] = new int[m + 1];
+//初始化为对应位置的元素
+for(int i = 0; i < n; i++)
+{
+	for(int j = 0; j < m; j++)
+	{
+		pre[i + 1][j + 1] = matrix[i][j];
+	}
+}
+//从左向右累加
+for(int i = 0; i < n; i++)
+{
+	for(int j = 0; j < m; j++)
+	{
+		pre[i + 1][j + 1] += pre[i + 1][j];
+	}
+}
+//从上向下累加
+for(int i = 0; i < n; i++)
+{
+	for(int j = 0; j < m; j++)
+	{
+		pre[i + 1][j + 1] += pre[i][j + 1];
 	}
 }
 ```
