@@ -99,6 +99,17 @@ public int SumRegion(int row1, int col1, int row2, int col2)
  
  ### 差分
  - 一维差分
+ ```
+ int[] diff = new int[n + 1]; //防越界
+//[L,R](0 <= L <= R < n)
+diff[L] += d;
+diff[R + 1] -= d;
+for(int i = 1; i < n; i++)
+{
+	//还原原数组
+	diff[i] += diff[i - 1];
+}
+ ```
  
 - 二维差分
  
