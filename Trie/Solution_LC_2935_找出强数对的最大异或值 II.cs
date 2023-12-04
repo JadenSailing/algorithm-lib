@@ -3,8 +3,7 @@
  * 
  */
 
-
-public class Solution_LC_421_数组中两个数的最大异或值
+public class Solution_LC_2935_找出强数对的最大异或值II
 {
     class Trie
     {
