@@ -10,48 +10,75 @@
  * 
  */
 
+
 public class Solution_LC_2935_找出强数对的最大异或值II
 {
     class Trie
     {
-        public int val;
-        public Trie[] next = new Trie[2];
+        public int count = 0;
         public bool isEnd;
+        public Trie[] next;
+        public Trie()
+        {
+            this.isEnd = false;
+            this.next = new Trie[2];
+        }
     }
-    public int FindMaximumXOR(int[] nums)
+    public int MaximumStrongPairXor(int[] nums)
     {
+        int n = nums.Length;
+        Array.Sort(nums);
         Trie root = new Trie();
         int ans = 0;
-        foreach(int v in nums)
+        int left = 0;
+        for (int i = 0; i < n; i++)
         {
+            int v = nums[i];
+            var node = root;
+            //add
+            for (int k = 20; k >= 0; k--)
+            {
+                int flag = (v >> k) & 1;
+                if (node.next[flag] == null) node.next[flag] = new Trie();
+                node = node.next[flag];
+                node.count++;
+            }
+            node.isEnd = true;
+            //remove
+            while (nums[left] * 2 < v)
+            {
+                node = root;
+                int vL = nums[left];
+                for (int k = 20; k >= 0; k--)
+                {
+                    int flag = (vL >> k) & 1;
+                    node = node.next[flag];
+                    node.count--;
+                }
+                left++;
+            }
             //check
+            node = root;
             int res = 0;
-            Trie node = root;
-            for(int k = 31; k >= 0; k--)
+            for (int k = 20; k >= 0; k--)
             {
                 int cur = (v >> k) & 1;
-                if (node.next[1 - cur] != null)
+                if (node.next[1 - cur] != null && node.next[1 - cur].count > 0)
                 {
                     res |= 1 << k;
                     node = node.next[1 - cur];
                 }
-                else node = node.next[cur];
-                if (node == null) break;
+                else if (node.next[cur] != null && node.next[cur].count > 0)
+                {
+                    node = node.next[cur];
+                }
+                else
+                {
+                    res = 0;
+                    break;
+                }
             }
             ans = Math.Max(ans, res);
-
-            //add
-            node = root;
-            for(int k = 31; k >= 0; k--)
-            {
-                int cur = (v >> k) & 1;
-                if (node.next[cur] == null)
-                {
-                    node.next[cur] = new Trie() { val = cur };
-                }
-                node = node.next[cur];
-            }
-            node.isEnd = true;
         }
         return ans;
     }
