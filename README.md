@@ -115,7 +115,22 @@ for(int i = 1; i < n; i++)
  [航班预订统计](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_1109_%E8%88%AA%E7%8F%AD%E9%A2%84%E8%AE%A2%E7%BB%9F%E8%AE%A1.cs)
  
 - 二维差分
- 
+ ```
+ int[][] diff = new int[n + 1][];
+ for (int i = 0; i <= n; i++) diff[i] = new int[n + 1];
+ for (int i = 0; i < queries.Length; i++)
+ {
+     int r1 = queries[i][0];
+     int c1 = queries[i][1];
+     int r2 = queries[i][2];
+     int c2 = queries[i][3];
+     diff[r1][c1]++;
+     diff[r1][c2 + 1]--;
+     diff[r2 + 1][c1]--;
+     diff[r2 + 1][c2 + 1]++;
+ }
+ ```
+ [子矩阵元素加1](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_2536_%E5%AD%90%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0%E5%8A%A01.cs)
  ## 数组
  
  ## 哈希表
