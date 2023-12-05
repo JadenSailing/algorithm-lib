@@ -12,6 +12,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -282,6 +283,9 @@ for(int i = 2; i < N; i++)
  - 线性筛
  ## 位运算
  
+ ### 状态压缩
+ ### 枚举子集
+ 
  ## 动态规划
  
  ### 树形dp
@@ -292,6 +296,10 @@ for(int i = 2; i < N; i++)
 两边DFS，第一遍获取各节点数据和根节点的结果，第二遍换根转移递推其它节点结果。
 
 [树中距离之和](https://github.com/JadenSailing/algorithm-lib/blob/main/DP/%E6%8D%A2%E6%A0%B9DP/Solution_LC_834_%E6%A0%91%E4%B8%AD%E8%B7%9D%E7%A6%BB%E4%B9%8B%E5%92%8C.cs)
+
+### 数位dp
+
+### dp优化
 
  ## 计算几何
  
