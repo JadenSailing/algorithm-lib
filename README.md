@@ -11,6 +11,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -251,7 +252,34 @@ return low
 - [省份数量](https://github.com/JadenSailing/algorithm-lib/blob/main/UnionFind/Solution_LC_547_%E7%9C%81%E4%BB%BD%E6%95%B0%E9%87%8F.cs)
  
  ## 数论
- 
+ ### 质数
+ - 埃氏筛
+ ```
+int N = (int)1e6 + 5;
+List<int> primes = new List<int>();
+//是否是非质数的标志
+bool[] flag = new bool[N];
+//0 1特殊处理非质数
+flag[0] = flag[1] = true;
+for(int i = 2; i < N; i++)
+{
+    if (flag[i] == false)
+    {
+        for(int j = i * 2; j < N; j += i)
+        {
+            flag[j] = true;
+        }
+    }
+}
+for(int i = 2; i < N; i++)
+{
+    if (flag[i] == false) primes.Add(i);
+}
+ ```
+
+[范围内最接近的两个质数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E6%95%B0%E8%AE%BA/%E8%B4%A8%E6%95%B0/Solution_LC_2523_%E8%8C%83%E5%9B%B4%E5%86%85%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%B4%A8%E6%95%B0.cs)
+
+ - 线性筛
  ## 位运算
  
  ## 动态规划
@@ -262,7 +290,6 @@ return low
  [到达首都的最少油耗](https://github.com/JadenSailing/algorithm-lib/blob/main/DP/%E6%A0%91%E5%BD%A2DP/Solution_LC_2477_%E5%88%B0%E8%BE%BE%E9%A6%96%E9%83%BD%E7%9A%84%E6%9C%80%E5%B0%91%E6%B2%B9%E8%80%97.cs)
  
  ## 计算几何
- ### 质数筛
  
  
  ## 其它
