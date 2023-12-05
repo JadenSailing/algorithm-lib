@@ -10,6 +10,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -39,6 +40,50 @@
 ```
 
 - 矩阵快速幂
+```
+private int[][] Pow(int[][] mat, int p)
+{
+    //单位矩阵
+    int[][] ret = new int[2][]
+    {
+        new int[] { 1, 0 },
+        new int[] { 0, 1 },
+    };
+    while (p > 0)
+    {
+        if ((p & 1) == 1)
+        {
+            ret = Mul(ret, mat);
+        }
+        p >>= 1;
+        mat = Mul(mat, mat);
+    }
+    return ret;
+}
+
+private int[][] Mul(int[][] x, int[][] y)
+{
+    int n = x.Length, p = x[0].Length, m = y[0].Length;
+    int[][] res = new int[n][];
+    for (int i = 0; i < n; i++) res[i] = new int[m];
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            int v = 0;
+            for (int k = 0; k < p; k++)
+            {
+                v += x[i][k] * y[k][j];
+            }
+            res[i][j] = v;
+        }
+    }
+    return res;
+}
+```
+矩阵快速幂求[斐波那契数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%9F%BA%E7%A1%80/%E5%BF%AB%E9%80%9F%E5%B9%82/Solution_LC_509_%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0.cs)
+
+
  ### 前缀和
  - 一维前缀和 
  ```
