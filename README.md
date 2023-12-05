@@ -288,7 +288,10 @@ for(int i = 2; i < N; i++)
  自底向上处理数据，习惯用数组返回所需的各种数据，简单的可以用单值返回
 
  [到达首都的最少油耗](https://github.com/JadenSailing/algorithm-lib/blob/main/DP/%E6%A0%91%E5%BD%A2DP/Solution_LC_2477_%E5%88%B0%E8%BE%BE%E9%A6%96%E9%83%BD%E7%9A%84%E6%9C%80%E5%B0%91%E6%B2%B9%E8%80%97.cs)
- 
+ ### 换根dp
+两边DFS，第一遍获取各节点数据和根节点的结果，第二遍换根转移递推其它节点结果。
+[树中距离之和](https://github.com/JadenSailing/algorithm-lib/blob/main/DP/%E6%8D%A2%E6%A0%B9DP/Solution_LC_834_%E6%A0%91%E4%B8%AD%E8%B7%9D%E7%A6%BB%E4%B9%8B%E5%92%8C.cs)
+
  ## 计算几何
  
  
