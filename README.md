@@ -9,6 +9,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -131,6 +132,17 @@ for(int i = 1; i < n; i++)
  }
  ```
  [子矩阵元素加1](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_2536_%E5%AD%90%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0%E5%8A%A01.cs)
+### 离散化
+用于压缩稀疏数据
+```
+List<int> list = new List<int>(new HashSet<int>(nums));
+list.Sort();
+Dictionary<int, int> raw = new Dictionary<int, int>();
+for(int i = 0; i < list.Count; i++)
+{
+    raw[list[i]] = i;
+}
+```
  ## 数组
  
  ## 哈希表
