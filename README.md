@@ -16,6 +16,12 @@
  2.  工程主类里处理了ACM模式下的常用输入输出   [Program](https://github.com/JadenSailing/algorithm-lib/blob/main/Program.cs)
  3. LeetCodeSolution目录下是核心代码模式的支持。得益于C#反射机制，做到了一键复制粘贴的支持。能处理各种情况的输入输出，自动调用Solution和Input [LeetCodeSolution](https://github.com/JadenSailing/algorithm-lib/tree/main/LeetCodeSolution)
  ## 基础
+ ### GCD&LCM
+ 最大公约数和最小公倍数
+ ```
+ public static long GCD(long a, long b) { return b == 0 ? a : GCD(b, a % b); }
+ public static long LCM(long a, long b) { return a / GCD(a, b) * b; }
+```
  ### 快速幂
  - 快速幂模板
  ```
