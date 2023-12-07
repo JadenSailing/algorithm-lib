@@ -13,6 +13,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -232,6 +233,62 @@ return low
  ## 树
  
  ### LCA
+ - 倍增计算节点的第K个父节点
+ ```
+ //更新子节点的fa数据 倍增更新
+ //如i的第4个父节点=i的第2个节点的第2个父节点
+ fa[v][0] = u;
+ for (int i = 1; i <= LOG; i++)
+ {
+     fa[v][i] = fa[fa[v][i - 1]][i - 1];
+ }
+ ```
+ ```
+ //计算第k个父节点
+ public int GetKthAncestor(int node, int k)
+ {
+     if (k > depth[node]) return -1;
+     for (int i = LOG; i >= 0; i--)
+     {
+         if (((k >> i) & 1) == 1)
+         {
+             node = fa[node][i];
+         }
+     }
+     return node;
+ }
+ ```
+ [树节点的第 K 个祖先](https://github.com/JadenSailing/algorithm-lib/blob/main/Tree/LCA/Solution_LC_1483_%E6%A0%91%E8%8A%82%E7%82%B9%E7%9A%84%E7%AC%AC%20K%20%E4%B8%AA%E7%A5%96%E5%85%88.cs)
+- LCA
+计算x y的 lca(最近公共祖先)，先把更深的节点向上跳到跟另一节点相同深度，再一起向上跳到最近的公共节点
+```
+private int LCA(int x, int y)
+{
+    //x总是更深的节点
+    if (depth[x] < depth[y]) (x, y) = (y, x);
+    for (int k = LOG; k >= 0; k--)
+    {
+        //如果比y深度更大 则从此节点继续向上跳
+        if (depth[fa[x][k]] >= depth[y])
+        {
+            x = fa[x][k];
+        }
+    }
+    //y在x的子树中会导致x==y
+    if (x == y) return x;
+
+    for (int k = 15; k >= 0; k--)
+    {
+        if (fa[x][k] != fa[y][k])
+        {
+            x = fa[x][k];
+            y = fa[y][k];
+        }
+    }
+    //x y此时是某个节点的直接子节点
+    return fa[x][0];
+}
+```
  
  ### 树状数组
  
