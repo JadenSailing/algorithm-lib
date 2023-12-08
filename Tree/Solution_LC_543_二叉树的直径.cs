@@ -22,7 +22,7 @@ public class Solution_LC_543_二叉树的直径
         return ans;
     }
 
-    //树形dp 返回子树的最大深度
+    //树形dp 返回子树向下的最大长度+1
     public int DFS(TreeNode node)
     {
         if (node == null) return 0;
@@ -30,6 +30,7 @@ public class Solution_LC_543_二叉树的直径
         if (node.left != null) left = DFS(node.left);
         if (node.right != null) right = DFS(node.right);
         ans = Math.Max(ans, left + right);
+        //如果当前节点不为空 那么连接父节点后直径+1
         return Math.Max(left, right) + 1;
     }
 }
