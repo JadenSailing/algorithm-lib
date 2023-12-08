@@ -17,4 +17,8 @@
     <DefineConstants>$(DefineConstants)TRACE -unsafe</DefineConstants>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Tree\Tarjan\" />
+  </ItemGroup>
+
 </Project>
