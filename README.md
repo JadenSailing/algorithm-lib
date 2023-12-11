@@ -14,6 +14,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -313,7 +314,27 @@ private int LCA(int x, int y)
 - 红黑树
 - Treap
  
- ## 图
+ ## 图论
+ 
+ ### 基础
+ - 建图
+	 
+    - 基于边
+    - 基于父节点
+    - 带边权
+ 
+ - 遍历
+ 
+ ### 拓扑排序
+ 
+ ### 最短路
+ - Floyd
+ - Dijkstra
+ - A*
+ 
+ ### 最小生成树
+ 
+ ### Tarjan
  
  ## 并查集
  
