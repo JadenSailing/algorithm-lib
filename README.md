@@ -15,6 +15,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -209,6 +210,62 @@ for(int i = 0; i < list.Count; i++)
  ## 链表
  
  ## 堆
+ - 基础模板
+ ```
+public class Heap
+{
+    private bool mIsMinHeap = false;
+    private List<int> list = new List<int>() { 0 };
+    private int size = 0;
+    public int Pop()
+    {
+        int res = list[1];
+        //移除堆顶 把最后一个元素置顶 然后下滤
+        list[1] = list[size];
+        size--;
+        SiftDown(1);
+        return res;
+    }
+    public void Push(int x)
+    {
+        if (size == list.Count - 1)
+        {
+            list.Add(x);
+            size++;
+        }
+        else list[size] = x;
+        //新增元素放在末尾 然后上浮
+        SiftUp(size);
+    }
+    private void SiftUp(int i)
+    {
+        while (i / 2 > 0)
+        {
+            int p = i / 2;
+            if (list[i] <= list[p]) break;
+            (list[i], list[p]) = (list[p], list[i]);
+            i /= 2;
+        }
+    }
+    private void SiftDown(int i)
+    {
+        while (i * 2 <= size)
+        {
+            int c = i * 2;
+            if (c + 1 <= size && list[c + 1] > list[c]) c++;
+            if (list[i] >= list[c]) break;
+            (list[i], list[c]) = (list[c], list[i]);
+            i = c;
+        }
+    }
+}
+```
+[数组第K大元素](https://github.com/JadenSailing/algorithm-lib/blob/main/Heap/Solution_LC_215_%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0.cs)
+- 堆排序的处理
+	- 原地修改
+	- Heapify from n / 2 -> 1
+	- Pop & Swap(1, Size--)
+	
  
  ## 字符串
  
