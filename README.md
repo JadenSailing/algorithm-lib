@@ -16,6 +16,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -428,6 +429,26 @@ for(int i = 2; i < N; i++)
 [范围内最接近的两个质数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E6%95%B0%E8%AE%BA/%E8%B4%A8%E6%95%B0/Solution_LC_2523_%E8%8C%83%E5%9B%B4%E5%86%85%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%B4%A8%E6%95%B0.cs)
 
  - 线性筛
+ ### 方程
+ - 二元一次方程
+ [1276. 不浪费原料的汉堡制作方案](https://leetcode.cn/problems/number-of-burgers-with-no-waste-of-ingredients/)
+ 给你两个整数 `T` 和 `C`，分别表示番茄片和奶酪片的数目。不同汉堡的原料搭配如下：
+ `巨无霸汉堡`：4 片番茄和 1 片奶酪
+`小皇堡`：2 片番茄和 1 片奶酪 如何使得剩余原材料为零
+- 标准二元一次方程：
+$$
+\begin{cases}
+4x+2y=T\\
+x+y=C\\
+\end{cases}
+$$
+解方程：
+$$x=T/2-C,y=C*2-T/2$$
+注意隐藏条件$x,y$均为非负整数
+则有$T>=C*2$ 和 $T<=C*4$ 且 $T$为偶数
+- 思维
+全选巨无霸则$T=C*4$，全选小皇堡则$T=C*2$，所以$TC$只能在这之间，又番茄的最小单位为2，故T必须是偶数
+
  ## 位运算
  
  ### 状态压缩
