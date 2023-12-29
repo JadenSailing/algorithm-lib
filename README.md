@@ -1,23 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -389,6 +371,64 @@ private int LCA(int x, int y)
  ### 最短路
  - Floyd
  - Dijkstra
+	 - 基于节点 复杂度O(n^2)
+    ```
+	public int ShortestPath(int node1, int node2)
+    {
+        int[] dis = new int[n];
+        Array.Fill(dis, int.MaxValue);
+        dis[node1] = 0;
+        int[] vis = new int[n];
+        while (true)
+        {
+            int min = int.MaxValue;
+            int u = -1;
+            for (int i = 0; i < n; i++)
+            {
+                if (vis[i] == 0 && dis[i] < min)
+                {
+                    min = dis[i];
+                    u = i;
+                }
+            }
+            if (u == -1 || min == int.MaxValue) break; //全部处理完
+            vis[u] = 1;
+            foreach (int v in g[u].Keys)
+            {
+                dis[v] = Math.Min(dis[v], dis[u] + g[u][v]);
+            }
+        }
+        return dis[node2] == int.MaxValue ? -1 : dis[node2];
+    }
+    ```
+
+	- 基于优先队列优化 复杂度O(m*logm)
+	```
+	public int ShortestPath(int node1, int node2)
+    {
+        int[] dis = new int[n];
+        Array.Fill(dis, int.MaxValue);
+        PriorityQueue<int, int> pq = new PriorityQueue<int, int>();
+        dis[node1] = 0;
+        pq.Enqueue(node1, 0);
+        while (pq.Count > 0)
+        {
+            int u = pq.Dequeue();
+            foreach(int v in g[u].Keys)
+            {
+                int d = g[u][v] + dis[u];
+                if(d < dis[v])
+                {
+                    dis[v] = d;
+                    pq.Enqueue(v, d);
+                }
+            }
+        }
+        return dis[node2] == int.MaxValue ? -1 : dis[node2];
+    }
+    ```
+    另外有基于二叉堆/斐波那契堆等优化方案
+    
  - A*
  
  ### 最小生成树
