@@ -1,5 +1,6 @@
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -494,6 +495,65 @@ for(int i = 2; i < N; i++)
  ## 动态规划
  
  ### 带权区间调度
+ [weighted Interval Scheduling 问题-草莓奶昔](https://leetcode.cn/problems/maximize-the-profit-as-the-salesman/solutions/2398862/python-weightedintervalscheduling-wen-ti-t253/)
+```
+/*
+    给定 n 个闭区间 [left_i,right_i,score_i].
+    请你在数轴上选择若干区间,使得选中的区间之间互不相交.
+    返回可选取区间的最大权值和.
+
+    Args:
+        intervals: 区间列表,每个区间为[left,right,score].
+        overlapping: 是否允许选择的区间端点重合.默认为False.
+    */
+    private int WeightedIntervalScheduling(List<int[]> intervals, bool overlapping = false)
+    {
+        int n = intervals.Count;
+        intervals.Sort((A, B) => (A[1] - B[1]));
+        int[] dp = new int[n + 1];
+        for (int i = 0; i < n; i++)
+        {
+            int low = 0, high = n - 1;
+            while (low <= high)
+            {
+                int mid = low + (high - low) / 2;
+                if (overlapping && intervals[mid][1] > intervals[i][0]
+                 || !overlapping && intervals[mid][1] >= intervals[i][0])
+                {
+                    high = mid - 1;
+                }
+                else
+                {
+                    low = mid + 1;
+                }
+            }
+            dp[i + 1] = Math.Max(dp[i], dp[low] + intervals[i][2]);
+        }
+        return dp[n];
+    }
+```
+[无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
+```
+ public int EraseOverlapIntervals(int[][] intervals)
+    {
+        int n = intervals.Length;
+        List<int[]> list = new List<int[]>();
+        for (int i = 0; i < n; i++) list.Add(new int[] { intervals[i][0], intervals[i][1], 1 });
+        return n - WeightedIntervalScheduling(list, true);
+    }
+```
+ [规划兼职工作](https://leetcode.cn/problems/maximum-profit-in-job-scheduling/)
+```
+public int JobScheduling(int[] startTime, int[] endTime, int[] profit)
+{
+    List<int[]> list = new List<int[]>();
+    for (int i = 0; i < startTime.Length; i++)
+    {
+        list.Add(new int[] { startTime[i], endTime[i], profit[i] });
+    }
+    return WeightedIntervalScheduling(list, true);
+}
+```
  
  ### 树形dp
  自底向上处理数据，习惯用数组返回所需的各种数据，简单的可以用单值返回
