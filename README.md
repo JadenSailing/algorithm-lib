@@ -2,6 +2,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -174,7 +175,7 @@ for(int i = 1; i < n; i++)
  }
  ```
  [子矩阵元素加1](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_2536_%E5%AD%90%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0%E5%8A%A01.cs)
-### 离散化
+ ### 离散化
 用于压缩稀疏数据
 ```
 List<int> list = new List<int>(new HashSet<int>(nums));
@@ -185,6 +186,24 @@ for(int i = 0; i < list.Count; i++)
     raw[list[i]] = i;
 }
 ```
+ ### 正难则反
+一种解题思路 正向可能会非常难的情况下 反向可能会很简单 
+- 比如出现`至少x个xxx`一类的描述
+[猴子碰撞的方法数](https://leetcode.cn/problems/count-collisions-of-monkeys-on-a-polygon/)
+```
+public int MonkeyMove(int n) {
+	//特别注意对mod执行±运算后 需要再次mod
+    long res = Power(2, n, mod) - 2;
+    res = (res + mod) % mod;
+    return (int)res;
+}
+```
+[至少有1位重复的数字](https://leetcode.cn/problems/numbers-with-repeated-digits/)
+
+- 或者带有`覆盖`性质的题目
+[查询后矩阵的和](https://leetcode.cn/problems/sum-of-matrix-after-queries/)
+
+
  ## 数组
  
  ## 哈希表
