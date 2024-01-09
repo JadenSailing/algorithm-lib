@@ -1,6 +1,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -347,11 +348,66 @@ private int LCA(int x, int y)
  
  ### 线段树
  
- 基本线段树模板 区间更新, 查询区间和
+ - 基本线段树模板 区间更新, 查询区间和
+```
+public class SegmentTree
+{
+    public class Node
+    {
+        public Node left, right;
+        public long sum;
+        public bool flag = false;
+        public long data;
+    }
+    private long n = (long)1e9 + 5;
+    private Node root = new Node();
+    public SegmentTree(long n = (long)1e9 + 5) { this.n = n; }
+    public long Sum(long L, long R) { return Sum(root, 0, n, L, R); }
+    public void Update(long L, long R, long val) { Update(root, 0, n, L, R, val); }
+
+    private void Update(Node node, long start, long end, long l, long r, long val)
+    {
+        if (l <= start && r >= end)
+        {
+            node.sum = (end - start + 1) * val;
+            node.data = val;
+            node.flag = true;
+            return;
+        }
+        long mid = start + (end - start) / 2;
+        PushDown(node, mid - start + 1, end - mid);
+        if (l <= mid) Update(node.left, start, mid, l, r, val);
+        if (r > mid) Update(node.right, mid + 1, end, l, r, val);
+        PushUp(node);
+    }
+    private long Sum(Node node, long start, long end, long l, long r)
+    {
+        if (l <= start && end <= r) return node.sum;
+        long mid = (start + end) >> 1, ans = 0;
+        PushDown(node, mid - start + 1, end - mid);
+        if (l <= mid) ans += Sum(node.left, start, mid, l, r);
+        if (r > mid) ans += Sum(node.right, mid + 1, end, l, r);
+        return ans;
+    }
+
+    private void PushUp(Node node)
+    {
+        node.sum = node.left.sum + node.right.sum;
+    }
+    private void PushDown(Node node, long leftNum, long rightNum)
+    {
+        if (node.left == null) node.left = new Node();
+        if (node.right == null) node.right = new Node();
+        if (!node.flag) return;
+        node.left.sum = node.data * leftNum;
+        node.right.sum = node.data * rightNum;
+        node.left.data = node.right.data = node.data;
+        node.left.flag = node.right.flag = true;
+        node.flag = false;
+    }
+} 
+```
  
- ```
- 
- ```
  
  ### 字典树
 - 基本字典树模型
