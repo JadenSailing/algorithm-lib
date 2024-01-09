@@ -189,6 +189,7 @@ for(int i = 0; i < list.Count; i++)
  ### 正难则反
 一种解题思路 正向可能会非常难的情况下 反向可能会很简单 
 - 比如出现`至少x个xxx`一类的描述
+
 [猴子碰撞的方法数](https://leetcode.cn/problems/count-collisions-of-monkeys-on-a-polygon/)
 ```
 public int MonkeyMove(int n) {
