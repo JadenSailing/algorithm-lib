@@ -3,6 +3,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -648,7 +649,55 @@ public int JobScheduling(int[] startTime, int[] endTime, int[] profit)
 [树中距离之和](https://github.com/JadenSailing/algorithm-lib/blob/main/DP/%E6%8D%A2%E6%A0%B9DP/Solution_LC_834_%E6%A0%91%E4%B8%AD%E8%B7%9D%E7%A6%BB%E4%B9%8B%E5%92%8C.cs)
 
  ### 数位dp
+ 标准模板 以[至少1位重复的数字](https://leetcode.cn/problems/numbers-with-repeated-digits)为例
+ 模板熟练后，题目的关键点在于找到递归数据如何维护 维护什么和重复子问题的界定和缓存
+```
+//至少有一位重复数字的个数[1,n]
+public int NumDupDigitsAtMostN(int n)
+{
+    //计算没有重复数字的个数 正难则反
+    int diff = DFS(n.ToString(), 0, 0, true, false, Cache(10, 1024, -1));
+    return n - diff;
+}
 
+//标准模板
+//s n的字符串形式
+//cur 当前遍历到的位[0, s.Length - 1]
+//mask 题目所需的数据 此处是10个字母是否有重复的标记
+//isLimit 当前位是否受n当前位的约束 当不受约束时 则会记录cache 
+//isNum 表示是否是合法数字 即不全是前导0
+//vis 记忆化数据
+
+private int DFS(string s, int cur, int mask, bool isLimit, bool isNum, int[][] vis)
+{
+    //遍历完s长度后的退出处理
+    if (cur == s.Length) return isNum ? 1 : 0;
+    //如果无约束且有缓存 则返回缓存数据
+    if (!isLimit && isNum && vis[cur][mask] >= 0) return vis[cur][mask];
+    int res = 0;
+    //如果需要处理前导零 特殊处理
+    if (!isNum) res += DFS(s, cur + 1, mask, false, false, vis);
+    //上界
+    int upper = isLimit ? s[cur] - '0' : 9;
+    //上面处理前导0 就从1开始 否则还是从0开始
+    int lower = isNum ? 0 : 1;
+    for (int i = lower; i <= upper; i++)
+    {
+        //无重复的情况下才需要向下计算
+        if ((mask >> i & 1) == 0)
+        {
+            //mask数据修改
+            //isLimit更新
+            //isNum更新
+            //注意只修改当前i
+            res += DFS(s, cur + 1, mask | (1 << i), isLimit && i == upper, isNum || i > 0, vis);
+        }
+    }
+    //只有无约束的情况下存缓存
+    if (!isLimit && isNum) vis[cur][mask] = res;
+    return res;
+}
+```
  ### dp优化
 
  ## 计算几何
