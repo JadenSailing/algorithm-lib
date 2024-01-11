@@ -4,6 +4,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -203,6 +204,7 @@ public int MonkeyMove(int n) {
 [至少有1位重复的数字](https://leetcode.cn/problems/numbers-with-repeated-digits/)
 
 - 或者带有`覆盖`性质的题目
+
 [查询后矩阵的和](https://leetcode.cn/problems/sum-of-matrix-after-queries/)
 
 
@@ -650,6 +652,7 @@ public int JobScheduling(int[] startTime, int[] endTime, int[] profit)
 
  ### 数位dp
  标准模板 以[至少1位重复的数字](https://leetcode.cn/problems/numbers-with-repeated-digits)为例
+ 
  模板熟练后，题目的关键点在于找到递归数据如何维护 维护什么和重复子问题的界定和缓存
 ```
 //至少有一位重复数字的个数[1,n]
@@ -704,6 +707,22 @@ private int DFS(string s, int cur, int mask, bool isLimit, bool isNum, int[][] v
  
  
  ## 其它
- 
- 
+ ### 约瑟夫环
+ [lc1823.找出游戏的获胜者](https://leetcode.cn/problems/find-the-winner-of-the-circular-game/)
+
+核心函数`f(n, k) = (f(n - 1, k) + k) % n`
+```
+public int FindTheWinner(int n, int k) {
+	int ans = 0;
+	for(int i = 2; i <= n; i++) ans = (ans + k) % i;
+	return ans + 1;
+}
+```
+递归写法(如果下标从0开始，否则需要额外写个DFS函数)
+```
+public int FindTheWinner(int n, int k) {
+	if(n == 1) return 0;
+	return (DFS(n - 1, k) + k) % n;
+}
+```
  
