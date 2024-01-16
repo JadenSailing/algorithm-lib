@@ -1,4 +1,5 @@
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -271,7 +272,75 @@ public class Heap
 	
  
  ## 字符串
- 
+ ### 字符串哈希
+多项式的哈希算法，双哈希优化 以下题目`MOD` 1e6时有case无法通过
+```
+// 随机哈希基数和模数，防止被 hack
+Random rand = new Random(DateTime.Now.Millisecond);
+int BASE = 37 + rand.Next() % 107;
+int MOD = (int)1e9 + 7;
+// 求字符串 s 的哈希
+int n = s.Length;
+long[] P = new long[n + 1];
+P[0] = 1;
+for (int i = 1; i <= n; i++) P[i] = P[i - 1] * BASE % MOD;
+long[] h = new long[n + 1];
+h[0] = 0;
+for (int i = 1; i <= n; i++) h[i] = (h[i - 1] * BASE + s[i - 1] - 'a') % MOD;
+// 求子串 s[L..R] 的哈希值
+long Calc(int L, int R) {
+    return (h[R] - h[L - 1] * P[R - L + 1] % MOD + MOD) % MOD;
+};
+```
+[找出数组中的美丽下标 II](https://github.com/JadenSailing/algorithm-lib/blob/main/String/Solution_LC_3008_%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%BE%8E%E4%B8%BD%E4%B8%8B%E6%A0%87II.cs)
+
+ ### KMP
+复杂度`O(n+m)`
+```
+//计算next数组
+private int[] PI(string s)
+{
+    int n = s.Length;
+    int[] res = new int[n];
+    for (int i = 1; i < n; i++)
+    {
+        int j = res[i - 1];
+        while (j > 0 && s[i] != s[j]) j = res[j - 1];
+        if (s[i] == s[j]) j++;
+        res[i] = j;
+    }
+    return res;
+}
+//KMP
+private List<int> KMP(string s, string t)
+{
+    int n = s.Length, m = t.Length;
+    int[] pi = PI(t);
+    List<int> res = new List<int>();
+    int j = 0;
+    for (int i = 0; i < n; i++)
+    {
+        while (j > 0 && s[i] != t[j]) j = pi[j - 1];
+        if (s[i] == t[j]) j++;
+        if (j == m)
+        {
+            res.Add(i - m + 1);
+            j = pi[j - 1];
+        }
+    }
+    return res;
+}
+```
+[找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
+```
+public int StrStr(string haystack, string needle)
+{
+    List<int> res = KMP(haystack, needle);
+    return res.Count == 0 ? -1 : res[0];
+}
+```
+
  ## 排序
 
  ## 二分
