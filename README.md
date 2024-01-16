@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
