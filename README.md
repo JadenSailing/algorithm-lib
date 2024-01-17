@@ -1,5 +1,6 @@
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -342,6 +343,89 @@ public int StrStr(string haystack, string needle)
 ```
 
  ## 排序
+ ### 冒泡排序
+ 原理：每轮遍历中，逐个向后比较，将更大的数向后冒泡，持续N轮
+
+```
+int n = nums.Length;
+for(int i = 0; i < n; i++)
+{
+    for(int j = 0; j < n - i - 1; j++)
+    {
+        if (nums[j] > nums[j + 1]) (nums[j], nums[j + 1]) = (nums[j + 1], nums[j]);
+    }
+}
+```
+```
+ //优化
+ int last = n - 1;
+ while(last > 0)
+ {
+     int now = 0;
+     for(int j = 0; j < last; j++)
+     {
+         if (nums[j] > nums[j + 1])
+         {
+             now = j + 1;
+             (nums[j], nums[j + 1]) = (nums[j + 1], nums[j]);
+         }
+     }
+     last = now;
+ }
+```
+ 
+ ### 选择排序
+ 原理：每轮选择最小的下标与当前首位交换
+```
+ int n = nums.Length;
+for(int i = 0; i < n; i++)
+{
+    int min = i;
+    for(int j = i + 1; j < n; j++)
+    {
+        if (nums[j] < nums[min]) min = j;
+    }
+    (nums[i], nums[min]) = (nums[min], nums[i]);
+}
+```
+>冒泡和选择排序的比较
+都是把当前剩余的最值添加到已排序的末尾
+区别是冒泡排序每轮交换N次，而选择排序只是记录最值下标
+ ### 插入排序
+原理：逐个选择未排序的元素向已排序列表中插入
+```
+int n = nums.Length;
+for(int i = 1; i < n; i++)
+{
+    for(int j = i; j > 0; j--)
+    {
+        if (nums[j] < nums[j - 1]) (nums[j - 1], nums[j]) = (nums[j], nums[j - 1]);
+        else break;
+    }
+}
+```
+ ### 快速排序
+ acwing标准模板
+```
+private void QuickSort(int[] nums, int L, int R)
+{
+    if (L >= R) return;
+    int i = L - 1, j = R + 1, x = nums[(L + R) / 2];
+    while (i < j)
+    {
+        do i++; while (nums[i] < x);
+        do j--; while (nums[j] > x);
+        if (i < j) (nums[i], nums[j]) = (nums[j], nums[i]);
+    }
+    QuickSort(nums, L, j);
+    QuickSort(nums, j + 1, R);
+}
+```
+ ### 堆排序
+ 参见堆的介绍
+ ### 归并排序
+ ### 基数排序
+ ### 桶排序
 
  ## 二分
  - 基础模板 [搜索插入位置](https://github.com/JadenSailing/algorithm-lib/blob/main/BinarySearch/Solution_LC_35_%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE.cs)
