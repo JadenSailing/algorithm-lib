@@ -268,7 +268,7 @@ public class Heap
 [数组第K大元素](https://github.com/JadenSailing/algorithm-lib/blob/main/Heap/Solution_LC_215_%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0.cs)
 - 堆排序的处理
 	- 原地修改
-	- Heapify from n / 2 -> 1
+	- Heapify from n / 2 -> 0
 	- Pop & Swap(1, Size--)
 	
  
@@ -441,6 +441,7 @@ return low
 ```
 
  ## 双指针
+ ## 分治
 
  ## 贪心
 
