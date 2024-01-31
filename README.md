@@ -1,6 +1,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -424,6 +425,27 @@ private void QuickSort(int[] nums, int L, int R)
  ### 堆排序
  参见堆的介绍
  ### 归并排序
+```
+//int n = nums.Length;
+//MergeSort(nums, new int[n], 0, n - 1);
+private void MergeSort(int[] nums, int[] tmp, int L, int R)
+{
+    if (L >= R) return;
+    int mid = L + (R - L) / 2;
+    MergeSort(nums, tmp, L, mid);
+    MergeSort(nums, tmp, mid + 1, R);
+    int i = L, j = mid + 1, t = L;
+    while (i <= mid && j <= R)
+    {
+        if (nums[i] <= nums[j]) tmp[t++] = nums[i++];
+        else tmp[t++] = nums[j++];
+    }
+    while (i <= mid) tmp[t++] = nums[i++];
+    while (j <= R) tmp[t++] = nums[j++];
+    //for (int k = L; k <= R; k++) nums[k] = tmp[k];
+    Array.Copy(tmp, L, nums, L, R - L + 1);
+}
+```
  ### 基数排序
  ### 桶排序
 
