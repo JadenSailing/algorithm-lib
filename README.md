@@ -406,7 +406,7 @@ for(int i = 1; i < n; i++)
 }
 ```
  ### 快速排序
- acwing标准模板
+ - acwing标准模板
 ```
 private void QuickSort(int[] nums, int L, int R)
 {
@@ -422,6 +422,25 @@ private void QuickSort(int[] nums, int L, int R)
     QuickSort(nums, j + 1, R);
 }
 ```
+- 快速选择 
+均摊复杂度O(n)
+```
+//第k小元素 k∈[0, n - 1]
+public int QuickSelect(int[] nums, int L, int R, int k)
+{
+    if (L == R) return nums[k];
+    int x = nums[L], i = L - 1, j = R + 1;
+    while (i < j)
+    {
+        do i++; while (nums[i] < x);
+        do j--; while (nums[j] > x);
+        if (i < j) (nums[i], nums[j]) = (nums[j], nums[i]);
+    }
+    if (k <= j) return QuickSelect(nums, L, j, k);
+    else return QuickSelect(nums, j + 1, R, k);
+}
+```
+
  ### 堆排序
  参见堆的介绍
  ### 归并排序
