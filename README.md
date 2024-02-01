@@ -801,6 +801,8 @@ for(int i = 2; i < N; i++)
  
  ### 线性DP
  - LIS(Longest Increasing Subsequence) 最长上升子序列
+
+[300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/)
 ```
 //普通解
 public int LengthOfLIS(int[] nums)
