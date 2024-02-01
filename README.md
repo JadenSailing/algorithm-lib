@@ -794,9 +794,62 @@ for(int i = 2; i < N; i++)
  ## 位运算
  
  ### 状态压缩
+ 
  ### 枚举子集
  
  ## 动态规划
+ 
+ ### 线性DP
+ - LIS(Longest Increasing Subsequence) 最长上升子序列
+```
+//普通解
+public int LengthOfLIS(int[] nums)
+{
+	int n = nums.Length;
+	//dp[i]表示以nums[i]结尾的lis长度
+	int[] dp = new int[n];
+	Array.Fill(dp, 1); //只有自身时长度为1
+	for(int i = 1; i < n; i++)
+	{
+		for(int j = 0; j < i; j++)
+		{
+			if (nums[j] < nums[i]) dp[i] = Math.Max(dp[i], dp[j] + 1);
+		}
+	}
+	return dp.Max(); //返回最大值
+}
+```
+```
+//二分优化
+public int LengthOfLIS(int[] nums)
+{
+	int n = nums.Length;
+	int[] lis = new int[n];
+	lis[0] = nums[0];
+	int len = 1;
+	for(int i = 1; i < n; i++)
+	{
+		int v = nums[i];
+		int low = 0, high = len - 1;
+		while(low <= high)
+		{
+			int mid = low + (high - low) / 2;
+			if(lis[mid] < v) low = mid + 1;
+			else high = mid - 1;
+		}
+		lis[low] = v;
+		len = Math.Max(len, low + 1);
+	}
+	return len;
+}
+```
+ - LCS(Longest Common Subsequence)最长公共子序列
+ 
+ - 编辑距离
+ 
+ ### 区间DP
+ 
+ ### 背包DP
  
  ### 带权区间调度
  [weighted Interval Scheduling 问题-草莓奶昔](https://leetcode.cn/problems/maximize-the-profit-as-the-salesman/solutions/2398862/python-weightedintervalscheduling-wen-ti-t253/)
