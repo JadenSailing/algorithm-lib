@@ -86,6 +86,35 @@ private int[][] Mul(int[][] x, int[][] y)
  [L, R](0 <= L, R < n) = pre[R + 1] - pre[L];
  ```
  [区域和检索-数组不可变](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_303_%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2%20-%20%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98.cs)
+
+[462. 最小操作次数使数组元素相等 II](https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/)
+标准做法中位数贪心即可 这里提供枚举所有下标的做法
+```
+//前缀和枚举下标做法
+long ans = long.MaxValue;
+for (int i = 0; i < n; i++)
+{
+    long v = nums[i];
+    long L = v * i - sum[i]; //i之前差额
+    long R = sum[n] - sum[i] - v * (n - i); //i之后(含i)差额
+    ans = Math.Min(ans, L + R);
+}
+```
+```
+//迭代枚举
+long pre = nums[0];
+long res = total - 1L * nums[0] * n; //注意此处int溢出
+long ans = res;
+for (int i = 1; i < n; i++)
+{
+    long v = nums[i];
+    long L = i * (v - pre);
+    long R = (n - i) * (v - pre);
+    res = res + L - R;
+    ans = Math.Min(ans, res);
+    pre = v;
+}
+```
  
  - 二维前缀和
 
