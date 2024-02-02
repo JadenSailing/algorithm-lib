@@ -259,7 +259,18 @@ public int MonkeyMove(int n) {
  ## 队列
  
  ## 链表
- 
+ [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
+```
+public ListNode ReverseList(ListNode head) 
+{
+	ListNode pre = null;
+	while(head != null)
+	{
+		(pre, head, head.next) = (head, head.next, pre);
+	}
+	return pre;
+}
+```
  ## 堆
  - 基础模板
  ```
