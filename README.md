@@ -530,6 +530,10 @@ return low
 ```
 
  ## 双指针
+ 某些情况称为滑动窗口
+ [无重复字符的最长子串](https://github.com/JadenSailing/algorithm-lib/blob/main/TwoPointers/Solution_LC_3_%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2.cs)
+ 
+
  ## 分治
 
  ## 贪心
