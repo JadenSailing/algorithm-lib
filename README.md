@@ -317,6 +317,9 @@ public class Heap
 	- Heapify from n / 2 -> 0
 	- Pop & Swap(1, Size--)
 	
+[数据流的中位数](https://github.com/JadenSailing/algorithm-lib/blob/main/Heap/Solution_LC_295_%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0.cs)
+
+
  
  ## 字符串
  ### 字符串哈希
