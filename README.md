@@ -171,6 +171,20 @@ public int SumRegion(int row1, int col1, int row2, int col2)
  
  [二维区域和-矩阵不可变](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_304_%E4%BA%8C%E7%BB%B4%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2%20-%20%E7%9F%A9%E9%98%B5%E4%B8%8D%E5%8F%AF%E5%8F%98.cs)
  
+ - 前后缀分解
+ 预处理前缀和后缀信息 然后枚举每一项
+
+[42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/)
+```
+//L[i]和R[i]表示i之前和之后的最大值
+for(int i = 0; i < n; i++)
+{
+	//注意是两侧高度的较小值-当前格子的高度 大于0的部分才可以接雨水
+	ans += Math.Max(0, Math.Min(L[i], R[i]) - height[i]);
+}
+```
+ 
+ 
  ### 差分
  - 一维差分
  ```
@@ -239,6 +253,8 @@ public int MonkeyMove(int n) {
  ## 哈希表
 
  ## 栈
+ ### 单调栈
+ 
  
  ## 队列
  
