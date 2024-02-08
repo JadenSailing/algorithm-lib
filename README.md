@@ -2,6 +2,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -773,6 +774,30 @@ public class SegmentTree
  ### 最小生成树
  
  ### Tarjan
+ - 求割边(桥)
+```
+private void Tarjan(HashSet<int>[] g, int u, int fa, int time)
+{
+	dfn[u] = low[u] = time++;
+	foreach(int v in g[u])
+	{
+		if(v == fa) continue;
+		if(dfn[v] == 0)
+		{
+			Tarjan(g, v, u, time);
+			low[u] = Math.Min(low[u], low[v]);
+			if(low[v] > dfn[u])
+			{
+				bridges.Add(new List<int>(){u, v});
+			}
+		}
+		else
+		{
+			low[u] = Math.Min(low[u], dfn[v]);
+		}
+	}
+}
+```
  
  ## 并查集
  
