@@ -799,7 +799,8 @@ private void Tarjan(HashSet<int>[] g, int u, int fa, int time)
 }
 ```
 - 完整模板 包括记录环个数和分组
-[CF923-div3-F.Microcycle](https://codeforces.com/contest/1927/submission/245749383)
+[CF923-div3-F.Microcycle-求带权无向图中最短边权重最小的简单环](https://codeforces.com/contest/1927/submission/245749383)
+
 本题解包含了Tarjan求环 Dijkstra求最短路 记录path等
  
  ## 并查集
@@ -1042,6 +1043,9 @@ private int DFS(string s, int cur, int mask, bool isLimit, bool isNum, int[][] v
  
  
  ## 其它
+ 
+ ### 灵神八题
+ 
  ### 约瑟夫环
  [lc1823.找出游戏的获胜者](https://leetcode.cn/problems/find-the-winner-of-the-circular-game/)
 
