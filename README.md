@@ -798,6 +798,9 @@ private void Tarjan(HashSet<int>[] g, int u, int fa, int time)
 	}
 }
 ```
+- 完整模板 包括记录环个数和分组
+[CF923-div3-F.Microcycle](https://codeforces.com/contest/1927/submission/245749383)
+本题解包含了Tarjan求环 Dijkstra求最短路 记录path等
  
  ## 并查集
  
