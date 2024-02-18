@@ -3,6 +3,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -348,7 +349,7 @@ P[0] = 1;
 for (int i = 1; i <= n; i++) P[i] = P[i - 1] * BASE % MOD;
 long[] h = new long[n + 1];
 h[0] = 0;
-for (int i = 1; i <= n; i++) h[i] = (h[i - 1] * BASE + s[i - 1] - 'a') % MOD;
+for (int i = 1; i <= n; i++) h[i] = (h[i - 1] * BASE + s[i - 1] - 'a' + 1) % MOD;
 // 求子串 s[L..R] 的哈希值
 long Calc(int L, int R) {
     return (h[R] - h[L - 1] * P[R - L + 1] % MOD + MOD) % MOD;
