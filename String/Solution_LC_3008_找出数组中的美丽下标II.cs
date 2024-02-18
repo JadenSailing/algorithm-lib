@@ -42,39 +42,19 @@ public class Solution_LC_3008_找出数组中的美丽下标II
 {
     public IList<int> BeautifulIndices(string s, string a, string b, int k)
     {
-        // 随机哈希基数和模数，防止被 hack
-        Random rand = new Random(DateTime.Now.Millisecond);
-        int BASE = 37 + rand.Next() % 107;
-        int MOD = (int)1e9 + 7;
-
-        // 求字符串 s 的哈希
         int n = s.Length;
-        long[] P = new long[n + 1];
-        P[0] = 1;
-        for (int i = 1; i <= n; i++) P[i] = P[i - 1] * BASE % MOD;
-        long[] h = new long[n + 1];
-        h[0] = 0;
-        for (int i = 1; i <= n; i++) h[i] = (h[i - 1] * BASE + s[i - 1] - 'a') % MOD;
-
-        // 求子串 s[L..R] 的哈希值
-        long Calc(int L, int R)
-        {
-            return (h[R] - h[L - 1] * P[R - L + 1] % MOD + MOD) % MOD;
-        };
-
+        StringHash sh = new StringHash(s);
         // 用哈希找出 b 在 s 里出现的所有下标
+        long HB = (new StringHash(b)).Hash(1, b.Length);
         List<int> vec = new List<int>();
-        long HB = 0;
-        foreach (char c in b) HB = (HB * BASE + c - 'a') % MOD;
-        for (int i = 1, j = b.Length; j <= n; i++, j++) if (Calc(i, j) == HB) vec.Add(i);
+        for (int i = 1, j = b.Length; j <= n; i++, j++) if (sh.Hash(i, j) == HB) vec.Add(i);
 
         List<int> ans = new List<int>();
         // 用哈希找出 a 在 s 里出现的所有下标
-        long HA = 0;
-        foreach (char c in a) HA = (HA * BASE + c - 'a') % MOD;
+        long HA = (new StringHash(a)).Hash(1, a.Length);
         for (int i = 1, j = a.Length; j <= n; i++, j++)
         {
-            if (Calc(i, j) == HA)
+            if (sh.Hash(i, j) == HA)
             {
                 // 在 vec 里二分，看是否存在范围内的数
                 int low = 0, high = vec.Count - 1;
@@ -88,5 +68,39 @@ public class Solution_LC_3008_找出数组中的美丽下标II
             }
         }
         return ans;
+    }
+
+    public class StringHash
+    {
+        static Random rand;
+        static long BASE;
+        static long MOD;
+        long[] P, h;
+        bool init = false;
+        static StringHash()
+        {
+            // 随机哈希基数和模数，防止被 hack
+            rand = new Random(DateTime.Now.Millisecond);
+            BASE = 37 + rand.Next() % 107;
+            MOD = (int)1e9 + 7;
+        }
+
+        public StringHash(string s)
+        {
+            // 求字符串 s 的哈希
+            int n = s.Length;
+            P = new long[n + 1];
+            P[0] = 1;
+            for (int i = 1; i <= n; i++) P[i] = P[i - 1] * BASE % MOD;
+            h = new long[n + 1];
+            h[0] = 0;
+            for (int i = 1; i <= n; i++) h[i] = (h[i - 1] * BASE + s[i - 1] - 'a' + 1) % MOD;
+        }
+
+        // 求子串 s[L..R] 的哈希值 L,R ∈ [1,n]
+        public long Hash(int L, int R)
+        {
+            return (h[R] - h[L - 1] * P[R - L + 1] % MOD + MOD) % MOD;
+        }
     }
 }
