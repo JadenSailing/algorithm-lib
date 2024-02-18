@@ -344,36 +344,34 @@ public class Heap
 ```
 public class StringHash
 {
-    static Random rand;
-    static long BASE;
-    static long MOD;
-    long[] P, h;
-    bool init = false;
-    static StringHash()
-    {
-        // 随机哈希基数和模数，防止被 hack
-        rand = new Random(DateTime.Now.Millisecond);
-        BASE = 37 + rand.Next() % 107;
-        MOD = (int)1e9 + 7;
-    }
+	static Random rand;
+	static long BASE, MOD;
+	long[] P, h;
+	static StringHash()
+	{
+		// 随机哈希基数和模数，防止被 hack
+		rand = new Random(DateTime.Now.Millisecond);
+		BASE = 37 + rand.Next() % 107;
+		MOD = (int)1e9 + 7;
+	}
 
-    public StringHash(string s)
-    {
-        // 求字符串 s 的哈希
-        int n = s.Length;
-        P = new long[n + 1];
-        P[0] = 1;
-        for (int i = 1; i <= n; i++) P[i] = P[i - 1] * BASE % MOD;
-        h = new long[n + 1];
-        h[0] = 0;
-        for (int i = 1; i <= n; i++) h[i] = (h[i - 1] * BASE + s[i - 1] - 'a' + 1) % MOD;
-    }
+	public StringHash(string s)
+	{
+		// 求字符串 s 的哈希
+		int n = s.Length;
+		P = new long[n + 1];
+		P[0] = 1;
+		for (int i = 1; i <= n; i++) P[i] = P[i - 1] * BASE % MOD;
+		h = new long[n + 1];
+		h[0] = 0;
+		for (int i = 1; i <= n; i++) h[i] = (h[i - 1] * BASE + s[i - 1] - 'a' + 1) % MOD;
+	}
 
-    // 求子串 s[L..R] 的哈希值 L,R ∈ [1,n]
-    public long Hash(int L, int R)
-    {
-        return (h[R] - h[L - 1] * P[R - L + 1] % MOD + MOD) % MOD;
-    }
+	// 求子串 s[L..R] 的哈希值 L,R ∈ [1,n]
+	public long Hash(int L, int R)
+	{
+		return (h[R] - h[L - 1] * P[R - L + 1] % MOD + MOD) % MOD;
+	}
 }
 ```
 [找出数组中的美丽下标 II](https://github.com/JadenSailing/algorithm-lib/blob/main/String/Solution_LC_3008_%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%BE%8E%E4%B8%BD%E4%B8%8B%E6%A0%87II.cs)

@@ -73,10 +73,8 @@ public class Solution_LC_3008_找出数组中的美丽下标II
     public class StringHash
     {
         static Random rand;
-        static long BASE;
-        static long MOD;
+        static long BASE, MOD;
         long[] P, h;
-        bool init = false;
         static StringHash()
         {
             // 随机哈希基数和模数，防止被 hack
