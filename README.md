@@ -5,6 +5,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -973,6 +974,27 @@ for (int i = 1; i <= n1; i++)
     }
 }
 return dp[n1][n2];
+```
+空间优化版
+```
+int[] dp = new int[n2 + 1];
+for (int i = 1; i <= n1; i++)
+{
+    int upLeft = 0;
+    for (int j = 1; j <= n2; j++)
+    {
+        upLeft = dp[j];
+        if (text1[i - 1] == text2[j - 1])
+        {
+            dp[j] = upLeft + 1;
+        }
+        else
+        {
+            dp[j] = Math.Max(dp[j - 1], dp[j]);
+        }
+    }
+}
+return dp[n2];
 ```
  
  - 编辑距离
