@@ -977,24 +977,16 @@ return dp[n1][n2];
 ```
 空间优化版
 ```
-int[] dp = new int[n2 + 1];
-for (int i = 1; i <= n1; i++)
+int[] dp = new int[m + 1];
+for (int i = 1; i <= n; i++)
 {
-    int upLeft = 0;
-    for (int j = 1; j <= n2; j++)
-    {
-        upLeft = dp[j];
-        if (text1[i - 1] == text2[j - 1])
-        {
-            dp[j] = upLeft + 1;
-        }
-        else
-        {
-            dp[j] = Math.Max(dp[j - 1], dp[j]);
-        }
-    }
+	int upLeft = 0;
+	for (int j = 1; j <= m; j++)
+	{
+		(upLeft, dp[j]) = (dp[j], text1[i - 1] == text2[j - 1] ? upLeft + 1 : Math.Max(dp[j], dp[j - 1]));
+	}
 }
-return dp[n2];
+return dp[m];
 ```
  
  - 编辑距离
