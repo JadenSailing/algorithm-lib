@@ -6,6 +6,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -578,14 +579,14 @@ return low
 经典问题 [105. 从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 
 前序遍历第一个位置是根节点，找到中序中根节点位置，按照个数对前序和中序分别分段，递归处理。
-注意：所有节点值必须唯一，另外从前序和后序是无法还原的
+注意：所有节点值必须唯一，另外从前序和后序是无法唯一还原的
 ```
 public TreeNode BuildTree(int[] preorder, int[] inorder)
 {
     int n = preorder.Length;
     Dictionary<int, int> indexDict = new Dictionary<int, int>();
     for (int i = 0; i < n; i++) indexDict[inorder[i]] = i;
-    return DFS(preorder, inorder, indexDict, 0, preorder.Length - 1, 0, inorder.Length - 1);
+    return DFS(preorder, inorder, indexDict, 0, n - 1, 0, n - 1);
 }
 
 private TreeNode DFS(int[] preorder, int[] inorder, Dictionary<int, int> indexDict, int pL, int pR, int iL, int iR)
@@ -598,6 +599,29 @@ private TreeNode DFS(int[] preorder, int[] inorder, Dictionary<int, int> indexDi
     return root;
 }
 ```
+[889. 根据前序和后序遍历构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/)
+```
+public TreeNode ConstructFromPrePost(int[] preorder, int[] postorder)
+{
+    int n = preorder.Length;
+    Dictionary<int, int> indexDict = new Dictionary<int, int>();
+    for (int i = 0; i < n; i++) indexDict[postorder[i]] = i;
+    return DFS(preorder, postorder, indexDict, 0, n - 1, 0, n - 1);
+}
+
+private TreeNode DFS(int[] preorder, int[] postorder, Dictionary<int, int> indexDict, int prL, int prR, int poL, int poR)
+{
+    TreeNode root = new TreeNode(preorder[prL]);
+    if (prR > prL)
+    {
+        int idx = indexDict[preorder[prL + 1]];
+        root.left = DFS(preorder, postorder, indexDict, prL + 1, prL + 1 + idx - poL, poL, idx);
+        if (idx < poR - 1) root.right = DFS(preorder, postorder, indexDict, prL + 1 + idx - poL + 1, prR, idx + 1, poR - 1);
+    }
+    return root;
+}
+```
+
  ### 树的直径
  - 两边DFS 任意点出发最远端是直径上一点，无法处理负边
  - 树形dp 计算所有节点的左右子树长度和
