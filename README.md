@@ -7,6 +7,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -79,7 +80,14 @@ private int[][] Mul(int[][] x, int[][] y)
 ```
 矩阵快速幂求[斐波那契数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%9F%BA%E7%A1%80/%E5%BF%AB%E9%80%9F%E5%B9%82/Solution_LC_509_%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0.cs)
 
-
+ ### 逆元
+ 费马小定理 a^p ≡ a (mod p)
+```
+Power(a, p, mod) = a % mod
+Power(a, p - 1, mod) = 1
+Power(a, p - 2, mod) = (1 / a) % mod
+a / b % mod = a * Power(b, mod - 2, mod) % mod
+```
  ### 前缀和
  - 一维前缀和 
  ```
@@ -909,6 +917,9 @@ for(int i = 2; i < N; i++)
 [范围内最接近的两个质数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E6%95%B0%E8%AE%BA/%E8%B4%A8%E6%95%B0/Solution_LC_2523_%E8%8C%83%E5%9B%B4%E5%86%85%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%B4%A8%E6%95%B0.cs)
 
  - 线性筛
+ ### 组合数学
+
+
  ### 方程
  - 二元一次方程
  [1276. 不浪费原料的汉堡制作方案](https://leetcode.cn/problems/number-of-burgers-with-no-waste-of-ingredients/)
