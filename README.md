@@ -8,6 +8,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
  ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -1178,4 +1179,39 @@ public int FindTheWinner(int n, int k) {
 	return (DFS(n - 1, k) + k) % n;
 }
 ```
- 
+ ## C#语法
+ ### PriorityQueue用法
+ 主要是简单Compare无法解决的情况下 需要构造比较器实例
+ 比如排序字符串，长度优先->字典序次之
+```
+public static void Solve()
+{
+    string[] arr = new string[] { "abc", "ab", "ac", "a", "aa", "aaaa" };
+    PriorityQueue<string, string> pq = new PriorityQueue<string, string>(new Comparer());
+    for (int i = 0; i < arr.Length; i++) pq.Enqueue(arr[i], arr[i]);
+    List<string> res = new List<string>();
+    while(pq.Count > 0) res.Add(pq.Dequeue());
+    Print(res.ToArray());
+    //["a","aa","ab","ac","abc","aaaa"]
+}
+class Comparer : IComparer<string>
+{ 
+    public int Compare(string A, string B)
+    {
+        if (A.Length != B.Length) return A.Length - B.Length;
+        return A.CompareTo(B);
+    }
+}
+```
+ ### 递归过深问题
+ - 尾调用优化
+ - 子线程增大栈空间
+	
+ ### 元组使用
+ - 声明 赋值 返回值等
+```
+int a, b; 
+(a, b) = (2, 3);
+(a, b) = (b, a);
+```
+ - 作为组合Key Value
