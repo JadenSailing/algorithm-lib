@@ -2,6 +2,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
 ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -780,6 +781,8 @@ public class SegmentTree
  
 - 红黑树
 - Treap
+[Treap实现的Map模板](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%B9%B3%E8%A1%A1%E6%A0%91/T_Map.cs)
+[避免洪水泛滥](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%B9%B3%E8%A1%A1%E6%A0%91/Solution_LC_1488_%E9%81%BF%E5%85%8D%E6%B4%AA%E6%B0%B4%E6%B3%9B%E6%BB%A5.cs)
  
 ## 图论
  
