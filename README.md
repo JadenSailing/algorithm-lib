@@ -1215,6 +1215,11 @@ class Comparer : IComparer<string>
 ### 递归过深问题
 - 尾调用优化
 - 子线程增大栈空间
+```
+Thread thread = new Thread(Solve, 100 * 1024 * 1024);
+thread.Start();
+thread.Join();
+```
 	
 ### 元组使用
 - 声明 赋值 返回值等
