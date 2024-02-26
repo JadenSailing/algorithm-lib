@@ -1,4 +1,5 @@
 
+
 # AutumnMist's Algorithm Library
 ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -573,8 +574,13 @@ return low
 ### 根号分治
 
 ## 贪心
+
 ### 反悔贪心
+- 反悔堆
+[课程表III](https://github.com/JadenSailing/algorithm-lib/blob/main/Greedy/Solution_LC_630_%E8%AF%BE%E7%A8%8B%E8%A1%A8III.cs)
+
 ## 树
+
 ### 遍历
 树的前序中序和后序遍历
 经典问题 [105. 从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
