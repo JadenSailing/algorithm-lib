@@ -1,13 +1,10 @@
-
-
-
-
-
 # AutumnMist's Algorithm Library
-## C# Algorithm IO
- 1. 可用宏区分ACM模式或核心代码模式
- 2.  工程主类里处理了ACM模式下的常用输入输出   [Program](https://github.com/JadenSailing/algorithm-lib/blob/main/Program.cs)
- 3. LeetCodeSolution目录下是核心代码模式的支持。得益于C#反射机制，做到了一键复制粘贴的支持。能处理各种情况的输入输出，自动调用Solution和Input [LeetCodeSolution](https://github.com/JadenSailing/algorithm-lib/tree/main/LeetCodeSolution)
+## C# Algorithm Contest IO Project
+- 可用宏区分ACM模式或核心代码模式
+- 工程主类里处理了ACM模式下的常用输入输出   [Program](https://github.com/JadenSailing/algorithm-lib/blob/main/Program.cs)
+- LeetCodeSolution目录下是核心代码模式处理(主要用于LeetCode比赛)
+  - 基于C#反射，处理各种情况的输入输出 [LeetCodeSolution](https://github.com/JadenSailing/algorithm-lib/tree/main/LeetCodeSolution)
+  - 可直接全选复制粘贴运行
 ## 基础
 ### GCD&LCM
 最大公约数和最小公倍数
