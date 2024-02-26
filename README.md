@@ -1,6 +1,7 @@
 
 
 
+
 # AutumnMist's Algorithm Library
 ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -80,6 +81,12 @@ Power(a, p, mod) = a % mod
 Power(a, p- 1, mod) = 1
 Power(a, p- 2, mod) = (1 / a) % mod
 a / b % mod = a * Power(b, mod- 2, mod) % mod
+```
+### 区间交集
+```
+//区间[a,b]和[c,d] (a<=b, c<=d)的交集
+int overlapping = 1
+r = Math.Max((Math.Min(b, d) - Math.Max(a, c)) + overlapping, 0);
 ```
 ### 前缀和
 - 一维前缀和 
