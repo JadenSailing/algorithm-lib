@@ -1,5 +1,6 @@
 
 
+
 # AutumnMist's Algorithm Library
 ## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
@@ -1212,4 +1213,12 @@ int a, b;
 (a, b) = (2, 3);
 (a, b) = (b, a);
 ```
-- 作为组合Key Value
+- 作为组合Key Value 
+```
+Dictionary<(int, int), int> dict = new Dictionary<(int, int), int>();
+dict[(2, 3)] = 10;
+foreach((int, int) key in dict.Keys)
+{
+    Print(key.Item1, key.Item2, dict[key]);
+}
+```
