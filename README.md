@@ -495,6 +495,38 @@ for(int i = 1; i < n; i++)
 }
 ```
 ### 快速排序
+- 标准模板(中位数)
+```
+private void QuickSort(int[] nums, int L, int R)
+{
+    if (L >= R) return;
+    int M = Partition(nums, L, R);
+    QuickSort(nums, L, M - 1);
+    QuickSort(nums, M + 1, R);
+}
+private int Partition(int[] nums, int L, int R)
+{
+    int m = Medium(nums, L, R);
+    (nums[L], nums[m]) = (nums[m], nums[L]);
+    int i = L, j = R, v = nums[L];
+    while (i < j)
+    {
+        //下面两行顺序不能修改
+        while (i < j && nums[j] >= v) j--;
+        while (i < j && nums[i] <= v) i++;
+        (nums[i], nums[j]) = (nums[j], nums[i]);
+    }
+    (nums[L], nums[i]) = (nums[i], nums[L]);
+    return i;
+}
+private int Medium(int[] nums, int L, int R)
+{
+    int M = L + (R - L) / 2;
+    if (nums[L] <= nums[M] && nums[L] >= nums[R]) return L;
+    if (nums[R] <= nums[M] && nums[R] >= nums[L]) return R;
+    return M;
+}
+```
 - acwing标准模板
 ```
 private void QuickSort(int[] nums, int L, int R)
