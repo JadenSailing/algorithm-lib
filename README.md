@@ -1,30 +1,20 @@
 
-
-
-
-
-
-
-
-
-
-
 # AutumnMist's Algorithm Library
- ## C# Algorithm IO
+## C# Algorithm IO
  1. 可用宏区分ACM模式或核心代码模式
  2.  工程主类里处理了ACM模式下的常用输入输出   [Program](https://github.com/JadenSailing/algorithm-lib/blob/main/Program.cs)
  3. LeetCodeSolution目录下是核心代码模式的支持。得益于C#反射机制，做到了一键复制粘贴的支持。能处理各种情况的输入输出，自动调用Solution和Input [LeetCodeSolution](https://github.com/JadenSailing/algorithm-lib/tree/main/LeetCodeSolution)
- ## 基础
- ### GCD&LCM
- 最大公约数和最小公倍数
- ```
- public static long GCD(long a, long b) { return b == 0 ? a : GCD(b, a % b); }
- public static long LCM(long a, long b) { return a / GCD(a, b) * b; }
+## 基础
+### GCD&LCM
+最大公约数和最小公倍数
 ```
- ### 快速幂
- - 快速幂模板
- ```
- public static long Power(long x, long y, long p)
+public static long GCD(long a, long b) { return b == 0 ? a : GCD(b, a % b); }
+public static long LCM(long a, long b) { return a / GCD(a, b) * b; }
+```
+### 快速幂
+- 快速幂模板
+```
+public static long Power(long x, long y, long p)
 {
     long res = 1L;
     while(y > 0)
@@ -81,25 +71,25 @@ private int[][] Mul(int[][] x, int[][] y)
 ```
 矩阵快速幂求[斐波那契数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%9F%BA%E7%A1%80/%E5%BF%AB%E9%80%9F%E5%B9%82/Solution_LC_509_%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0.cs)
 
- ### 逆元
- 费马小定理 a^p ≡ a (mod p)
+### 逆元
+费马小定理 a^p ≡ a (mod p)
 ```
 Power(a, p, mod) = a % mod
-Power(a, p - 1, mod) = 1
-Power(a, p - 2, mod) = (1 / a) % mod
-a / b % mod = a * Power(b, mod - 2, mod) % mod
+Power(a, p- 1, mod) = 1
+Power(a, p- 2, mod) = (1 / a) % mod
+a / b % mod = a * Power(b, mod- 2, mod) % mod
 ```
- ### 前缀和
- - 一维前缀和 
- ```
- int[] pre = new int[n + 1];
- for(int i = 0; i < n; i++) pre[i + 1] = pre[i] + nums[i];
- ```
- ```
- //区间和
- [L, R](0 <= L, R < n) = pre[R + 1] - pre[L];
- ```
- [区域和检索-数组不可变](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_303_%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2%20-%20%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98.cs)
+### 前缀和
+- 一维前缀和 
+```
+int[] pre = new int[n + 1];
+for(int i = 0; i < n; i++) pre[i + 1] = pre[i] + nums[i];
+```
+```
+//区间和
+[L, R](0 <= L, R < n) = pre[R + 1]- pre[L];
+```
+[区域和检索-数组不可变](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_303_%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2%20-%20%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98.cs)
 
 [462. 最小操作次数使数组元素相等 II](https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/)
 标准做法中位数贪心即可 这里提供枚举所有下标的做法
@@ -109,32 +99,32 @@ long ans = long.MaxValue;
 for (int i = 0; i < n; i++)
 {
     long v = nums[i];
-    long L = v * i - sum[i]; //i之前差额
-    long R = sum[n] - sum[i] - v * (n - i); //i之后(含i)差额
+    long L = v * i- sum[i]; //i之前差额
+    long R = sum[n]- sum[i]- v * (n- i); //i之后(含i)差额
     ans = Math.Min(ans, L + R);
 }
 ```
 ```
 //迭代枚举
 long pre = nums[0];
-long res = total - 1L * nums[0] * n; //注意此处int溢出
+long res = total- 1L * nums[0] * n; //注意此处int溢出
 long ans = res;
 for (int i = 1; i < n; i++)
 {
     long v = nums[i];
-    long L = i * (v - pre);
-    long R = (n - i) * (v - pre);
-    res = res + L - R;
+    long L = i * (v- pre);
+    long R = (n- i) * (v- pre);
+    res = res + L- R;
     ans = Math.Min(ans, res);
     pre = v;
 }
 ```
  
- - 二维前缀和
+- 二维前缀和
 
  $二维前缀和pre[i][j]定义为从(0,0)到(i,j)位置围成的矩形范围内的元素和$
  
- ```
+```
 //构建前缀和
 int[][] pre = new int[n + 1][];
 for (int i = 0; i <= n; i++) pre[i] = new int[m + 1];
@@ -142,7 +132,7 @@ for (int i = 0; i < n; i++)
 {
 	for (int j = 0; j < m; j++)
 	{
-		pre[i + 1][j + 1] = pre[i + 1][j] + pre[i][j + 1] - pre[i][j] + matrix[i][j];
+		pre[i + 1][j + 1] = pre[i + 1][j] + pre[i][j + 1]- pre[i][j] + matrix[i][j];
 	}
 }
 ```
@@ -179,13 +169,13 @@ for(int i = 0; i < n; i++)
 //计算任意矩形元素和
 public int SumRegion(int row1, int col1, int row2, int col2)
 {
-    return pre[row2 + 1][col2 + 1] - pre[row1][col2 + 1] - pre[row2 + 1][col1] + pre[row1][col1];
+    return pre[row2 + 1][col2 + 1]- pre[row1][col2 + 1]- pre[row2 + 1][col1] + pre[row1][col1];
 }
 ```
  
  [二维区域和-矩阵不可变](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_304_%E4%BA%8C%E7%BB%B4%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2%20-%20%E7%9F%A9%E9%98%B5%E4%B8%8D%E5%8F%AF%E5%8F%98.cs)
  
- - 前后缀分解
+- 前后缀分解
  预处理前缀和后缀信息 然后枚举每一项
 
 [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/)
@@ -194,14 +184,14 @@ public int SumRegion(int row1, int col1, int row2, int col2)
 for(int i = 0; i < n; i++)
 {
 	//注意是两侧高度的较小值-当前格子的高度 大于0的部分才可以接雨水
-	ans += Math.Max(0, Math.Min(L[i], R[i]) - height[i]);
+	ans += Math.Max(0, Math.Min(L[i], R[i])- height[i]);
 }
 ```
  
  
- ### 差分
- - 一维差分
- ```
+### 差分
+- 一维差分
+```
  int[] diff = new int[n + 1]; //防越界
 //[L,R](0 <= L <= R < n)
 diff[L] += d;
@@ -209,13 +199,13 @@ diff[R + 1] -= d;
 for(int i = 1; i < n; i++)
 {
 	//还原原数组
-	diff[i] += diff[i - 1];
+	diff[i] += diff[i- 1];
 }
- ```
+```
  [航班预订统计](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_1109_%E8%88%AA%E7%8F%AD%E9%A2%84%E8%AE%A2%E7%BB%9F%E8%AE%A1.cs)
  
 - 二维差分
- ```
+```
  int[][] diff = new int[n + 1][];
  for (int i = 0; i <= n; i++) diff[i] = new int[n + 1];
  for (int i = 0; i < queries.Length; i++)
@@ -229,9 +219,9 @@ for(int i = 1; i < n; i++)
      diff[r2 + 1][c1]--;
      diff[r2 + 1][c2 + 1]++;
  }
- ```
+```
  [子矩阵元素加1](https://github.com/JadenSailing/algorithm-lib/blob/main/PrefixSum/Solution_LC_2536_%E5%AD%90%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0%E5%8A%A01.cs)
- ### 离散化
+### 离散化
 用于压缩稀疏数据
 ```
 List<int> list = new List<int>(new HashSet<int>(nums));
@@ -242,7 +232,7 @@ for(int i = 0; i < list.Count; i++)
     raw[list[i]] = i;
 }
 ```
- ### 正难则反
+### 正难则反
 一种解题思路 正向可能会非常难的情况下 反向可能会很简单 
 - 比如出现`至少x个xxx`一类的描述
 
@@ -250,7 +240,7 @@ for(int i = 0; i < list.Count; i++)
 ```
 public int MonkeyMove(int n) {
 	//特别注意对mod执行±运算后 需要再次mod
-    long res = Power(2, n, mod) - 2;
+    long res = Power(2, n, mod)- 2;
     res = (res + mod) % mod;
     return (int)res;
 }
@@ -262,17 +252,17 @@ public int MonkeyMove(int n) {
 [查询后矩阵的和](https://leetcode.cn/problems/sum-of-matrix-after-queries/)
 
 
- ## 数组
+## 数组
  
- ## 哈希表
+## 哈希表
 
- ## 栈
- ### 单调栈
+## 栈
+### 单调栈
  
  
- ## 队列
+## 队列
  
- ## 链表
+## 链表
  [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
 ```
 public ListNode ReverseList(ListNode head) 
@@ -285,9 +275,9 @@ public ListNode ReverseList(ListNode head)
 	return pre;
 }
 ```
- ## 堆
- - 基础模板
- ```
+## 堆
+- 基础模板
+```
 public class Heap
 {
     private bool mIsMinHeap = false;
@@ -304,7 +294,7 @@ public class Heap
     }
     public void Push(int x)
     {
-        if (size == list.Count - 1)
+        if (size == list.Count- 1)
         {
             list.Add(x);
             size++;
@@ -346,8 +336,8 @@ public class Heap
 
 
  
- ## 字符串
- ### 字符串哈希
+## 字符串
+### 字符串哈希
 多项式的哈希算法，双哈希优化 
 标准模板如下，注意：
 保持BASE和MOD全局统一
@@ -373,22 +363,22 @@ public class StringHash
 		int n = s.Length;
 		P = new long[n + 1];
 		P[0] = 1;
-		for (int i = 1; i <= n; i++) P[i] = P[i - 1] * BASE % MOD;
+		for (int i = 1; i <= n; i++) P[i] = P[i- 1] * BASE % MOD;
 		h = new long[n + 1];
 		h[0] = 0;
-		for (int i = 1; i <= n; i++) h[i] = (h[i - 1] * BASE + s[i - 1] - 'a' + 1) % MOD;
+		for (int i = 1; i <= n; i++) h[i] = (h[i- 1] * BASE + s[i- 1]- 'a' + 1) % MOD;
 	}
 
 	// 求子串 s[L..R] 的哈希值 L,R ∈ [1,n]
 	public long Hash(int L, int R)
 	{
-		return (h[R] - h[L - 1] * P[R - L + 1] % MOD + MOD) % MOD;
+		return (h[R]- h[L- 1] * P[R- L + 1] % MOD + MOD) % MOD;
 	}
 }
 ```
 [找出数组中的美丽下标 II](https://github.com/JadenSailing/algorithm-lib/blob/main/String/Solution_LC_3008_%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%BE%8E%E4%B8%BD%E4%B8%8B%E6%A0%87II.cs)
 
- ### KMP
+### KMP
 复杂度`O(n+m)`
 ```
 //计算next数组
@@ -398,8 +388,8 @@ private int[] PI(string s)
     int[] res = new int[n];
     for (int i = 1; i < n; i++)
     {
-        int j = res[i - 1];
-        while (j > 0 && s[i] != s[j]) j = res[j - 1];
+        int j = res[i- 1];
+        while (j > 0 && s[i] != s[j]) j = res[j- 1];
         if (s[i] == s[j]) j++;
         res[i] = j;
     }
@@ -414,12 +404,12 @@ private List<int> KMP(string s, string t)
     int j = 0;
     for (int i = 0; i < n; i++)
     {
-        while (j > 0 && s[i] != t[j]) j = pi[j - 1];
+        while (j > 0 && s[i] != t[j]) j = pi[j- 1];
         if (s[i] == t[j]) j++;
         if (j == m)
         {
-            res.Add(i - m + 1);
-            j = pi[j - 1];
+            res.Add(i- m + 1);
+            j = pi[j- 1];
         }
     }
     return res;
@@ -435,15 +425,15 @@ public int StrStr(string haystack, string needle)
 }
 ```
 
- ## 排序
- ### 冒泡排序
+## 排序
+### 冒泡排序
  原理：每轮遍历中，逐个向后比较，将更大的数向后冒泡，持续N轮
 
 ```
 int n = nums.Length;
 for(int i = 0; i < n; i++)
 {
-    for(int j = 0; j < n - i - 1; j++)
+    for(int j = 0; j < n- i- 1; j++)
     {
         if (nums[j] > nums[j + 1]) (nums[j], nums[j + 1]) = (nums[j + 1], nums[j]);
     }
@@ -451,7 +441,7 @@ for(int i = 0; i < n; i++)
 ```
 ```
  //优化
- int last = n - 1;
+ int last = n- 1;
  while(last > 0)
  {
      int now = 0;
@@ -467,7 +457,7 @@ for(int i = 0; i < n; i++)
  }
 ```
  
- ### 选择排序
+### 选择排序
  原理：每轮选择最小的下标与当前首位交换
 ```
  int n = nums.Length;
@@ -484,7 +474,7 @@ for(int i = 0; i < n; i++)
 >冒泡和选择排序的比较
 都是把当前剩余的最值添加到已排序的末尾
 区别是冒泡排序每轮交换N次，而选择排序只是记录最值下标
- ### 插入排序
+### 插入排序
 原理：逐个选择未排序的元素向已排序列表中插入
 ```
 int n = nums.Length;
@@ -492,18 +482,18 @@ for(int i = 1; i < n; i++)
 {
     for(int j = i; j > 0; j--)
     {
-        if (nums[j] < nums[j - 1]) (nums[j - 1], nums[j]) = (nums[j], nums[j - 1]);
+        if (nums[j] < nums[j- 1]) (nums[j- 1], nums[j]) = (nums[j], nums[j- 1]);
         else break;
     }
 }
 ```
- ### 快速排序
- - acwing标准模板
+### 快速排序
+- acwing标准模板
 ```
 private void QuickSort(int[] nums, int L, int R)
 {
     if (L >= R) return;
-    int i = L - 1, j = R + 1, x = nums[(L + R) / 2];
+    int i = L- 1, j = R + 1, x = nums[(L + R) / 2];
     while (i < j)
     {
         do i++; while (nums[i] < x);
@@ -517,11 +507,11 @@ private void QuickSort(int[] nums, int L, int R)
 - 快速选择 
 均摊复杂度O(n)
 ```
-//第k小元素 k∈[0, n - 1]
+//第k小元素 k∈[0, n- 1]
 public int QuickSelect(int[] nums, int L, int R, int k)
 {
     if (L == R) return nums[k];
-    int x = nums[L], i = L - 1, j = R + 1;
+    int x = nums[L], i = L- 1, j = R + 1;
     while (i < j)
     {
         do i++; while (nums[i] < x);
@@ -533,16 +523,16 @@ public int QuickSelect(int[] nums, int L, int R, int k)
 }
 ```
 
- ### 堆排序
+### 堆排序
  参见堆的介绍
- ### 归并排序
+### 归并排序
 ```
 //int n = nums.Length;
-//MergeSort(nums, new int[n], 0, n - 1);
+//MergeSort(nums, new int[n], 0, n- 1);
 private void MergeSort(int[] nums, int[] tmp, int L, int R)
 {
     if (L >= R) return;
-    int mid = L + (R - L) / 2;
+    int mid = L + (R- L) / 2;
     MergeSort(nums, tmp, L, mid);
     MergeSort(nums, tmp, mid + 1, R);
     int i = L, j = mid + 1, t = L;
@@ -554,36 +544,38 @@ private void MergeSort(int[] nums, int[] tmp, int L, int R)
     while (i <= mid) tmp[t++] = nums[i++];
     while (j <= R) tmp[t++] = nums[j++];
     //for (int k = L; k <= R; k++) nums[k] = tmp[k];
-    Array.Copy(tmp, L, nums, L, R - L + 1);
+    Array.Copy(tmp, L, nums, L, R- L + 1);
 }
 ```
- ### 基数排序
- ### 桶排序
+### 基数排序
+### 桶排序
 
- ## 二分
- - 基础模板 [搜索插入位置](https://github.com/JadenSailing/algorithm-lib/blob/main/BinarySearch/Solution_LC_35_%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE.cs)
- ```
-int low = 0, high = n - 1;
+## 二分
+- 基础模板 [搜索插入位置](https://github.com/JadenSailing/algorithm-lib/blob/main/BinarySearch/Solution_LC_35_%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE.cs)
+```
+int low = 0, high = n- 1;
 while(low <= high)
 {
-	int mid = low + (high - low) / 2;
-	if(Check()) high = mid - 1
+	int mid = low + (high- low) / 2;
+	if(Check()) high = mid- 1
 	else low = mid + 1
 }
 return low
 ```
 
- ## 双指针
+## 双指针
  某些情况称为滑动窗口
  [无重复字符的最长子串](https://github.com/JadenSailing/algorithm-lib/blob/main/TwoPointers/Solution_LC_3_%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2.cs)
  
 
- ## 分治
+## 分治
 
- ## 贪心
+### 根号分治
 
- ## 树
- ### 遍历
+## 贪心
+### 反悔贪心
+## 树
+### 遍历
 树的前序中序和后序遍历
 经典问题 [105. 从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 
@@ -595,7 +587,7 @@ public TreeNode BuildTree(int[] preorder, int[] inorder)
     int n = preorder.Length;
     Dictionary<int, int> indexDict = new Dictionary<int, int>();
     for (int i = 0; i < n; i++) indexDict[inorder[i]] = i;
-    return DFS(preorder, inorder, indexDict, 0, n - 1, 0, n - 1);
+    return DFS(preorder, inorder, indexDict, 0, n- 1, 0, n- 1);
 }
 
 private TreeNode DFS(int[] preorder, int[] inorder, Dictionary<int, int> indexDict, int pL, int pR, int iL, int iR)
@@ -603,8 +595,8 @@ private TreeNode DFS(int[] preorder, int[] inorder, Dictionary<int, int> indexDi
     int val = preorder[pL];
     TreeNode root = new TreeNode(val);
     int mid = indexDict[val];
-    if (mid > iL) root.left = DFS(preorder, inorder, indexDict, pL + 1, pL + 1 + mid - iL - 1, iL, mid - 1);
-    if (mid < iR) root.right = DFS(preorder, inorder, indexDict, pL + 1 + mid - iL, pR, mid + 1, iR);
+    if (mid > iL) root.left = DFS(preorder, inorder, indexDict, pL + 1, pL + 1 + mid- iL- 1, iL, mid- 1);
+    if (mid < iR) root.right = DFS(preorder, inorder, indexDict, pL + 1 + mid- iL, pR, mid + 1, iR);
     return root;
 }
 ```
@@ -615,7 +607,7 @@ public TreeNode ConstructFromPrePost(int[] preorder, int[] postorder)
     int n = preorder.Length;
     Dictionary<int, int> indexDict = new Dictionary<int, int>();
     for (int i = 0; i < n; i++) indexDict[postorder[i]] = i;
-    return DFS(preorder, postorder, indexDict, 0, n - 1, 0, n - 1);
+    return DFS(preorder, postorder, indexDict, 0, n- 1, 0, n- 1);
 }
 
 private TreeNode DFS(int[] preorder, int[] postorder, Dictionary<int, int> indexDict, int prL, int prR, int poL, int poR)
@@ -624,32 +616,32 @@ private TreeNode DFS(int[] preorder, int[] postorder, Dictionary<int, int> index
     if (prR > prL)
     {
         int idx = indexDict[preorder[prL + 1]];
-        root.left = DFS(preorder, postorder, indexDict, prL + 1, prL + 1 + idx - poL, poL, idx);
-        if (idx < poR - 1) root.right = DFS(preorder, postorder, indexDict, prL + 1 + idx - poL + 1, prR, idx + 1, poR - 1);
+        root.left = DFS(preorder, postorder, indexDict, prL + 1, prL + 1 + idx- poL, poL, idx);
+        if (idx < poR- 1) root.right = DFS(preorder, postorder, indexDict, prL + 1 + idx- poL + 1, prR, idx + 1, poR- 1);
     }
     return root;
 }
 ```
 
- ### 树的直径
- - 两边DFS 任意点出发最远端是直径上一点，无法处理负边
- - 树形dp 计算所有节点的左右子树长度和
+### 树的直径
+- 两边DFS 任意点出发最远端是直径上一点，无法处理负边
+- 树形dp 计算所有节点的左右子树长度和
  
  [树的直径](https://github.com/JadenSailing/algorithm-lib/blob/main/Tree/Solution_LC_543_%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84.cs)
- ### 树的重心
+### 树的重心
  
- ### LCA
- - 倍增计算节点的第K个父节点
- ```
+### LCA
+- 倍增计算节点的第K个父节点
+```
  //更新子节点的fa数据 倍增更新
  //如i的第4个父节点=i的第2个节点的第2个父节点
  fa[v][0] = u;
  for (int i = 1; i <= LOG; i++)
  {
-     fa[v][i] = fa[fa[v][i - 1]][i - 1];
+     fa[v][i] = fa[fa[v][i- 1]][i- 1];
  }
- ```
- ```
+```
+```
  //计算第k个父节点
  public int GetKthAncestor(int node, int k)
  {
@@ -663,7 +655,7 @@ private TreeNode DFS(int[] preorder, int[] postorder, Dictionary<int, int> index
      }
      return node;
  }
- ```
+```
  [树节点的第 K 个祖先](https://github.com/JadenSailing/algorithm-lib/blob/main/Tree/LCA/Solution_LC_1483_%E6%A0%91%E8%8A%82%E7%82%B9%E7%9A%84%E7%AC%AC%20K%20%E4%B8%AA%E7%A5%96%E5%85%88.cs)
 - LCA
 计算x y的 lca(最近公共祖先)，先把更深的节点向上跳到跟另一节点相同深度，再一起向上跳到最近的公共节点
@@ -696,15 +688,15 @@ private int LCA(int x, int y)
 }
 ```
  
- ### 树状数组
+### 树状数组
  
 - [基础模板](https://github.com/JadenSailing/algorithm-lib/blob/main/BinaryIndexedTree/BIT.cs)
  
 - [区域和检索-数组可修改](https://github.com/JadenSailing/algorithm-lib/blob/main/BinaryIndexedTree/Solution_LC_307_%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E5%8F%AF%E4%BF%AE%E6%94%B9.cs)
  
- ### 线段树
+### 线段树
  
- - 基本线段树模板 区间更新, 查询区间和
+- 基本线段树模板 区间更新, 查询区间和
 ```
 public class SegmentTree
 {
@@ -725,13 +717,13 @@ public class SegmentTree
     {
         if (l <= start && r >= end)
         {
-            node.sum = (end - start + 1) * val;
+            node.sum = (end- start + 1) * val;
             node.data = val;
             node.flag = true;
             return;
         }
-        long mid = start + (end - start) / 2;
-        PushDown(node, mid - start + 1, end - mid);
+        long mid = start + (end- start) / 2;
+        PushDown(node, mid- start + 1, end- mid);
         if (l <= mid) Update(node.left, start, mid, l, r, val);
         if (r > mid) Update(node.right, mid + 1, end, l, r, val);
         PushUp(node);
@@ -740,7 +732,7 @@ public class SegmentTree
     {
         if (l <= start && end <= r) return node.sum;
         long mid = (start + end) >> 1, ans = 0;
-        PushDown(node, mid - start + 1, end - mid);
+        PushDown(node, mid- start + 1, end- mid);
         if (l <= mid) ans += Sum(node.left, start, mid, l, r);
         if (r > mid) ans += Sum(node.right, mid + 1, end, l, r);
         return ans;
@@ -765,34 +757,34 @@ public class SegmentTree
 ```
  
  
- ### 字典树
+### 字典树
 - 基本字典树模型
  [数组中两个数的最大异或值](https://github.com/JadenSailing/algorithm-lib/blob/main/Trie/Solution_LC_421_%20%E6%95%B0%E7%BB%84%E4%B8%AD%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%80%BC.cs)
- - 可删除字典树
+- 可删除字典树
  [找出强数对的最大异或值II](https://github.com/JadenSailing/algorithm-lib/blob/main/Trie/Solution_LC_2935_%E6%89%BE%E5%87%BA%E5%BC%BA%E6%95%B0%E5%AF%B9%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%80%BC%20II.cs)
- ### 平衡树
+### 平衡树
  
 - 红黑树
 - Treap
  
- ## 图论
+## 图论
  
- ### 基础
- - 建图
+### 基础
+- 建图
 	 
-    - 基于边
-    - 基于父节点
-    - 带边权
+   - 基于边
+   - 基于父节点
+   - 带边权
  
- - 遍历
+- 遍历
  
- ### 拓扑排序
+### 拓扑排序
  
- ### 最短路
- - Floyd
- - Dijkstra
-	 - 基于节点 复杂度O(n^2)
-    ```
+### 最短路
+- Floyd
+- Dijkstra
+	- 基于节点 复杂度O(n^2)
+   ```
 	public int ShortestPath(int node1, int node2)
     {
         int[] dis = new int[n];
@@ -820,7 +812,7 @@ public class SegmentTree
         }
         return dis[node2] == int.MaxValue ? -1 : dis[node2];
     }
-    ```
+   ```
 
 	- 基于优先队列优化 复杂度O(m*logm)
 	```
@@ -846,15 +838,15 @@ public class SegmentTree
         }
         return dis[node2] == int.MaxValue ? -1 : dis[node2];
     }
-    ```
+   ```
     另外有基于二叉堆/斐波那契堆等优化方案
     
- - A*
+- A*
  
- ### 最小生成树
+### 最小生成树
  
- ### Tarjan
- - 求割边(桥)
+### Tarjan
+- 求割边(桥)
 ```
 private void Tarjan(HashSet<int>[] g, int u, int fa, int time)
 {
@@ -883,16 +875,16 @@ private void Tarjan(HashSet<int>[] g, int u, int fa, int time)
 
 本题解包含了Tarjan求环 Dijkstra求最短路 记录path等
  
- ## 并查集
+## 并查集
  
 - [基础模板](https://github.com/JadenSailing/algorithm-lib/blob/main/UnionFind/UnionFind.cs)
  
 - [省份数量](https://github.com/JadenSailing/algorithm-lib/blob/main/UnionFind/Solution_LC_547_%E7%9C%81%E4%BB%BD%E6%95%B0%E9%87%8F.cs)
  
- ## 数论
- ### 质数
- - 埃氏筛
- ```
+## 数论
+### 质数
+- 埃氏筛
+```
 int N = (int)1e6 + 5;
 List<int> primes = new List<int>();
 //是否是非质数的标志
@@ -913,16 +905,16 @@ for(int i = 2; i < N; i++)
 {
     if (flag[i] == false) primes.Add(i);
 }
- ```
+```
 
 [范围内最接近的两个质数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E6%95%B0%E8%AE%BA/%E8%B4%A8%E6%95%B0/Solution_LC_2523_%E8%8C%83%E5%9B%B4%E5%86%85%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%B4%A8%E6%95%B0.cs)
 
- - 线性筛
- ### 组合数学
+- 线性筛
+### 组合数学
 
 
- ### 方程
- - 二元一次方程
+### 方程
+- 二元一次方程
  [1276. 不浪费原料的汉堡制作方案](https://leetcode.cn/problems/number-of-burgers-with-no-waste-of-ingredients/)
  给你两个整数 `T` 和 `C`，分别表示番茄片和奶酪片的数目。不同汉堡的原料搭配如下：
  `巨无霸汉堡`：4 片番茄和 1 片奶酪
@@ -934,19 +926,19 @@ for(int i = 2; i < N; i++)
 `x=T/2-C,y=C*2-T/2`
 注意隐藏条件`x,y`均为非负整数
 则有`T>=C*2` 和 `T<=C*4` 且 `T`为偶数
-	 - 思维
+	- 思维
 全选巨无霸则`T=C*4`，全选小皇堡则`T=C*2`，所以`TC`只能在这之间，又番茄的最小单位为2，故`T`必须是偶数。注意实现时不要除零的情况，以及`TC`=0是合法的
 
- ## 位运算
+## 位运算
  
- ### 状态压缩
+### 状态压缩
  
- ### 枚举子集
+### 枚举子集
  
- ## 动态规划
+## 动态规划
  
- ### 线性DP
- - LIS(Longest Increasing Subsequence) 最长上升子序列
+### 线性DP
+- LIS(Longest Increasing Subsequence) 最长上升子序列
 
 [300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/)
 ```
@@ -978,12 +970,12 @@ public int LengthOfLIS(int[] nums)
 	for(int i = 1; i < n; i++)
 	{
 		int v = nums[i];
-		int low = 0, high = len - 1;
+		int low = 0, high = len- 1;
 		while(low <= high)
 		{
-			int mid = low + (high - low) / 2;
+			int mid = low + (high- low) / 2;
 			if(lis[mid] < v) low = mid + 1;
-			else high = mid - 1;
+			else high = mid- 1;
 		}
 		lis[low] = v;
 		len = Math.Max(len, low + 1);
@@ -991,7 +983,7 @@ public int LengthOfLIS(int[] nums)
 	return len;
 }
 ```
- - LCS(Longest Common Subsequence)最长公共子序列
+- LCS(Longest Common Subsequence)最长公共子序列
 ```
 int[][] dp = new int[n1 + 1][];
 for (int i = 0; i <= n1; i++) dp[i] = new int[n2 + 1];
@@ -999,13 +991,13 @@ for (int i = 1; i <= n1; i++)
 {
     for (int j = 1; j <= n2; j++)
     {
-        if (text1[i - 1] == text2[j - 1])
+        if (text1[i- 1] == text2[j- 1])
         {
-            dp[i][j] = dp[i - 1][j - 1] + 1;
+            dp[i][j] = dp[i- 1][j- 1] + 1;
         }
         else
         {
-            dp[i][j] = Math.Max(dp[i - 1][j], dp[i][j - 1]);
+            dp[i][j] = Math.Max(dp[i- 1][j], dp[i][j- 1]);
         }
     }
 }
@@ -1019,19 +1011,19 @@ for (int i = 1; i <= n; i++)
 	int upLeft = 0;
 	for (int j = 1; j <= m; j++)
 	{
-		(upLeft, dp[j]) = (dp[j], text1[i - 1] == text2[j - 1] ? upLeft + 1 : Math.Max(dp[j], dp[j - 1]));
+		(upLeft, dp[j]) = (dp[j], text1[i- 1] == text2[j- 1] ? upLeft + 1 : Math.Max(dp[j], dp[j- 1]));
 	}
 }
 return dp[m];
 ```
  
- - 编辑距离
+- 编辑距离
  
- ### 区间DP
+### 区间DP
  
- ### 背包DP
+### 背包DP
  
- ### 带权区间调度
+### 带权区间调度
  [weighted Interval Scheduling 问题-草莓奶昔](https://leetcode.cn/problems/maximize-the-profit-as-the-salesman/solutions/2398862/python-weightedintervalscheduling-wen-ti-t253/)
 ```
 /*
@@ -1046,18 +1038,18 @@ return dp[m];
     private int WeightedIntervalScheduling(List<int[]> intervals, bool overlapping = false)
     {
         int n = intervals.Count;
-        intervals.Sort((A, B) => (A[1] - B[1]));
+        intervals.Sort((A, B) => (A[1]- B[1]));
         int[] dp = new int[n + 1];
         for (int i = 0; i < n; i++)
         {
-            int low = 0, high = n - 1;
+            int low = 0, high = n- 1;
             while (low <= high)
             {
-                int mid = low + (high - low) / 2;
+                int mid = low + (high- low) / 2;
                 if (overlapping && intervals[mid][1] > intervals[i][0]
                  || !overlapping && intervals[mid][1] >= intervals[i][0])
                 {
-                    high = mid - 1;
+                    high = mid- 1;
                 }
                 else
                 {
@@ -1076,7 +1068,7 @@ return dp[m];
         int n = intervals.Length;
         List<int[]> list = new List<int[]>();
         for (int i = 0; i < n; i++) list.Add(new int[] { intervals[i][0], intervals[i][1], 1 });
-        return n - WeightedIntervalScheduling(list, true);
+        return n- WeightedIntervalScheduling(list, true);
     }
 ```
  [规划兼职工作](https://leetcode.cn/problems/maximum-profit-in-job-scheduling/)
@@ -1092,16 +1084,16 @@ public int JobScheduling(int[] startTime, int[] endTime, int[] profit)
 }
 ```
  
- ### 树形dp
+### 树形dp
  自底向上处理数据，习惯用数组返回所需的各种数据，简单的可以用单值返回
 
  [到达首都的最少油耗](https://github.com/JadenSailing/algorithm-lib/blob/main/DP/%E6%A0%91%E5%BD%A2DP/Solution_LC_2477_%E5%88%B0%E8%BE%BE%E9%A6%96%E9%83%BD%E7%9A%84%E6%9C%80%E5%B0%91%E6%B2%B9%E8%80%97.cs)
- ### 换根dp
+### 换根dp
 两边DFS，第一遍获取各节点数据和根节点的结果，第二遍换根转移递推其它节点结果。
 
 [树中距离之和](https://github.com/JadenSailing/algorithm-lib/blob/main/DP/%E6%8D%A2%E6%A0%B9DP/Solution_LC_834_%E6%A0%91%E4%B8%AD%E8%B7%9D%E7%A6%BB%E4%B9%8B%E5%92%8C.cs)
 
- ### 数位dp
+### 数位dp
  标准模板 以[至少1位重复的数字](https://leetcode.cn/problems/numbers-with-repeated-digits)为例
  
  模板熟练后，题目的关键点在于找到递归数据如何维护 维护什么和重复子问题的界定和缓存
@@ -1111,12 +1103,12 @@ public int NumDupDigitsAtMostN(int n)
 {
     //计算没有重复数字的个数 正难则反
     int diff = DFS(n.ToString(), 0, 0, true, false, Cache(10, 1024, -1));
-    return n - diff;
+    return n- diff;
 }
 
 //标准模板
 //s n的字符串形式
-//cur 当前遍历到的位[0, s.Length - 1]
+//cur 当前遍历到的位[0, s.Length- 1]
 //mask 题目所需的数据 此处是10个字母是否有重复的标记
 //isLimit 当前位是否受n当前位的约束 当不受约束时 则会记录cache 
 //isNum 表示是否是合法数字 即不全是前导0
@@ -1132,7 +1124,7 @@ private int DFS(string s, int cur, int mask, bool isLimit, bool isNum, int[][] v
     //如果需要处理前导零 特殊处理
     if (!isNum) res += DFS(s, cur + 1, mask, false, false, vis);
     //上界
-    int upper = isLimit ? s[cur] - '0' : 9;
+    int upper = isLimit ? s[cur]- '0' : 9;
     //上面处理前导0 就从1开始 否则还是从0开始
     int lower = isNum ? 0 : 1;
     for (int i = lower; i <= upper; i++)
@@ -1152,19 +1144,19 @@ private int DFS(string s, int cur, int mask, bool isLimit, bool isNum, int[][] v
     return res;
 }
 ```
- ### dp优化
+### dp优化
 
- ## 计算几何
+## 计算几何
  
  
- ## 其它
+## 其它
  
- ### 灵神八题
+### 灵神八题
  
- ### 约瑟夫环
+### 约瑟夫环
  [lc1823.找出游戏的获胜者](https://leetcode.cn/problems/find-the-winner-of-the-circular-game/)
 
-核心函数`f(n, k) = (f(n - 1, k) + k) % n`
+核心函数`f(n, k) = (f(n- 1, k) + k) % n`
 ```
 public int FindTheWinner(int n, int k) {
 	int ans = 0;
@@ -1176,11 +1168,11 @@ public int FindTheWinner(int n, int k) {
 ```
 public int FindTheWinner(int n, int k) {
 	if(n == 1) return 0;
-	return (DFS(n - 1, k) + k) % n;
+	return (DFS(n- 1, k) + k) % n;
 }
 ```
- ## C#语法
- ### PriorityQueue用法
+## C#语法
+### PriorityQueue用法
  主要是简单Compare无法解决的情况下 需要构造比较器实例
  比如排序字符串，长度优先->字典序次之
 ```
@@ -1198,20 +1190,20 @@ class Comparer : IComparer<string>
 { 
     public int Compare(string A, string B)
     {
-        if (A.Length != B.Length) return A.Length - B.Length;
+        if (A.Length != B.Length) return A.Length- B.Length;
         return A.CompareTo(B);
     }
 }
 ```
- ### 递归过深问题
- - 尾调用优化
- - 子线程增大栈空间
+### 递归过深问题
+- 尾调用优化
+- 子线程增大栈空间
 	
- ### 元组使用
- - 声明 赋值 返回值等
+### 元组使用
+- 声明 赋值 返回值等
 ```
 int a, b; 
 (a, b) = (2, 3);
 (a, b) = (b, a);
 ```
- - 作为组合Key Value
+- 作为组合Key Value
