@@ -812,6 +812,7 @@ public class SegmentTree
 - Treap
 [Treap实现的Map模板](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%B9%B3%E8%A1%A1%E6%A0%91/T_Map.cs)
 [避免洪水泛滥](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%B9%B3%E8%A1%A1%E6%A0%91/Solution_LC_1488_%E9%81%BF%E5%85%8D%E6%B4%AA%E6%B0%B4%E6%B3%9B%E6%BB%A5.cs)
+[序列顺序查询](https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/)[代码](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%B9%B3%E8%A1%A1%E6%A0%91/Solution_LC_2102_%E5%BA%8F%E5%88%97%E9%A1%BA%E5%BA%8F%E6%9F%A5%E8%AF%A2.cs)
  
 ## 图论
  
