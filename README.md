@@ -892,8 +892,10 @@ public class SegmentTree
         return dis[node2] == int.MaxValue ? -1 : dis[node2];
     }
    ```
-    另外有基于二叉堆/斐波那契堆等优化方案
-    
+	另外有基于二叉堆/斐波那契堆等优化方案
+	[1976. 到达目的地的方案数](https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/)
+	[>题解](https://github.com/JadenSailing/algorithm-lib/blob/main/Graphs/Solution_LC_1976_%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0.cs)
+
 - A*
  
 ### 最小生成树
