@@ -1,3 +1,4 @@
+
 # AutumnMist's Algorithm Library
 ## C# Algorithm Contest IO Project
 - 可用宏区分ACM模式或核心代码模式
@@ -936,54 +937,6 @@ private void Tarjan(HashSet<int>[] g, int u, int fa, int time)
  
 - [省份数量](https://github.com/JadenSailing/algorithm-lib/blob/main/UnionFind/Solution_LC_547_%E7%9C%81%E4%BB%BD%E6%95%B0%E9%87%8F.cs)
  
-## 数论
-### 质数
-- 埃氏筛
-```
-int N = (int)1e6 + 5;
-List<int> primes = new List<int>();
-//是否是非质数的标志
-bool[] flag = new bool[N];
-//0 1特殊处理非质数
-flag[0] = flag[1] = true;
-for(int i = 2; i < N; i++)
-{
-    if (flag[i] == false)
-    {
-        for(int j = i * 2; j < N; j += i)
-        {
-            flag[j] = true;
-        }
-    }
-}
-for(int i = 2; i < N; i++)
-{
-    if (flag[i] == false) primes.Add(i);
-}
-```
-
-[范围内最接近的两个质数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E6%95%B0%E8%AE%BA/%E8%B4%A8%E6%95%B0/Solution_LC_2523_%E8%8C%83%E5%9B%B4%E5%86%85%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%B4%A8%E6%95%B0.cs)
-
-- 线性筛
-### 组合数学
-
-
-### 方程
-- 二元一次方程
- [1276. 不浪费原料的汉堡制作方案](https://leetcode.cn/problems/number-of-burgers-with-no-waste-of-ingredients/)
- 给你两个整数 `T` 和 `C`，分别表示番茄片和奶酪片的数目。不同汉堡的原料搭配如下：
- `巨无霸汉堡`：4 片番茄和 1 片奶酪
-`小皇堡`：2 片番茄和 1 片奶酪 如何使得剩余原材料为零
-
-	- 标准二元一次方程：
-`4x+2y=T,x+y=C`
-解方程：
-`x=T/2-C,y=C*2-T/2`
-注意隐藏条件`x,y`均为非负整数
-则有`T>=C*2` 和 `T<=C*4` 且 `T`为偶数
-	- 思维
-全选巨无霸则`T=C*4`，全选小皇堡则`T=C*2`，所以`TC`只能在这之间，又番茄的最小单位为2，故`T`必须是偶数。注意实现时不要除零的情况，以及`TC`=0是合法的
-
 ## 位运算
  
 ### 状态压缩
@@ -1200,6 +1153,78 @@ private int DFS(string s, int cur, int mask, bool isLimit, bool isNum, int[][] v
 }
 ```
 ### dp优化
+
+## 数论
+### 质数
+- 埃氏筛
+```
+int N = (int)1e6 + 5;
+List<int> primes = new List<int>();
+//是否是非质数的标志
+bool[] flag = new bool[N];
+//0 1特殊处理非质数
+flag[0] = flag[1] = true;
+for(int i = 2; i < N; i++)
+{
+    if (flag[i] == false)
+    {
+        for(int j = i * 2; j < N; j += i)
+        {
+            flag[j] = true;
+        }
+    }
+}
+for(int i = 2; i < N; i++)
+{
+    if (flag[i] == false) primes.Add(i);
+}
+```
+
+[范围内最接近的两个质数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E6%95%B0%E8%AE%BA/%E8%B4%A8%E6%95%B0/Solution_LC_2523_%E8%8C%83%E5%9B%B4%E5%86%85%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%B4%A8%E6%95%B0.cs)
+
+- 线性筛
+### 组合数学
+- 容斥原理
+[D. Exam in MAC](https://codeforces.com/contest/1935/problem/D)
+
+已知集合`S` 整数`c`，计算数对`(x,y)`的个数，要求`0<=x<=y<=c`，且`(x+y)∉S (y-x)∉S`
+```
+//正难则反
+long ans = 1L * (c + 1) * (c + 2) / 2;
+int odd = 0, even = 0;
+for (int i = 0; i < n; i++)
+{
+    long v = nums[i];
+    //x+y∈S
+    ans -= (v / 2) + 1;
+    //y-x∈S
+    ans -= c - v + 1;
+    if (v % 2 == 0) even++;
+    else odd++;
+}
+//重合部分 (x+y)=a (y-x)=b => a + b为偶数
+//特别注意int溢出问题(1L * list.Count * list.Count)
+ans += 1L * odd * (odd + 1) / 2;
+ans += 1L * even * (even + 1) / 2;
+Print(ans);
+```
+
+### 方程
+- 二元一次方程
+ [1276. 不浪费原料的汉堡制作方案](https://leetcode.cn/problems/number-of-burgers-with-no-waste-of-ingredients/)
+ 给你两个整数 `T` 和 `C`，分别表示番茄片和奶酪片的数目。不同汉堡的原料搭配如下：
+ `巨无霸汉堡`：4 片番茄和 1 片奶酪
+`小皇堡`：2 片番茄和 1 片奶酪 如何使得剩余原材料为零
+
+	- 标准二元一次方程：
+`4x+2y=T,x+y=C`
+解方程：
+`x=T/2-C,y=C*2-T/2`
+注意隐藏条件`x,y`均为非负整数
+则有`T>=C*2` 和 `T<=C*4` 且 `T`为偶数
+	- 思维
+全选巨无霸则`T=C*4`，全选小皇堡则`T=C*2`，所以`TC`只能在这之间，又番茄的最小单位为2，故`T`必须是偶数。注意实现时不要除零的情况，以及`TC`=0是合法的
+
 
 ## 计算几何
  
