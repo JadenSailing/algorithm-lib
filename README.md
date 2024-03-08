@@ -1,4 +1,3 @@
-
 # AutumnMist's Algorithm Library
 ## C# Algorithm Contest IO Project
 - 可用宏区分ACM模式或核心代码模式
@@ -1183,6 +1182,22 @@ for(int i = 2; i < N; i++)
 [范围内最接近的两个质数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E6%95%B0%E8%AE%BA/%E8%B4%A8%E6%95%B0/Solution_LC_2523_%E8%8C%83%E5%9B%B4%E5%86%85%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%B4%A8%E6%95%B0.cs)
 
 - 线性筛
+
+### 数列
+等差数列前n项和
+`S = (a1 + an) * n / 2`
+[2834. 找出美丽数组的最小和](https://leetcode.cn/problems/find-the-minimum-possible-sum-of-a-beautiful-array/)
+```
+long ans = 0;
+long m = Math.Min(n, k / 2);
+//1L * int 防溢出
+ans += 1L * m * (m + 1) / 2 % mod;
+//a1 = k, an = k + (n - m - 1), N = (n - m)
+//0L + int 防溢出
+ans += 1L * (n - m) * (0L + k + k + n - m - 1) / 2 % mod;
+return (int)(ans % mod);
+```
+
 ### 组合数学
 - 容斥原理
 [D. Exam in MAC](https://codeforces.com/contest/1935/problem/D)
@@ -1225,6 +1240,7 @@ Print(ans);
 	- 思维
 全选巨无霸则`T=C*4`，全选小皇堡则`T=C*2`，所以`TC`只能在这之间，又番茄的最小单位为2，故`T`必须是偶数。注意实现时不要除零的情况，以及`TC`=0是合法的
 
+### 博弈论
 
 ## 计算几何
  
