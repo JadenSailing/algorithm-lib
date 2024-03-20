@@ -341,6 +341,10 @@ public class Heap
 	
 [数据流的中位数](https://github.com/JadenSailing/algorithm-lib/blob/main/Heap/Solution_LC_295_%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0.cs)
 
+优先队列(堆) +延迟删除用法
+[F. Kirill and Mushrooms](https://codeforces.com/contest/1945/problem/F)
+
+[题解](https://codeforces.com/contest/1945/submission/252407275)
 
  
 ## 字符串
