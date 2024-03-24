@@ -365,7 +365,7 @@ public class StringHash
 		// 随机哈希基数和模数，防止被 hack
 		rand = new Random(DateTime.Now.Millisecond);
 		BASE = 37 + rand.Next() % 107;
-		MOD = (int)1e9 + 7;
+		MOD = (long)1e13 + 37;
 	}
 
 	public StringHash(string s)
