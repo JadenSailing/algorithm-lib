@@ -1,3 +1,4 @@
+
 # AutumnMist's Algorithm Library
 ## C# Algorithm Contest IO Project
 - 可用宏区分ACM模式或核心代码模式
@@ -338,12 +339,28 @@ public class Heap
 	- 原地修改
 	- Heapify from n / 2 -> 0
 	- Pop & Swap(1, Size--)
-	
+
+- 双堆结构
 [数据流的中位数](https://github.com/JadenSailing/algorithm-lib/blob/main/Heap/Solution_LC_295_%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0.cs)
 
-优先队列(堆) +延迟删除用法
+- 延迟删除
+队列元素额外存储标记数据 检测是额外处理标记是否合法。
+[3092. 最高频率的 ID](https://leetcode.cn/problems/most-frequent-ids/)
+```
+for (int i = 0; i < n; i++)
+{
+    int idx = nums[i];
+    if (!dict.ContainsKey(idx)) dict[idx] = 0;
+    dict[idx] += freq[i];
+    pq.Enqueue((idx, dict[idx]), -dict[idx]);
+    //延迟标记的处理 延迟删除复杂度跟加入队列次数相关
+    //仅校验个数有可能出现错误的元素使用正确的数据 本题不影响
+    //可以使用时间戳严格区分有效元素
+    while (pq.Count > 0 && pq.Peek().Item2 != dict[pq.Peek().Item1]) pq.Dequeue();
+    if (pq.Count > 0) ans[i] = pq.Peek().Item2;
+}
+```
 [F. Kirill and Mushrooms](https://codeforces.com/contest/1945/problem/F)
-
 [题解](https://codeforces.com/contest/1945/submission/252407275)
 
  
