@@ -1,4 +1,3 @@
-
 # AutumnMist's Algorithm Library
 ## C# Algorithm Contest IO Project
 - 可用宏区分ACM模式或核心代码模式
@@ -370,38 +369,60 @@ for (int i = 0; i < n; i++)
 标准模板如下，注意：
 保持BASE和MOD全局统一
 每个需要Hash的字符串创建一个StringHash实例
-`MOD` 1e6时有case无法通过
+`MOD` 单hash下数据量较大时2e5+有case无法通过，所以改成双哈希。
 ```
 public class StringHash
 {
-	static Random rand;
-	static long BASE, MOD;
-	long[] P, h;
-	static StringHash()
-	{
-		// 随机哈希基数和模数，防止被 hack
-		rand = new Random(DateTime.Now.Millisecond);
-		BASE = 37 + rand.Next() % 107;
-		MOD = (long)1e18 + 3;
-	}
+    long MOD = (long)1e9 + 7;
+    CalcHash h1, h2;
+    public StringHash(string s)
+    {
+        h1 = new CalcHash(s, 0);
+        h2 = new CalcHash(s, 1);
+    }
 
-	public StringHash(string s)
-	{
-		// 求字符串 s 的哈希
-		int n = s.Length;
-		P = new long[n + 1];
-		P[0] = 1;
-		for (int i = 1; i <= n; i++) P[i] = P[i- 1] * BASE % MOD;
-		h = new long[n + 1];
-		h[0] = 0;
-		for (int i = 1; i <= n; i++) h[i] = (h[i- 1] * BASE + s[i- 1]- 'a' + 1) % MOD;
-	}
+    // 求子串 s[L..R] 的哈希值 L,R ∈ [1,n]
+    public long Hash(int L, int R)
+    {
+        return h1.Hash(L, R) * MOD + h2.Hash(L, R);
+    }
+    private class CalcHash
+    {
+        static Random rand;
+        static long[] BASES, MODS;
+        long[] P, h;
+        long BASE, MOD;
+        static CalcHash()
+        {
+            // 随机哈希基数和模数，防止被 hack
+            rand = new Random(DateTime.Now.Millisecond);
+            BASES = new long[2];
+            BASES[0] = 37 + rand.Next() % 107;
+            BASES[1] = 37 + rand.Next() % 107;
+            MODS = new long[2];
+            MODS[0] = (long)1e9 + 7;
+            MODS[1] = 998244353;
+        }
 
-	// 求子串 s[L..R] 的哈希值 L,R ∈ [1,n]
-	public long Hash(int L, int R)
-	{
-		return (h[R]- h[L- 1] * P[R- L + 1] % MOD + MOD) % MOD;
-	}
+        public CalcHash(string s, int idx)
+        {
+            BASE = BASES[idx];
+            MOD = MODS[idx];
+            // 求字符串 s 的哈希
+            int n = s.Length;
+            P = new long[n + 1];
+            P[0] = 1;
+            for (int i = 1; i <= n; i++) P[i] = P[i - 1] * BASE % MOD;
+            h = new long[n + 1];
+            h[0] = 0;
+            for (int i = 1; i <= n; i++) h[i] = (h[i - 1] * BASE + s[i - 1] - 'a' + 1) % MOD;
+        }
+
+        public long Hash(int L, int R)
+        {
+            return (h[R] - h[L - 1] * P[R - L + 1] % MOD + MOD) % MOD;
+        }
+    }
 }
 ```
 [找出数组中的美丽下标 II](https://github.com/JadenSailing/algorithm-lib/blob/main/String/Solution_LC_3008_%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%BE%8E%E4%B8%BD%E4%B8%8B%E6%A0%87II.cs)
