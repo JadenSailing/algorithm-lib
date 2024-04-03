@@ -1,3 +1,5 @@
+
+
 # AutumnMist's Algorithm Library
 ## C# Algorithm Contest IO Project
 - 可用宏区分ACM模式或核心代码模式
@@ -257,6 +259,10 @@ public int MonkeyMove(int n) {
 - 或者带有`覆盖`性质的题目
 
 [查询后矩阵的和](https://leetcode.cn/problems/sum-of-matrix-after-queries/)
+
+[C. Balanced Stone Heaps](https://codeforces.com/problemset/problem/1623/C) 
+数组从i=3遍历到n 每次选择a[i]，取出任意3k，a[i-1] += k， a[i-2] += k*2 求min(a)最大值
+[题解](https://codeforces.com/contest/1623/submission/254784442)
 
 
 ## 数组
