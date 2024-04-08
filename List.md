@@ -1,10 +1,12 @@
 [返回](https://github.com/JadenSailing/algorithm-lib)
+
 - 数组
 - 哈希
 - 链表
 - 队列
 - 栈
 - 堆
+- 排序
 - 动态规划
 - 前缀和
 - 差分
