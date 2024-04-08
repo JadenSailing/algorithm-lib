@@ -1,6 +1,5 @@
-
-
 # AutumnMist's Algorithm Library
+[分类题单](list.md)
 ## C# Algorithm Contest IO Project
 - 可用宏区分ACM模式或核心代码模式
 - 工程主类里处理了ACM模式下的常用输入输出   [Program](https://github.com/JadenSailing/algorithm-lib/blob/main/Program.cs)
