@@ -1,4 +1,6 @@
 [返回](https://github.com/JadenSailing/algorithm-lib)
+- 快速幂
+  - [509. 斐波那契数](https://leetcode.cn/problems/fibonacci-number/) 矩阵快速幂
 - 数组
 - 哈希
 - 链表
@@ -8,9 +10,11 @@
 - 排序
 - 动态规划
 - 前缀和
+  - [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/) 前后缀最大值的较小值
 - 差分
-  - [E. Long Inversions](https://codeforces.com/contest/1955/problem/E)
-  贪心翻转非零开始的k位 差分更新每个位置 差分可以仅差分异或值
+  - [1109. 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings/)
+  - [E. Long Inversions](https://codeforces.com/contest/1955/problem/E) 贪心翻转非零开始的k位 差分更新每个位置 可以仅差分异或值
+  - [2536. 子矩阵元素加 1](https://leetcode.cn/problems/increment-submatrices-by-one/) 二维差分
 - 二分
 - 双指针
 - 分治
