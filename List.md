@@ -1,4 +1,9 @@
 [返回](https://github.com/JadenSailing/algorithm-lib)
+## 题单
+- [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
+- [灵神-按照洛谷通过人数排序的 CF 题单](https://www.luogu.com.cn/training/465300)
+- [灵神八题](https://www.luogu.com/article/27pme29z)
+## 个人
 - 快速幂
   - [猴子碰撞的方法数](https://leetcode.cn/problems/count-collisions-of-monkeys-on-a-polygon/)
   - [509. 斐波那契数](https://leetcode.cn/problems/fibonacci-number/) 矩阵快速幂
