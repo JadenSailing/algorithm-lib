@@ -10,7 +10,15 @@
 - 动态规划
 - 前缀和
 - 差分
+  - [E. Long Inversions](https://codeforces.com/contest/1955/problem/E)
+  贪心翻转非零开始的k位 差分更新每个位置 差分可以仅差分异或值
+
+
 - 字符串哈希
+  - [3093. 最长公共后缀查询](https://leetcode.cn/problems/longest-common-suffix-queries/)
+  双哈希的必要性
+  - [3093. 最长公共后缀查询](https://leetcode.cn/problems/longest-common-suffix-queries/)
+  最后处理里可以二分区间右侧 检查是否满足左侧
 - KMP
 - 树状数组
 - 线段树
