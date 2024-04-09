@@ -17,7 +17,7 @@
 - 字符串哈希
   - [3093. 最长公共后缀查询](https://leetcode.cn/problems/longest-common-suffix-queries/)
   双哈希的必要性
-  - [3093. 最长公共后缀查询](https://leetcode.cn/problems/longest-common-suffix-queries/)
+  - [3008. 找出数组中的美丽下标 II](https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/)
   最后处理里可以二分区间右侧 检查是否满足左侧
 - KMP
 - 树状数组
@@ -27,6 +27,8 @@
 - 双指针
 - 分治
 - 贪心
+  - 反悔贪心
+    - [课程表III](https://github.com/JadenSailing/algorithm-lib/blob/main/Greedy/Solution_LC_630_%E8%AF%BE%E7%A8%8B%E8%A1%A8III.cs) 反悔堆
 - LCA
 - DFS
 - 最短路
