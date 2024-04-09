@@ -1,14 +1,7 @@
 [返回](https://github.com/JadenSailing/algorithm-lib)
 - 快速幂
+  - [猴子碰撞的方法数](https://leetcode.cn/problems/count-collisions-of-monkeys-on-a-polygon/)
   - [509. 斐波那契数](https://leetcode.cn/problems/fibonacci-number/) 矩阵快速幂
-- 数组
-- 哈希
-- 链表
-- 队列
-- 栈
-- 堆
-- 排序
-- 动态规划
 - 前缀和
   - [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/) 前后缀最大值的较小值
 - 差分
@@ -17,20 +10,42 @@
   - [2536. 子矩阵元素加 1](https://leetcode.cn/problems/increment-submatrices-by-one/) 二维差分
 - 二分
 - 双指针
+  - [3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
 - 分治
 - 贪心
   - 反悔贪心
     - [630. 课程表 III](https://leetcode.cn/problems/course-schedule-iii/) 反悔堆
  - 正难则反
+   - [猴子碰撞的方法数](https://leetcode.cn/problems/count-collisions-of-monkeys-on-a-polygon/)
+   - [查询后矩阵的和](https://leetcode.cn/problems/sum-of-matrix-after-queries/)
+   - [C. Balanced Stone Heaps](https://codeforces.com/problemset/problem/1623/C) 
+- 数组
+- 哈希
+- 链表
+  - [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
+- 队列
+- 栈
+- 堆
+  - [295. 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream/) 双堆
+  - [3092. 最高频率的 ID](https://leetcode.cn/problems/most-frequent-ids/) 延迟删除
+  - [F. Kirill and Mushrooms](https://codeforces.com/contest/1945/problem/F) 延迟删除
+- 排序
+- 动态规划
+  - 带权区间调度
+    - [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
+    - [规划兼职工作](https://leetcode.cn/problems/maximum-profit-in-job-scheduling/)
 - 字符串哈希
   - [3093. 最长公共后缀查询](https://leetcode.cn/problems/longest-common-suffix-queries/) 双哈希的必要性
   - [3008. 找出数组中的美丽下标 II](https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/) 最后处理里可以二分区间右侧 检查是否满足左侧
 - KMP
+  - [找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
 - 树状数组
   - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 模板
 - 线段树
   - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 模板
 - 有序集合
+  - [1488. 避免洪水泛滥](https://leetcode.cn/problems/avoid-flood-in-the-city/)
+  - [2102. 序列顺序查询](https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/)
 - 字典树
   - [421. 数组中两个数的最大异或值](https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/)
   - [2935. 找出强数对的最大异或值 II](https://leetcode.cn/problems/maximum-strong-pair-xor-ii/) 可删除字典树
@@ -40,8 +55,14 @@
 - 最短路
 - 拓扑排序
 - 最小生成树
+- Tarjan
+  - [CF923-div3-F.Microcycle-求带权无向图中最短边权重最小的简单环](https://codeforces.com/contest/1927/submission/245749383)
 - 并查集
+  - [547. 省份数量](https://leetcode.cn/problems/number-of-provinces/)
 - 位运算
 - 质数筛
+  - [2523. 范围内最接近的两个质数](https://leetcode.cn/problems/closest-prime-numbers-in-range/)
 - 组合数学
+- 容斥
+  - [D. Exam in MAC](https://codeforces.com/contest/1935/problem/D)
 - 博弈论
