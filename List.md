@@ -9,6 +9,7 @@
   - [E. Long Inversions](https://codeforces.com/contest/1955/problem/E) 贪心翻转非零开始的k位 差分更新每个位置 可以仅差分异或值
   - [2536. 子矩阵元素加 1](https://leetcode.cn/problems/increment-submatrices-by-one/) 二维差分
 - 二分
+  - [35. 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)
 - 双指针
   - [3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
 - 分治
@@ -21,15 +22,25 @@
    - [C. Balanced Stone Heaps](https://codeforces.com/problemset/problem/1623/C) 
 - 数组
 - 哈希
+  - [1. 两数之和](https://leetcode.cn/problems/two-sum/)
 - 链表
   - [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
 - 队列
+  - 单调队列
+    - [239. 滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/)
 - 栈
+  - [20. 有效的括号](https://leetcode.cn/problems/valid-parentheses/)
+  - 单调栈
+    - [496. 下一个更大元素 I](https://leetcode.cn/problems/next-greater-element-i/)
+    - [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/) 
 - 堆
+  - [1046. 最后一块石头的重量](https://leetcode.cn/problems/last-stone-weight/)
+  - [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
   - [295. 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream/) 双堆
   - [3092. 最高频率的 ID](https://leetcode.cn/problems/most-frequent-ids/) 延迟删除
   - [F. Kirill and Mushrooms](https://codeforces.com/contest/1945/problem/F) 延迟删除
 - 排序
+  - [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/) O(n)快速选择
 - 动态规划
   - 带权区间调度
     - [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
@@ -53,7 +64,9 @@
   - [1483. 树节点的第 K 个祖先](https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/) 模板
 - DFS
 - 最短路
+  - [743. 网络延迟时间](https://leetcode.cn/problems/network-delay-time/)
 - 拓扑排序
+  - [207. 课程表](https://leetcode.cn/problems/course-schedule/)
 - 最小生成树
 - Tarjan
   - [CF923-div3-F.Microcycle-求带权无向图中最短边权重最小的简单环](https://codeforces.com/contest/1927/submission/245749383)
@@ -66,3 +79,4 @@
 - 容斥
   - [D. Exam in MAC](https://codeforces.com/contest/1935/problem/D)
 - 博弈论
+  - [E. Removing Graph](https://codeforces.com/contest/1823/problem/E)
