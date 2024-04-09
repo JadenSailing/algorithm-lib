@@ -33,6 +33,7 @@
   - 单调栈
     - [496. 下一个更大元素 I](https://leetcode.cn/problems/next-greater-element-i/)
     - [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/) 
+    - [2736. 最大和查询](https://leetcode.cn/problems/maximum-sum-queries/) 单调栈二分
 - 堆
   - [1046. 最后一块石头的重量](https://leetcode.cn/problems/last-stone-weight/)
   - [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
@@ -54,6 +55,10 @@
   - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 模板
 - 线段树
   - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 模板
+    - 二维偏序
+      - [2736. 最大和查询](https://leetcode.cn/problems/maximum-sum-queries/)
+      - [2250. 统计包含每个点的矩形数目](https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/)
+      - [2940. 找到 Alice 和 Bob 可以相遇的建筑](https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/)
 - 有序集合
   - [1488. 避免洪水泛滥](https://leetcode.cn/problems/avoid-flood-in-the-city/)
   - [2102. 序列顺序查询](https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/)
