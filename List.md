@@ -1,5 +1,4 @@
 [返回](https://github.com/JadenSailing/algorithm-lib)
-
 - 数组
 - 哈希
 - 链表
@@ -12,24 +11,27 @@
 - 差分
   - [E. Long Inversions](https://codeforces.com/contest/1955/problem/E)
   贪心翻转非零开始的k位 差分更新每个位置 差分可以仅差分异或值
-
-
-- 字符串哈希
-  - [3093. 最长公共后缀查询](https://leetcode.cn/problems/longest-common-suffix-queries/)
-  双哈希的必要性
-  - [3008. 找出数组中的美丽下标 II](https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/)
-  最后处理里可以二分区间右侧 检查是否满足左侧
-- KMP
-- 树状数组
-- 线段树
-- 有序集合
 - 二分
 - 双指针
 - 分治
 - 贪心
   - 反悔贪心
-    - [课程表III](https://github.com/JadenSailing/algorithm-lib/blob/main/Greedy/Solution_LC_630_%E8%AF%BE%E7%A8%8B%E8%A1%A8III.cs) 反悔堆
+    - [630. 课程表 III](https://leetcode.cn/problems/course-schedule-iii/) 反悔堆
+ - 正难则反
+- 字符串哈希
+  - [3093. 最长公共后缀查询](https://leetcode.cn/problems/longest-common-suffix-queries/) 双哈希的必要性
+  - [3008. 找出数组中的美丽下标 II](https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/) 最后处理里可以二分区间右侧 检查是否满足左侧
+- KMP
+- 树状数组
+  - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 模板
+- 线段树
+  - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 模板
+- 有序集合
+- 字典树
+  - [421. 数组中两个数的最大异或值](https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/)
+  - [2935. 找出强数对的最大异或值 II](https://leetcode.cn/problems/maximum-strong-pair-xor-ii/) 可删除字典树
 - LCA
+  - [1483. 树节点的第 K 个祖先](https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/) 模板
 - DFS
 - 最短路
 - 拓扑排序
