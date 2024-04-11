@@ -1,4 +1,3 @@
-
 [返回](https://github.com/JadenSailing/algorithm-lib)
 ## 题单
 - [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
@@ -14,11 +13,16 @@
 - 差分
   - [1109. 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings/)
   - [E. Long Inversions](https://codeforces.com/contest/1955/problem/E) 贪心翻转非零开始的k位 差分更新每个位置 可以仅差分异或值
+  - [2772. 使数组中的所有元素都等于零](https://leetcode.cn/problems/apply-operations-to-make-all-array-elements-equal-to-zero/) 注意窗口定长 最后的特殊处理
   - [2536. 子矩阵元素加 1](https://leetcode.cn/problems/increment-submatrices-by-one/) 二维差分
 - 二分
   - [35. 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)
+- 倍增
+  - [2836. 在传球游戏中最大化函数值](https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/) 树上倍增
 - 双指针
   - [3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
+  - [2831. 找出最长等值子数组](https://leetcode.cn/problems/find-the-longest-equal-subarray/) 分组双指针
+  - [2779. 数组的最大美丽值](https://leetcode.cn/problems/maximum-beauty-of-an-array-after-applying-operation/) 排序滑窗
 - 分治
 - 贪心
   - [2968. 执行操作使频率分数最大](https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/) 中位数贪心
@@ -30,8 +34,10 @@
    - [猴子碰撞的方法数](https://leetcode.cn/problems/count-collisions-of-monkeys-on-a-polygon/)
    - [查询后矩阵的和](https://leetcode.cn/problems/sum-of-matrix-after-queries/)
    - [C. Balanced Stone Heaps](https://codeforces.com/problemset/problem/1623/C) 
-- 思维转换
+- 转换
   - [3102. 最小化曼哈顿距离](https://leetcode.cn/problems/minimize-manhattan-distances/) 转换为操作同一下标
+- 值域
+  - [2857. 统计距离为 k 的点对](https://leetcode.cn/problems/count-pairs-of-points-with-distance-k/)
 - 数组
 - 哈希
   - [1. 两数之和](https://leetcode.cn/problems/two-sum/)
@@ -47,6 +53,7 @@
     - [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/) 
     - [2736. 最大和查询](https://leetcode.cn/problems/maximum-sum-queries/) 单调栈二分
     - [2940. 找到 Alice 和 Bob 可以相遇的建筑](https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/) 单调栈二分
+    - [2866. 美丽塔 II](https://leetcode.cn/problems/beautiful-towers-ii/)
 - 堆
   - [1046. 最后一块石头的重量](https://leetcode.cn/problems/last-stone-weight/)
   - [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
@@ -56,15 +63,22 @@
 - 排序
   - [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/) O(n)快速选择
 - 动态规划
+  - 0-1背包
+    - [2787. 将一个数字表示成幂的和的方案数](https://leetcode.cn/problems/ways-to-express-an-integer-as-sum-of-powers/)
   - 线性
+    - [2786. 访问数组中的位置使分数最大](https://leetcode.cn/problems/visit-array-positions-to-maximize-score/) 奇偶
     - [3098. 求出所有子序列的能量和](https://leetcode.cn/problems/find-the-sum-of-subsequence-powers/) 值域作为一个维度
   - 带权区间调度
     - [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
     - [规划兼职工作](https://leetcode.cn/problems/maximum-profit-in-job-scheduling/)
+    - [2830. 销售利润最大化](https://leetcode.cn/problems/maximize-the-profit-as-the-salesman/)
   - 树形dp
     - [3068. 最大节点价值之和](https://leetcode.cn/problems/find-the-maximum-sum-of-node-values/)
+    - [2872. 可以被 K 整除连通块的最大数目](https://leetcode.cn/problems/maximum-number-of-k-divisible-components/)
   - 数位dp
     - [2999. 统计强大整数的数目](https://leetcode.cn/problems/count-the-number-of-powerful-integers/)
+    - [2827. 范围中美丽整数的数目](https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/)
+    - [2801. 统计范围内的步进数字数目](https://leetcode.cn/problems/count-stepping-numbers-in-range/)
   - dp优化
     - [2926. 平衡子序列的最大和](https://leetcode.cn/problems/maximum-balanced-subsequence-sum/) 线段树优化
 - 字符串哈希
@@ -85,6 +99,7 @@
       - [2250. 统计包含每个点的矩形数目](https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/)
       - [2940. 找到 Alice 和 Bob 可以相遇的建筑](https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/)
 - 有序集合
+  - [2817. 限制条件下元素之间的最小绝对差](https://leetcode.cn/problems/minimum-absolute-difference-between-elements-with-constraint/)
   - [1488. 避免洪水泛滥](https://leetcode.cn/problems/avoid-flood-in-the-city/)
   - [2102. 序列顺序查询](https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/)
 - 字典树
@@ -92,6 +107,7 @@
   - [2935. 找出强数对的最大异或值 II](https://leetcode.cn/problems/maximum-strong-pair-xor-ii/) 可删除字典树
 - LCA
   - [1483. 树节点的第 K 个祖先](https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/) 模板
+  - [2846. 边权重均等查询](https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/)
 - DFS
 - 最短路
   - [743. 网络延迟时间](https://leetcode.cn/problems/network-delay-time/)
@@ -109,6 +125,7 @@
 - 质数筛
   - [2523. 范围内最接近的两个质数](https://leetcode.cn/problems/closest-prime-numbers-in-range/)
 - 组合数学
+  - [2842. 统计一个字符串的 k 子序列美丽值最大的数目](https://leetcode.cn/problems/count-k-subsequences-of-a-string-with-maximum-beauty/)
 - 容斥
   - [D. Exam in MAC](https://codeforces.com/contest/1935/problem/D)
 - 博弈论
