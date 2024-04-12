@@ -1,3 +1,4 @@
+
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -478,6 +479,32 @@ public int StrStr(string haystack, string needle)
     return res.Count == 0 ? -1 : res[0];
 }
 ```
+### 最小表示法
+循环同构字符串中返回字典序最小的位置
+```
+private static int GetMinIndex(string s)
+{
+    int n = s.Length;
+    char[] chs = s.ToCharArray();
+    int k = 0, i = 0, j = 1;
+    while (k < n && i < n && j < n)
+    {
+        if (chs[(i + k) % n] == chs[(j + k) % n])
+        {
+            k++;
+        }
+        else
+        {
+            if (chs[(i + k) % n] > chs[(j + k) % n]) i = i + k + 1;
+            else j = j + k + 1;
+            if (i == j) i++;
+            k = 0;
+        }
+    }
+    return Math.Min(i, j);
+}
+```
+[899. 有序队列](https://leetcode.cn/problems/orderly-queue/)
 
 ## 排序
 ### 冒泡排序
