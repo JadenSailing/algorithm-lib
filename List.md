@@ -3,6 +3,7 @@
 - [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
 - [灵神-按照洛谷通过人数排序的 CF 题单](https://www.luogu.com.cn/training/465300)
 - [灵神八题](https://www.luogu.com/article/27pme29z)
+- [灵神动态规划题单](https://leetcode.cn/circle/discuss/tXLS3i/)
 ## 个人
 - 快速幂
   - [猴子碰撞的方法数](https://leetcode.cn/problems/count-collisions-of-monkeys-on-a-polygon/)
@@ -87,6 +88,8 @@
   - [3045. 统计前后缀下标对 II](https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/)
   - [3031. 将单词恢复初始状态所需的最短时间 II](https://leetcode.cn/problems/minimum-time-to-revert-word-to-initial-state-ii/)
   - [3008. 找出数组中的美丽下标 II](https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/)
+- 最小表示法
+- [899. 有序队列](https://leetcode.cn/problems/orderly-queue/)
 - KMP
   - [找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
   - [3036. 匹配模式数组的子数组数目 II](https://leetcode.cn/problems/number-of-subarrays-that-match-a-pattern-ii/)
