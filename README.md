@@ -1,4 +1,3 @@
-
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -942,33 +941,36 @@ public class SegmentTree
    ```
 
 	- 基于优先队列优化 复杂度O(m*logm)
-	```
-	public int ShortestPath(int node1, int node2)
+
+```
+//纺锤形图会卡遍历 所以要用vis标记
+int[] dis = new int[n];
+int[] vis = new int[n];
+Array.Fill(dis, int.MaxValue);
+PriorityQueue<int, int> pq = new PriorityQueue<int, int>();
+dis[node1] = 0;
+pq.Enqueue(node1, 0);
+while (pq.Count > 0)
+{
+    int u = pq.Dequeue();
+    if (vis[u] == 1) continue;
+    vis[u] = 1;
+    foreach (int v in g[u].Keys)
     {
-        int[] dis = new int[n];
-        Array.Fill(dis, int.MaxValue);
-        PriorityQueue<int, int> pq = new PriorityQueue<int, int>();
-        dis[node1] = 0;
-        pq.Enqueue(node1, 0);
-        while (pq.Count > 0)
+        int d = g[u][v] + dis[u];
+        if (d < dis[v])
         {
-            int u = pq.Dequeue();
-            foreach(int v in g[u].Keys)
-            {
-                int d = g[u][v] + dis[u];
-                if(d < dis[v])
-                {
-                    dis[v] = d;
-                    pq.Enqueue(v, d);
-                }
-            }
+            dis[v] = d;
+            pq.Enqueue(v, d);
         }
-        return dis[node2] == int.MaxValue ? -1 : dis[node2];
     }
-   ```
-	另外有基于二叉堆/斐波那契堆等优化方案
-	[1976. 到达目的地的方案数](https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/)
-	[>题解](https://github.com/JadenSailing/algorithm-lib/blob/main/Graphs/Solution_LC_1976_%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0.cs)
+}
+return dis[node2] == int.MaxValue ? -1 : dis[node2];
+```
+
+另外有基于二叉堆/斐波那契堆等优化方案
+[1976. 到达目的地的方案数](https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/)
+[>题解](https://github.com/JadenSailing/algorithm-lib/blob/main/Graphs/Solution_LC_1976_%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0.cs)
 
 - A*
  
@@ -1274,6 +1276,30 @@ return (int)(ans % mod);
 
 ### 组合数学
 - 容斥原理
+```
+//计算<=x所有数中至少是coins之一倍数的个数
+private static long Calc(int[] coins, long x)
+{
+    int n = coins.Length; //n不超过20
+    long res = 0;
+    for (int i = 1; i < 1 << n; i++) //枚举子集 注意不包括空集
+    {
+        int mul = -1;
+        long r = 1;
+        for (int k = 0; k < 30; k++)
+        {
+            if (((i >> k) & 1) == 1)
+            {
+                mul *= -1;
+                r = LCM(r, coins[k]); //拥有c个属性的个数需要计算lcm
+            }
+        }
+        res += mul * (x / r);
+    }
+    return res;
+}
+```
+
 [D. Exam in MAC](https://codeforces.com/contest/1935/problem/D)
 
 已知集合`S` 整数`c`，计算数对`(x,y)`的个数，要求`0<=x<=y<=c`，且`(x+y)∉S (y-x)∉S`

@@ -130,6 +130,7 @@
 - 组合数学
   - [2842. 统计一个字符串的 k 子序列美丽值最大的数目](https://leetcode.cn/problems/count-k-subsequences-of-a-string-with-maximum-beauty/)
 - 容斥
+  - [3116. 单面值组合的第 K 小金额](https://leetcode.cn/problems/kth-smallest-amount-with-single-denomination-combination/)
   - [D. Exam in MAC](https://codeforces.com/contest/1935/problem/D)
 - 博弈论
   - [E. Removing Graph](https://codeforces.com/contest/1823/problem/E)
