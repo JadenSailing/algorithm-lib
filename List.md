@@ -18,6 +18,7 @@
   - [2536. 子矩阵元素加 1](https://leetcode.cn/problems/increment-submatrices-by-one/) 二维差分
 - 二分
   - [35. 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)
+  - [3116. 单面值组合的第 K 小金额](https://leetcode.cn/problems/kth-smallest-amount-with-single-denomination-combination/) 端点位置对二分区间的影响
 - 倍增
   - [2836. 在传球游戏中最大化函数值](https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/) 树上倍增
 - 双指针
@@ -114,6 +115,7 @@
 - DFS
 - 最短路
   - [743. 网络延迟时间](https://leetcode.cn/problems/network-delay-time/)
+  - [3112. 访问消失节点的最少时间](https://leetcode.cn/problems/minimum-time-to-visit-disappearing-nodes) 检测dijkstra堆优化
 - Floyd
   - [2959. 关闭分部的可行集合数目](https://leetcode.cn/problems/number-of-possible-sets-of-closing-branches/)
 - 拓扑排序
