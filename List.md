@@ -113,6 +113,7 @@
   - [1483. 树节点的第 K 个祖先](https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/) 模板
   - [2846. 边权重均等查询](https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/)
 - DFS
+  - [924. 尽量减少恶意软件的传播](https://leetcode.cn/problems/minimize-malware-spread/)
 - 最短路
   - [743. 网络延迟时间](https://leetcode.cn/problems/network-delay-time/)
   - [3112. 访问消失节点的最少时间](https://leetcode.cn/problems/minimum-time-to-visit-disappearing-nodes) 检测dijkstra堆优化
