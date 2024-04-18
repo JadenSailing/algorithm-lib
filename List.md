@@ -1,3 +1,4 @@
+
 [返回](https://github.com/JadenSailing/algorithm-lib)
 ## 题单
 - [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
@@ -43,6 +44,7 @@
 - 数组
 - 哈希
   - [1. 两数之和](https://leetcode.cn/problems/two-sum/)
+  - [2007. 从双倍数组中还原原数组](https://leetcode.cn/problems/find-original-array-from-doubled-array/)
 - 链表
   - [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
 - 队列
