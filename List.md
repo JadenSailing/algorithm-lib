@@ -101,7 +101,12 @@
 - 树状数组
   - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 模板
 - 线段树
-  - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 模板
+  - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 单点更新 区间求和
+  - [218. 天际线问题](https://leetcode.cn/problems/the-skyline-problem/) 区间更新 区间最值
+  - [699. 掉落的方块](https://leetcode.cn/problems/falling-squares/) 区间更新 区间最值 
+  - [715. Range 模块](https://leetcode.cn/problems/range-module/) 区间更新 区间求和
+  - [731. 我的日程安排表 II](https://leetcode.cn/problems/my-calendar-ii/) 区间更新 区间最值
+  - [732. 我的日程安排表 III](https://leetcode.cn/problems/my-calendar-iii/) 区间更新 区间最值
     - 二维偏序
       - [2736. 最大和查询](https://leetcode.cn/problems/maximum-sum-queries/)
       - [2250. 统计包含每个点的矩形数目](https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/)
