@@ -1,4 +1,5 @@
 
+
 [返回](https://github.com/JadenSailing/algorithm-lib)
 ## 题单
 - [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
@@ -58,6 +59,7 @@
     - [2736. 最大和查询](https://leetcode.cn/problems/maximum-sum-queries/) 单调栈二分
     - [2940. 找到 Alice 和 Bob 可以相遇的建筑](https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/) 单调栈二分
     - [2866. 美丽塔 II](https://leetcode.cn/problems/beautiful-towers-ii/)
+    - [3113. 边界元素是最大值的子数组数目](https://leetcode.cn/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/) 计数
 - 堆
   - [1046. 最后一块石头的重量](https://leetcode.cn/problems/last-stone-weight/)
   - [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
