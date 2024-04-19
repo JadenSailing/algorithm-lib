@@ -844,12 +844,16 @@ public class SegmentTree
 
     private bool HasFlag(Node node, long start, long end, long l, long r)
     {
-        if (l <= start && end <= r) return node.isValid;
+        if (l <= start && end <= r)
+        {
+            return node.isValid;
+        }
         long mid = (start + end) >> 1;
         PushDown(node, mid - start + 1, end - mid);
-        if (l <= mid) node.isValid = node.isValid || HasFlag(node.left, start, mid, l, r);
-        if (r > mid) node.isValid = node.isValid || HasFlag(node.right, mid + 1, end, l, r);
-        return node.isValid;
+        bool res = false;
+        if (l <= mid) res = res || HasFlag(node.left, start, mid, l, r);
+        if (r > mid) res = res || HasFlag(node.right, mid + 1, end, l, r);
+        return res;
     }
 
     private void Update(Node node, long start, long end, long l, long r, long val)
@@ -906,8 +910,8 @@ public class SegmentTree
         if (l <= start && end <= r) return node.max;
         long mid = (start + end) >> 1, ans = long.MinValue;
         PushDown(node, mid - start + 1, end - mid);
-        if (l <= mid && HasFlag(l, mid)) ans = Math.Max(ans, Max(node.left, start, mid, l, r));
-        if (r > mid && HasFlag(mid + 1, r)) ans = Math.Max(ans, Max(node.right, mid + 1, end, l, r));
+        if (l <= mid && node.left.isValid) ans = Math.Max(ans, Max(node.left, start, mid, l, r));
+        if (r > mid && node.right.isValid) ans = Math.Max(ans, Max(node.right, mid + 1, end, l, r));
         return ans;
     }
 
