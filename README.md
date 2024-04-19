@@ -836,13 +836,13 @@ public class SegmentTree
     private Node root = new Node();
 
     public SegmentTree(bool isAdd = true, long n = (long)1e12 + 10) { this.isAdd = isAdd; this.n = n; }
-    public bool HasFlag(long L, long R) { return HasFlag(root, 0, n, L + Offset, R + Offset); }
+    public bool IsValid(long L, long R) { return IsValid(root, 0, n, L + Offset, R + Offset); }
     public long Sum(long L, long R) { return Sum(root, 0, n, L + Offset, R + Offset); }
     public long Min(long L, long R) { return Min(root, 0, n, L + Offset, R + Offset); }
     public long Max(long L, long R) { return Max(root, 0, n, L + Offset, R + Offset); }
     public void Update(long L, long R, long val) { Update(root, 0, n, L + Offset, R + Offset, val); }
 
-    private bool HasFlag(Node node, long start, long end, long l, long r)
+    private bool IsValid(Node node, long start, long end, long l, long r)
     {
         if (l <= start && end <= r)
         {
@@ -851,8 +851,8 @@ public class SegmentTree
         long mid = (start + end) >> 1;
         PushDown(node, mid - start + 1, end - mid);
         bool res = false;
-        if (l <= mid) res = res || HasFlag(node.left, start, mid, l, r);
-        if (r > mid) res = res || HasFlag(node.right, mid + 1, end, l, r);
+        if (l <= mid) res = res || IsValid(node.left, start, mid, l, r);
+        if (r > mid) res = res || IsValid(node.right, mid + 1, end, l, r);
         return res;
     }
 
@@ -920,8 +920,8 @@ public class SegmentTree
         if (l <= start && end <= r) return node.min;
         long mid = (start + end) >> 1, ans = long.MaxValue;
         PushDown(node, mid - start + 1, end - mid);
-        if (l <= mid && HasFlag(l, mid)) ans = Math.Min(ans, Min(node.left, start, mid, l, r));
-        if (r > mid && HasFlag(mid + 1, r)) ans = Math.Min(ans, Min(node.right, mid + 1, end, l, r));
+        if (l <= mid && node.left.isValid) ans = Math.Min(ans, Min(node.left, start, mid, l, r));
+        if (r > mid && node.right.isValid) ans = Math.Min(ans, Min(node.right, mid + 1, end, l, r));
         return ans;
     }
 
