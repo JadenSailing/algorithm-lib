@@ -108,7 +108,7 @@
   - [715. Range 模块](https://leetcode.cn/problems/range-module/) 区间更新 区间求和
   - [731. 我的日程安排表 II](https://leetcode.cn/problems/my-calendar-ii/) 区间更新 区间最值
   - [732. 我的日程安排表 III](https://leetcode.cn/problems/my-calendar-iii/) 区间更新 区间最值
-  - [3117. 划分数组得到最小的值之和](https://leetcode.cn/problems/minimum-sum-of-values-by-dividing-array/) 线段树优化dp
+  - [3117. 划分数组得到最小的值之和](https://leetcode.cn/problems/minimum-sum-of-values-by-dividing-array/) LogTrick 线段树优化dp
     - 二维偏序
       - [2736. 最大和查询](https://leetcode.cn/problems/maximum-sum-queries/)
       - [2250. 统计包含每个点的矩形数目](https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/)
