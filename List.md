@@ -73,6 +73,7 @@
     - [2786. 访问数组中的位置使分数最大](https://leetcode.cn/problems/visit-array-positions-to-maximize-score/) 奇偶
     - [3098. 求出所有子序列的能量和](https://leetcode.cn/problems/find-the-sum-of-subsequence-powers/) 值域作为一个维度
     - [3122. 使矩阵满足条件的最少操作次数](https://leetcode.cn/problems/minimum-number-of-operations-to-satisfy-conditions/) 注意值域和目标关系
+    - [C. How Does the Rook Move?](https://codeforces.com/contest/1957/problem/C) 
   - 带权区间调度
     - [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
     - [规划兼职工作](https://leetcode.cn/problems/maximum-profit-in-job-scheduling/)
@@ -143,6 +144,7 @@
   - [2523. 范围内最接近的两个质数](https://leetcode.cn/problems/closest-prime-numbers-in-range/)
 - 组合数学
   - [2842. 统计一个字符串的 k 子序列美丽值最大的数目](https://leetcode.cn/problems/count-k-subsequences-of-a-string-with-maximum-beauty/)
+  - [C. How Does the Rook Move?](https://codeforces.com/contest/1957/problem/C) 
 - 容斥
   - [3116. 单面值组合的第 K 小金额](https://leetcode.cn/problems/kth-smallest-amount-with-single-denomination-combination/)
   - [D. Exam in MAC](https://codeforces.com/contest/1935/problem/D)
