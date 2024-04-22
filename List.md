@@ -74,6 +74,7 @@
   - 线性
     - [2786. 访问数组中的位置使分数最大](https://leetcode.cn/problems/visit-array-positions-to-maximize-score/) 奇偶
     - [3098. 求出所有子序列的能量和](https://leetcode.cn/problems/find-the-sum-of-subsequence-powers/) 值域作为一个维度
+    - [3122. 使矩阵满足条件的最少操作次数](https://leetcode.cn/problems/minimum-number-of-operations-to-satisfy-conditions/) 注意值域和目标关系
   - 带权区间调度
     - [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
     - [规划兼职工作](https://leetcode.cn/problems/maximum-profit-in-job-scheduling/)
