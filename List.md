@@ -1,5 +1,3 @@
-
-
 [返回](https://github.com/JadenSailing/algorithm-lib)
 ## 题单
 - [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
@@ -129,6 +127,7 @@
 - 最短路
   - [743. 网络延迟时间](https://leetcode.cn/problems/network-delay-time/)
   - [3112. 访问消失节点的最少时间](https://leetcode.cn/problems/minimum-time-to-visit-disappearing-nodes) 检测dijkstra堆优化
+  - [3123. 最短路径中的边](https://leetcode.cn/problems/find-edges-in-shortest-paths/) 模板-边是否最短路上
 - Floyd
   - [2959. 关闭分部的可行集合数目](https://leetcode.cn/problems/number-of-possible-sets-of-closing-branches/)
 - 拓扑排序
