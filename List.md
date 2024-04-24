@@ -90,6 +90,7 @@
     - [3117. 划分数组得到最小的值之和](https://leetcode.cn/problems/minimum-sum-of-values-by-dividing-array/) 线段树优化
 - 字符串哈希
   - [3093. 最长公共后缀查询](https://leetcode.cn/problems/longest-common-suffix-queries/) 双哈希的必要性
+  - [1044. 最长重复子串](https://leetcode.cn/problems/longest-duplicate-substring/) 二分
   - [3008. 找出数组中的美丽下标 II](https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/) 最后处理里可以二分区间右侧 检查是否满足左侧
   - [3045. 统计前后缀下标对 II](https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/)
   - [3031. 将单词恢复初始状态所需的最短时间 II](https://leetcode.cn/problems/minimum-time-to-revert-word-to-initial-state-ii/)
