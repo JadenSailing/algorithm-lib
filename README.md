@@ -1,6 +1,4 @@
-
 # AutumnMist's Algorithm Library
-[分类题单](List.md)
 ## C# Algorithm Contest IO Project
 - 可用宏区分ACM模式或核心代码模式
 - 工程主类里处理了ACM模式下的常用输入输出   [Program](https://github.com/JadenSailing/algorithm-lib/blob/main/Program.cs)
@@ -260,10 +258,6 @@ public int MonkeyMove(int n) {
 
 [查询后矩阵的和](https://leetcode.cn/problems/sum-of-matrix-after-queries/)
 
-[C. Balanced Stone Heaps](https://codeforces.com/problemset/problem/1623/C) 
-数组从i=3遍历到n 每次选择a[i]，取出任意3k，a[i-1] += k， a[i-2] += k*2 求min(a)最大值
-[题解](https://codeforces.com/contest/1623/submission/254784442)
-
 
 ## 数组
  
@@ -344,28 +338,12 @@ public class Heap
 	- 原地修改
 	- Heapify from n / 2 -> 0
 	- Pop & Swap(1, Size--)
-
-- 双堆结构
+	
 [数据流的中位数](https://github.com/JadenSailing/algorithm-lib/blob/main/Heap/Solution_LC_295_%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0.cs)
 
-- 延迟删除
-队列元素额外存储标记数据 检测是额外处理标记是否合法。
-[3092. 最高频率的 ID](https://leetcode.cn/problems/most-frequent-ids/)
-```
-for (int i = 0; i < n; i++)
-{
-    int idx = nums[i];
-    if (!dict.ContainsKey(idx)) dict[idx] = 0;
-    dict[idx] += freq[i];
-    pq.Enqueue((idx, dict[idx]), -dict[idx]);
-    //延迟标记的处理 延迟删除复杂度跟加入队列次数相关
-    //仅校验个数有可能出现错误的元素使用正确的数据 本题不影响
-    //可以使用时间戳严格区分有效元素
-    while (pq.Count > 0 && pq.Peek().Item2 != dict[pq.Peek().Item1]) pq.Dequeue();
-    if (pq.Count > 0) ans[i] = pq.Peek().Item2;
-}
-```
+优先队列(堆) +延迟删除用法
 [F. Kirill and Mushrooms](https://codeforces.com/contest/1945/problem/F)
+
 [题解](https://codeforces.com/contest/1945/submission/252407275)
 
  
@@ -375,60 +353,38 @@ for (int i = 0; i < n; i++)
 标准模板如下，注意：
 保持BASE和MOD全局统一
 每个需要Hash的字符串创建一个StringHash实例
-`MOD` 单hash下数据量较大时2e5+有case无法通过，所以改成双哈希。
+`MOD` 1e6时有case无法通过
 ```
 public class StringHash
 {
-    long MOD = (long)1e9 + 7;
-    CalcHash h1, h2;
-    public StringHash(string s)
-    {
-        h1 = new CalcHash(s, 0);
-        h2 = new CalcHash(s, 1);
-    }
+	static Random rand;
+	static long BASE, MOD;
+	long[] P, h;
+	static StringHash()
+	{
+		// 随机哈希基数和模数，防止被 hack
+		rand = new Random(DateTime.Now.Millisecond);
+		BASE = 37 + rand.Next() % 107;
+		MOD = (long)1e13 + 37;
+	}
 
-    // 求子串 s[L..R] 的哈希值 L,R ∈ [1,n]
-    public long Hash(int L, int R)
-    {
-        return h1.Hash(L, R) * MOD + h2.Hash(L, R);
-    }
-    private class CalcHash
-    {
-        static Random rand;
-        static long[] BASES, MODS;
-        long[] P, h;
-        long BASE, MOD;
-        static CalcHash()
-        {
-            // 随机哈希基数和模数，防止被 hack
-            rand = new Random(DateTime.Now.Millisecond);
-            BASES = new long[2];
-            BASES[0] = 37 + rand.Next() % 107;
-            BASES[1] = 37 + rand.Next() % 107;
-            MODS = new long[2];
-            MODS[0] = (long)1e9 + 7;
-            MODS[1] = 998244353;
-        }
+	public StringHash(string s)
+	{
+		// 求字符串 s 的哈希
+		int n = s.Length;
+		P = new long[n + 1];
+		P[0] = 1;
+		for (int i = 1; i <= n; i++) P[i] = P[i- 1] * BASE % MOD;
+		h = new long[n + 1];
+		h[0] = 0;
+		for (int i = 1; i <= n; i++) h[i] = (h[i- 1] * BASE + s[i- 1]- 'a' + 1) % MOD;
+	}
 
-        public CalcHash(string s, int idx)
-        {
-            BASE = BASES[idx];
-            MOD = MODS[idx];
-            // 求字符串 s 的哈希
-            int n = s.Length;
-            P = new long[n + 1];
-            P[0] = 1;
-            for (int i = 1; i <= n; i++) P[i] = P[i - 1] * BASE % MOD;
-            h = new long[n + 1];
-            h[0] = 0;
-            for (int i = 1; i <= n; i++) h[i] = (h[i - 1] * BASE + s[i - 1] - 'a' + 1) % MOD;
-        }
-
-        public long Hash(int L, int R)
-        {
-            return (h[R] - h[L - 1] * P[R - L + 1] % MOD + MOD) % MOD;
-        }
-    }
+	// 求子串 s[L..R] 的哈希值 L,R ∈ [1,n]
+	public long Hash(int L, int R)
+	{
+		return (h[R]- h[L- 1] * P[R- L + 1] % MOD + MOD) % MOD;
+	}
 }
 ```
 [找出数组中的美丽下标 II](https://github.com/JadenSailing/algorithm-lib/blob/main/String/Solution_LC_3008_%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%BE%8E%E4%B8%BD%E4%B8%8B%E6%A0%87II.cs)
@@ -479,32 +435,6 @@ public int StrStr(string haystack, string needle)
     return res.Count == 0 ? -1 : res[0];
 }
 ```
-### 最小表示法
-循环同构字符串中返回字典序最小的位置
-```
-private static int GetMinIndex(string s)
-{
-    int n = s.Length;
-    char[] chs = s.ToCharArray();
-    int k = 0, i = 0, j = 1;
-    while (k < n && i < n && j < n)
-    {
-        if (chs[(i + k) % n] == chs[(j + k) % n])
-        {
-            k++;
-        }
-        else
-        {
-            if (chs[(i + k) % n] > chs[(j + k) % n]) i = i + k + 1;
-            else j = j + k + 1;
-            if (i == j) i++;
-            k = 0;
-        }
-    }
-    return Math.Min(i, j);
-}
-```
-[899. 有序队列](https://leetcode.cn/problems/orderly-queue/)
 
 ## 排序
 ### 冒泡排序
@@ -808,48 +738,7 @@ private int LCA(int x, int y)
  
 ### 树状数组
  
-- [基础模板]
-```
-//树状数组基础模板
-//下标从1开始
-public class BIT
-{
-	public int n = 0;
-	private int[] tree;
-	public BIT(int n)
-	{
-		this.n = n;
-		tree = new int[n + 1];
-	}
-
-	private int LowBit(int x)
-	{
-		return x & (-x);
-	}
-
-	public int Query(int i)
-	{
-		i++;
-		int res = 0;
-		while (i > 0)
-		{
-			res += tree[i];
-			i -= LowBit(i);
-		}
-		return res;
-	}
-
-	public void Update(int i, int x)
-	{
-		i++;
-		while (i <= n)
-		{
-			tree[i] += x;
-			i += LowBit(i);
-		}
-	}
-}
-```
+- [基础模板](https://github.com/JadenSailing/algorithm-lib/blob/main/BinaryIndexedTree/BIT.cs)
  
 - [区域和检索-数组可修改](https://github.com/JadenSailing/algorithm-lib/blob/main/BinaryIndexedTree/Solution_LC_307_%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E5%8F%AF%E4%BF%AE%E6%94%B9.cs)
  
@@ -859,198 +748,60 @@ public class BIT
 ```
 public class SegmentTree
 {
-    private const long Offset = (long)1e10 + 5;
     public class Node
     {
-        //是否包含有效数据
-        public bool isValid = false;
         public Node left, right;
         public long sum;
-        public long max = 0;
-        public long min = 0;
-        public bool flag = false; //是否有数据
-        public long val;
+        public bool flag = false;
+        public long data;
     }
-    //是否是添加值/更新值
-    private bool isAdd = true;
-    private long n = (long)1e12 + 10;
+    private long n = (long)1e9 + 5;
     private Node root = new Node();
-
-    public SegmentTree(bool isAdd = true, long n = (long)1e12 + 10) { this.isAdd = isAdd; this.n = n; }
-    public bool IsValid(long L, long R) { return IsValid(root, 0, n, L + Offset, R + Offset); }
-    public long Sum(long L, long R) { return Sum(root, 0, n, L + Offset, R + Offset); }
-    public long Min(long L, long R) { return Min(root, 0, n, L + Offset, R + Offset); }
-    public long Max(long L, long R) { return Max(root, 0, n, L + Offset, R + Offset); }
-    public void Update(long L, long R, long val) { Update(root, 0, n, L + Offset, R + Offset, val); }
-
-    private bool IsValid(Node node, long start, long end, long l, long r)
-    {
-        if (l <= start && end <= r)
-        {
-            return node.isValid;
-        }
-        long mid = (start + end) >> 1;
-        PushDown(node, mid - start + 1, end - mid);
-        bool res = false;
-        if (l <= mid) res = res || IsValid(node.left, start, mid, l, r);
-        if (r > mid) res = res || IsValid(node.right, mid + 1, end, l, r);
-        return res;
-    }
+    public SegmentTree(long n = (long)1e9 + 5) { this.n = n; }
+    public long Sum(long L, long R) { return Sum(root, 0, n, L, R); }
+    public void Update(long L, long R, long val) { Update(root, 0, n, L, R, val); }
 
     private void Update(Node node, long start, long end, long l, long r, long val)
     {
-        if (l <= start && end <= r)
+        if (l <= start && r >= end)
         {
-            if (isAdd)
-            {
-                node.sum += (end - start + 1) * val;
-                node.val += val;
-            }
-            else
-            {
-                node.sum = (end - start + 1) * val;
-                node.val = val;
-            }
-            if (!node.isValid) node.max = val;
-            else
-            {
-                if (isAdd) node.max += val;
-                else node.max = val;
-            }
-            if (!node.isValid) node.min = val;
-            else
-            {
-                if (isAdd) node.min += val;
-                else node.min = val;
-            }
-            node.isValid = true;
+            node.sum = (end- start + 1) * val;
+            node.data = val;
             node.flag = true;
             return;
         }
-        long mid = (start + end) >> 1;
-        PushDown(node, mid - start + 1, end - mid);
+        long mid = start + (end- start) / 2;
+        PushDown(node, mid- start + 1, end- mid);
         if (l <= mid) Update(node.left, start, mid, l, r, val);
         if (r > mid) Update(node.right, mid + 1, end, l, r, val);
         PushUp(node);
     }
     private long Sum(Node node, long start, long end, long l, long r)
     {
-        if (l <= start && end <= r)
-        {
-            return node.sum;
-        }
+        if (l <= start && end <= r) return node.sum;
         long mid = (start + end) >> 1, ans = 0;
-        PushDown(node, mid - start + 1, end - mid);
+        PushDown(node, mid- start + 1, end- mid);
         if (l <= mid) ans += Sum(node.left, start, mid, l, r);
         if (r > mid) ans += Sum(node.right, mid + 1, end, l, r);
-        return ans;
-    }
-
-    private long Max(Node node, long start, long end, long l, long r)
-    {
-        if (l <= start && end <= r) return node.max;
-        long mid = (start + end) >> 1, ans = long.MinValue;
-        PushDown(node, mid - start + 1, end - mid);
-        if (l <= mid && node.left.isValid) ans = Math.Max(ans, Max(node.left, start, mid, l, r));
-        if (r > mid && node.right.isValid) ans = Math.Max(ans, Max(node.right, mid + 1, end, l, r));
-        return ans;
-    }
-
-    private long Min(Node node, long start, long end, long l, long r)
-    {
-        if (l <= start && end <= r) return node.min;
-        long mid = (start + end) >> 1, ans = long.MaxValue;
-        PushDown(node, mid - start + 1, end - mid);
-        if (l <= mid && node.left.isValid) ans = Math.Min(ans, Min(node.left, start, mid, l, r));
-        if (r > mid && node.right.isValid) ans = Math.Min(ans, Min(node.right, mid + 1, end, l, r));
         return ans;
     }
 
     private void PushUp(Node node)
     {
         node.sum = node.left.sum + node.right.sum;
-        if (!node.isValid)
-        {
-            node.max = long.MinValue;
-            node.min = long.MaxValue;
-        }
-        if (node.left.isValid)
-        {
-            node.min = Math.Min(node.min, node.left.min);
-            node.max = Math.Max(node.max, node.left.max);
-        }
-        if (node.right.isValid)
-        {
-            node.min = Math.Min(node.min, node.right.min);
-            node.max = Math.Max(node.max, node.right.max);
-        }
-        node.isValid = node.isValid || node.left.isValid;
-        node.isValid = node.isValid || node.right.isValid;
     }
     private void PushDown(Node node, long leftNum, long rightNum)
     {
         if (node.left == null) node.left = new Node();
         if (node.right == null) node.right = new Node();
         if (!node.flag) return;
-        if (isAdd)
-        {
-            node.left.sum += node.val * leftNum;
-            node.right.sum += node.val * rightNum;
-            if (node.left.isValid)
-            {
-                node.left.max += node.val;
-                node.left.min += node.val;
-            }
-            else
-            {
-                node.left.max = node.val;
-                node.left.max = node.val;
-            }
-            if (node.right.isValid)
-            {
-                node.right.max += node.val;
-                node.right.min += node.val;
-            }
-            else
-            {
-                node.right.max = node.val;
-                node.right.max = node.val;
-            }
-            node.left.val += node.val;
-            node.right.val += node.val;
-        }
-        else
-        {
-            node.left.sum = node.val * leftNum;
-            node.right.sum = node.val * rightNum;
-            if (node.left.isValid)
-            {
-                node.left.max = Math.Max(node.left.max, node.val);
-                node.left.min = Math.Min(node.left.min, node.val);
-            }
-            else
-            {
-                node.left.max = node.val;
-                node.left.max = node.val;
-            }
-            if (node.right.isValid)
-            {
-                node.right.max = Math.Max(node.right.max, node.val);
-                node.right.min = Math.Min(node.right.min, node.val);
-            }
-            else
-            {
-                node.right.max = node.val;
-                node.right.max = node.val;
-            }
-            node.left.val = node.right.val = node.val;
-        }
-        node.left.isValid = node.right.isValid = true;
+        node.left.sum = node.data * leftNum;
+        node.right.sum = node.data * rightNum;
+        node.left.data = node.right.data = node.data;
         node.left.flag = node.right.flag = true;
-        node.val = 0;
         node.flag = false;
     }
-}
+} 
 ```
  
  
@@ -1121,36 +872,33 @@ public class SegmentTree
    ```
 
 	- 基于优先队列优化 复杂度O(m*logm)
-
-```
-//纺锤形图会卡遍历 所以要用vis标记
-int[] dis = new int[n];
-int[] vis = new int[n];
-Array.Fill(dis, int.MaxValue);
-PriorityQueue<int, int> pq = new PriorityQueue<int, int>();
-dis[node1] = 0;
-pq.Enqueue(node1, 0);
-while (pq.Count > 0)
-{
-    int u = pq.Dequeue();
-    if (vis[u] == 1) continue;
-    vis[u] = 1;
-    foreach (int v in g[u].Keys)
+	```
+	public int ShortestPath(int node1, int node2)
     {
-        int d = g[u][v] + dis[u];
-        if (d < dis[v])
+        int[] dis = new int[n];
+        Array.Fill(dis, int.MaxValue);
+        PriorityQueue<int, int> pq = new PriorityQueue<int, int>();
+        dis[node1] = 0;
+        pq.Enqueue(node1, 0);
+        while (pq.Count > 0)
         {
-            dis[v] = d;
-            pq.Enqueue(v, d);
+            int u = pq.Dequeue();
+            foreach(int v in g[u].Keys)
+            {
+                int d = g[u][v] + dis[u];
+                if(d < dis[v])
+                {
+                    dis[v] = d;
+                    pq.Enqueue(v, d);
+                }
+            }
         }
+        return dis[node2] == int.MaxValue ? -1 : dis[node2];
     }
-}
-return dis[node2] == int.MaxValue ? -1 : dis[node2];
-```
-
-另外有基于二叉堆/斐波那契堆等优化方案
-[1976. 到达目的地的方案数](https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/)
-[>题解](https://github.com/JadenSailing/algorithm-lib/blob/main/Graphs/Solution_LC_1976_%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0.cs)
+   ```
+	另外有基于二叉堆/斐波那契堆等优化方案
+	[1976. 到达目的地的方案数](https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/)
+	[>题解](https://github.com/JadenSailing/algorithm-lib/blob/main/Graphs/Solution_LC_1976_%E5%88%B0%E8%BE%BE%E7%9B%AE%E7%9A%84%E5%9C%B0%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0.cs)
 
 - A*
  
@@ -1456,30 +1204,6 @@ return (int)(ans % mod);
 
 ### 组合数学
 - 容斥原理
-```
-//计算<=x所有数中至少是coins之一倍数的个数
-private static long Calc(int[] coins, long x)
-{
-    int n = coins.Length; //n不超过20
-    long res = 0;
-    for (int i = 1; i < 1 << n; i++) //枚举子集 注意不包括空集
-    {
-        int mul = -1;
-        long r = 1;
-        for (int k = 0; k < 30; k++)
-        {
-            if (((i >> k) & 1) == 1)
-            {
-                mul *= -1;
-                r = LCM(r, coins[k]); //拥有c个属性的个数需要计算lcm
-            }
-        }
-        res += mul * (x / r);
-    }
-    return res;
-}
-```
-
 [D. Exam in MAC](https://codeforces.com/contest/1935/problem/D)
 
 已知集合`S` 整数`c`，计算数对`(x,y)`的个数，要求`0<=x<=y<=c`，且`(x+y)∉S (y-x)∉S`
