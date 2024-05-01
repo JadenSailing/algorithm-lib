@@ -3,8 +3,10 @@ namespace LeetCode
 {
     //标准平衡树/有序集合 支持以下接口 复杂度O(logn)
     //插入/删除元素X
-    //查找X的前驱和后继元素
-    //计算X的排名 返回第K个元素
+    //返回>x的第一个位置 即UpperBound
+	//返回>=x的第一个位置 即LowerBound
+    //计算X的排名 返回下标从0开始
+	//计算Kth(k) 下标从0开始
     public class Map<T> where T : IComparable
     {
         class Node<TKey> where TKey : IComparable
