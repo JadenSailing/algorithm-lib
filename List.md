@@ -1,0 +1,157 @@
+[返回](https://github.com/JadenSailing/algorithm-lib)
+## 题单
+- [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
+- [灵神-按照洛谷通过人数排序的 CF 题单](https://www.luogu.com.cn/training/465300)
+- [灵神八题](https://www.luogu.com/article/27pme29z)
+- [灵神动态规划题单](https://leetcode.cn/circle/discuss/tXLS3i/)
+## 个人
+- 快速幂
+  - [猴子碰撞的方法数](https://leetcode.cn/problems/count-collisions-of-monkeys-on-a-polygon/)
+  - [509. 斐波那契数](https://leetcode.cn/problems/fibonacci-number/) 矩阵快速幂
+- 前缀和
+  - [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/) 前后缀最大值的较小值
+  - [2906. 构造乘积矩阵](https://leetcode.cn/problems/construct-product-matrix/)  前后缀分解
+- 差分
+  - [1109. 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings/)
+  - [E. Long Inversions](https://codeforces.com/contest/1955/problem/E) 贪心翻转非零开始的k位 差分更新每个位置 可以仅差分异或值
+  - [2772. 使数组中的所有元素都等于零](https://leetcode.cn/problems/apply-operations-to-make-all-array-elements-equal-to-zero/) 注意窗口定长 最后的特殊处理
+  - [2536. 子矩阵元素加 1](https://leetcode.cn/problems/increment-submatrices-by-one/) 二维差分
+- 二分
+  - [35. 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)
+  - [3116. 单面值组合的第 K 小金额](https://leetcode.cn/problems/kth-smallest-amount-with-single-denomination-combination/) 端点位置对二分区间的影响
+- 倍增
+  - [2836. 在传球游戏中最大化函数值](https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/) 树上倍增
+- 双指针
+  - [3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
+  - [2831. 找出最长等值子数组](https://leetcode.cn/problems/find-the-longest-equal-subarray/) 分组双指针
+  - [2779. 数组的最大美丽值](https://leetcode.cn/problems/maximum-beauty-of-an-array-after-applying-operation/) 排序滑窗
+- 分治
+- 贪心
+  - [2968. 执行操作使频率分数最大](https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/) 中位数贪心
+  - 反悔贪心 反悔堆
+    - [630. 课程表 III](https://leetcode.cn/problems/course-schedule-iii/) 
+    - [871. 最低加油次数](https://leetcode.cn/problems/minimum-number-of-refueling-stops/)
+    - [1642. 可以到达的最远建筑](https://leetcode.cn/problems/furthest-building-you-can-reach/)
+    - [2813. 子序列最大优雅度](https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/) 
+    - [3049. 标记所有下标的最早秒数 II](https://leetcode.cn/problems/earliest-second-to-mark-indices-ii/) rt3111
+ - 正难则反
+   - [猴子碰撞的方法数](https://leetcode.cn/problems/count-collisions-of-monkeys-on-a-polygon/)
+   - [查询后矩阵的和](https://leetcode.cn/problems/sum-of-matrix-after-queries/)
+   - [C. Balanced Stone Heaps](https://codeforces.com/problemset/problem/1623/C) 
+- 转换
+  - [3102. 最小化曼哈顿距离](https://leetcode.cn/problems/minimize-manhattan-distances/) 转换为操作同一下标
+- 值域
+  - [2857. 统计距离为 k 的点对](https://leetcode.cn/problems/count-pairs-of-points-with-distance-k/)
+- 数组
+- 哈希
+  - [1. 两数之和](https://leetcode.cn/problems/two-sum/)
+  - [2007. 从双倍数组中还原原数组](https://leetcode.cn/problems/find-original-array-from-doubled-array/)
+- 链表
+  - [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
+- 队列
+  - 单调队列
+    - [239. 滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/)
+- 栈
+  - [20. 有效的括号](https://leetcode.cn/problems/valid-parentheses/)
+  - 单调栈
+    - [496. 下一个更大元素 I](https://leetcode.cn/problems/next-greater-element-i/)
+    - [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/) 
+    - [2736. 最大和查询](https://leetcode.cn/problems/maximum-sum-queries/) 单调栈二分
+    - [2940. 找到 Alice 和 Bob 可以相遇的建筑](https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/) 单调栈二分
+    - [2866. 美丽塔 II](https://leetcode.cn/problems/beautiful-towers-ii/)
+    - [3113. 边界元素是最大值的子数组数目](https://leetcode.cn/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/) 计数
+- 堆
+  - [1046. 最后一块石头的重量](https://leetcode.cn/problems/last-stone-weight/)
+  - [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)
+  - [295. 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream/) 双堆
+  - [3092. 最高频率的 ID](https://leetcode.cn/problems/most-frequent-ids/) 延迟删除
+  - [F. Kirill and Mushrooms](https://codeforces.com/contest/1945/problem/F) 延迟删除
+- 排序
+  - [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/) O(n)快速选择
+- 动态规划
+  - 0-1背包
+    - [2787. 将一个数字表示成幂的和的方案数](https://leetcode.cn/problems/ways-to-express-an-integer-as-sum-of-powers/)
+  - 线性
+    - [2786. 访问数组中的位置使分数最大](https://leetcode.cn/problems/visit-array-positions-to-maximize-score/) 奇偶
+    - [3098. 求出所有子序列的能量和](https://leetcode.cn/problems/find-the-sum-of-subsequence-powers/) 值域作为一个维度
+    - [3122. 使矩阵满足条件的最少操作次数](https://leetcode.cn/problems/minimum-number-of-operations-to-satisfy-conditions/) 注意值域和目标关系
+    - [C. How Does the Rook Move?](https://codeforces.com/contest/1957/problem/C) 
+  - 带权区间调度
+    - [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
+    - [规划兼职工作](https://leetcode.cn/problems/maximum-profit-in-job-scheduling/)
+    - [2830. 销售利润最大化](https://leetcode.cn/problems/maximize-the-profit-as-the-salesman/)
+  - 树形dp
+    - [3068. 最大节点价值之和](https://leetcode.cn/problems/find-the-maximum-sum-of-node-values/)
+    - [2872. 可以被 K 整除连通块的最大数目](https://leetcode.cn/problems/maximum-number-of-k-divisible-components/)
+  - 数位dp
+    - [2999. 统计强大整数的数目](https://leetcode.cn/problems/count-the-number-of-powerful-integers/)
+    - [2827. 范围中美丽整数的数目](https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/)
+    - [2801. 统计范围内的步进数字数目](https://leetcode.cn/problems/count-stepping-numbers-in-range/)
+  - dp优化
+    - [2926. 平衡子序列的最大和](https://leetcode.cn/problems/maximum-balanced-subsequence-sum/) 线段树优化
+    - [3117. 划分数组得到最小的值之和](https://leetcode.cn/problems/minimum-sum-of-values-by-dividing-array/) 线段树优化
+- 字符串哈希
+  - [3093. 最长公共后缀查询](https://leetcode.cn/problems/longest-common-suffix-queries/) 双哈希的必要性
+  - [1044. 最长重复子串](https://leetcode.cn/problems/longest-duplicate-substring/) 二分
+  - [3008. 找出数组中的美丽下标 II](https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/) 最后处理里可以二分区间右侧 检查是否满足左侧
+  - [3045. 统计前后缀下标对 II](https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/)
+  - [3031. 将单词恢复初始状态所需的最短时间 II](https://leetcode.cn/problems/minimum-time-to-revert-word-to-initial-state-ii/)
+  - [3008. 找出数组中的美丽下标 II](https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/)
+- 最小表示法
+- [899. 有序队列](https://leetcode.cn/problems/orderly-queue/)
+- KMP
+  - [找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+  - [3036. 匹配模式数组的子数组数目 II](https://leetcode.cn/problems/number-of-subarrays-that-match-a-pattern-ii/)
+- 树状数组
+  - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 模板
+- 线段树
+  - [307. 区域和检索 - 数组可修改](https://leetcode.cn/problems/range-sum-query-mutable/) 单点更新 区间求和
+  - [218. 天际线问题](https://leetcode.cn/problems/the-skyline-problem/) 区间更新 区间最值
+  - [699. 掉落的方块](https://leetcode.cn/problems/falling-squares/) 区间更新 区间最值 
+  - [715. Range 模块](https://leetcode.cn/problems/range-module/) 区间更新 区间求和
+  - [731. 我的日程安排表 II](https://leetcode.cn/problems/my-calendar-ii/) 区间更新 区间最值
+  - [732. 我的日程安排表 III](https://leetcode.cn/problems/my-calendar-iii/) 区间更新 区间最值
+  - [3117. 划分数组得到最小的值之和](https://leetcode.cn/problems/minimum-sum-of-values-by-dividing-array/) LogTrick 线段树优化dp
+    - 二维偏序
+      - [2736. 最大和查询](https://leetcode.cn/problems/maximum-sum-queries/)
+      - [2250. 统计包含每个点的矩形数目](https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/)
+      - [2940. 找到 Alice 和 Bob 可以相遇的建筑](https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/)
+- 有序集合
+  - [2817. 限制条件下元素之间的最小绝对差](https://leetcode.cn/problems/minimum-absolute-difference-between-elements-with-constraint/)
+  - [1488. 避免洪水泛滥](https://leetcode.cn/problems/avoid-flood-in-the-city/)
+  - [2102. 序列顺序查询](https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/)
+- 字典树
+  - [421. 数组中两个数的最大异或值](https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/)
+  - [2935. 找出强数对的最大异或值 II](https://leetcode.cn/problems/maximum-strong-pair-xor-ii/) 可删除字典树
+- LCA
+  - [1483. 树节点的第 K 个祖先](https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/) 模板
+  - [2846. 边权重均等查询](https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/)
+- DFS
+  - [924. 尽量减少恶意软件的传播](https://leetcode.cn/problems/minimize-malware-spread/)
+- 最短路
+  - [743. 网络延迟时间](https://leetcode.cn/problems/network-delay-time/)
+  - [3112. 访问消失节点的最少时间](https://leetcode.cn/problems/minimum-time-to-visit-disappearing-nodes) 检测dijkstra堆优化
+  - [3123. 最短路径中的边](https://leetcode.cn/problems/find-edges-in-shortest-paths/) 模板-边是否最短路上
+- Floyd
+  - [2959. 关闭分部的可行集合数目](https://leetcode.cn/problems/number-of-possible-sets-of-closing-branches/)
+- 拓扑排序
+  - [207. 课程表](https://leetcode.cn/problems/course-schedule/)
+- 最小生成树
+- Tarjan
+  - [CF923-div3-F.Microcycle-求带权无向图中最短边权重最小的简单环](https://codeforces.com/contest/1927/submission/245749383)
+- 并查集
+  - [547. 省份数量](https://leetcode.cn/problems/number-of-provinces/)
+  - [3108. 带权图里旅途的最小代价](https://leetcode.cn/problems/minimum-cost-walk-in-weighted-graph/)
+- 位运算
+- 质数筛
+  - [2523. 范围内最接近的两个质数](https://leetcode.cn/problems/closest-prime-numbers-in-range/)
+- 组合数学
+  - [2842. 统计一个字符串的 k 子序列美丽值最大的数目](https://leetcode.cn/problems/count-k-subsequences-of-a-string-with-maximum-beauty/)
+  - [C. How Does the Rook Move?](https://codeforces.com/contest/1957/problem/C) 
+- 容斥
+  - [3116. 单面值组合的第 K 小金额](https://leetcode.cn/problems/kth-smallest-amount-with-single-denomination-combination/)
+  - [D. Exam in MAC](https://codeforces.com/contest/1935/problem/D)
+- 博弈论
+  - [E. Removing Graph](https://codeforces.com/contest/1823/problem/E)
+- 数论
+  - [2897. 对数组执行操作使平方和最大](https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/) `S=x+y x>y 则x越大 x²+y²越大`
