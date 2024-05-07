@@ -1,3 +1,4 @@
+
 [返回](https://github.com/JadenSailing/algorithm-lib)
 ## 题单
 - [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
@@ -19,6 +20,7 @@
 - 二分
   - [35. 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)
   - [3116. 单面值组合的第 K 小金额](https://leetcode.cn/problems/kth-smallest-amount-with-single-denomination-combination/) 端点位置对二分区间的影响
+  - [774. 最小化去加油站的最大距离](https://leetcode.cn/problems/minimize-max-distance-to-gas-station/) 标准描述文字 “最小化最大值” 浮点二分
 - 倍增
   - [2836. 在传球游戏中最大化函数值](https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/) 树上倍增
 - 双指针
