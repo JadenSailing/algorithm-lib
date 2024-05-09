@@ -1,4 +1,5 @@
 
+
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -1527,8 +1528,6 @@ Print(ans);
  
 ## 其它
  
-### 灵神八题
- 
 ### 约瑟夫环
  [lc1823.找出游戏的获胜者](https://leetcode.cn/problems/find-the-winner-of-the-circular-game/)
 
@@ -1545,6 +1544,44 @@ public int FindTheWinner(int n, int k) {
 public int FindTheWinner(int n, int k) {
 	if(n == 1) return 0;
 	return (DFS(n- 1, k) + k) % n;
+}
+```
+### LogTrick
+数组中以任意i为右端点，左侧不同的`或`/`与`/`gcd`/不超过$logU$个
+```
+//res[i]表示以i为右端点 左侧不同and值的区间列表
+private Dictionary<int, int[]>[] LogTrick(int[] nums)
+{
+    int n = nums.Length;
+    Dictionary<int, int[]>[] res = new Dictionary<int, int[]>[n];
+    res[0] = new Dictionary<int, int[]>();
+    res[0][nums[0]] = new int[] { 0, 0 };
+    for (int i = 1; i < n; i++)
+    {
+        res[i] = new Dictionary<int, int[]>();
+        foreach (int v in res[i - 1].Keys)
+        {
+            int vAnd = v & nums[i];
+            if (!res[i].ContainsKey(vAnd))
+            {
+                res[i][vAnd] = new int[] { res[i - 1][v][0], res[i - 1][v][1] };
+            }
+            else
+            {
+                res[i][vAnd][0] = Math.Min(res[i][vAnd][0], res[i - 1][v][0]);
+                res[i][vAnd][1] = Math.Max(res[i][vAnd][1], res[i - 1][v][1]);
+            }
+        }
+        if (!res[i].ContainsKey(nums[i]))
+        {
+            res[i][nums[i]] = new int[] { i, i };
+        }
+        else
+        {
+            res[i][nums[i]][1] = i;
+        }
+    }
+    return res;
 }
 ```
 ## C#语法
