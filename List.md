@@ -1,4 +1,5 @@
 
+
 [返回](https://github.com/JadenSailing/algorithm-lib)
 ## 题单
 - [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
@@ -12,6 +13,7 @@
 - 前缀和
   - [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/) 前后缀最大值的较小值
   - [2906. 构造乘积矩阵](https://leetcode.cn/problems/construct-product-matrix/)  前后缀分解
+  - [1788. 最大化花园的美观度](https://leetcode.cn/problems/maximize-the-beauty-of-the-garden/) 正数前缀和
 - 差分
   - [1109. 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings/)
   - [E. Long Inversions](https://codeforces.com/contest/1955/problem/E) 贪心翻转非零开始的k位 差分更新每个位置 可以仅差分异或值
@@ -28,6 +30,7 @@
   - [2831. 找出最长等值子数组](https://leetcode.cn/problems/find-the-longest-equal-subarray/) 分组双指针
   - [2779. 数组的最大美丽值](https://leetcode.cn/problems/maximum-beauty-of-an-array-after-applying-operation/) 排序滑窗
 - 分治
+  - [1274. 矩形内船只的数目](https://leetcode.cn/problems/number-of-ships-in-a-rectangle/) 四叉树
 - 贪心
   - [2968. 执行操作使频率分数最大](https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/) 中位数贪心
   - 反悔贪心 反悔堆
