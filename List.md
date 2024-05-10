@@ -1,5 +1,3 @@
-
-
 [返回](https://github.com/JadenSailing/algorithm-lib)
 ## 题单
 - [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
@@ -147,6 +145,8 @@
 - 并查集
   - [547. 省份数量](https://leetcode.cn/problems/number-of-provinces/)
   - [3108. 带权图里旅途的最小代价](https://leetcode.cn/problems/minimum-cost-walk-in-weighted-graph/)
+  - [399. 除法求值](https://leetcode.cn/problems/evaluate-division/) 带权并查集
+  - [2307. 检查方程中的矛盾之处](https://leetcode.cn/problems/check-for-contradictions-in-equations/) 带权并查集
 - 位运算
 - 质数筛
   - [2523. 范围内最接近的两个质数](https://leetcode.cn/problems/closest-prime-numbers-in-range/)
