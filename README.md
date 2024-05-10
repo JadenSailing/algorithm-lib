@@ -1225,7 +1225,59 @@ public class UnionFind
  
 - [省份数量](https://github.com/JadenSailing/algorithm-lib/blob/main/UnionFind/Solution_LC_547_%E7%9C%81%E4%BB%BD%E6%95%B0%E9%87%8F.cs)
 - 带权并查集
+下面是一个字典类型，倍数权值的模板
+比较难理解的两点
+  *Find时，(fa[x], wt[x]) = (Find(fa[x]), wt[x] \* wt[fa[x]])，这里是向根合并倍数，跳过不同的根时每次都要把倍数累计相乘。*
 
+  *Connect时，wt[px] \*= w \* wt[y] / wt[x]，这里当合并x和y时，需要合并各自的根px,py，注意w[px] w[py]此时可能均不为1，都需要考虑进去，举个简单例子：
+  假设x,px权值分别为2,3, y,py权值分别为4,5, 如果此时需要连接的是x/y=3，那么最终px会向py合并，px权重应该是多少？有意思的是跟py的权重无关。如果以具体数值距离，比如x = 60, px = 30, y = 20, py = 5, px的权重为30/5=6=3\*4/2=w\*w[y]/w[x]。*
+```
+public class UnionFind
+{
+    public Dictionary<string, string> fa = new Dictionary<string, string>();
+    public Dictionary<string, double> wt = new Dictionary<string, double>();
+
+    private void Add(string x)
+    {
+        if (!fa.ContainsKey(x))
+        {
+            fa[x] = x;
+            wt[x] = 1;
+        }
+    }
+    public string Find(string x)
+    {
+        Add(x);
+        if (fa[x] != x)
+        {
+            (fa[x], wt[x]) = (Find(fa[x]), wt[x] * wt[fa[x]]);
+        }
+        return fa[x];
+    }
+
+    public double Weight(string x)
+    {
+        Find(x);
+        return wt[x];
+    }
+
+    public bool Connect(string x, string y, double w)
+    {
+        Add(x); Add(y);
+        if (IsConnected(x, y)) return false;
+        var px = Find(x);
+        var py = Find(y);
+        fa[px] = py;
+        wt[px] *= w * wt[y] / wt[x];
+        return true;
+    }
+    public bool IsConnected(string x, string y)
+    {
+        Add(x); Add(y);
+        return Find(x) == Find(y);
+    }
+}
+```
  
 ## 位运算
  
