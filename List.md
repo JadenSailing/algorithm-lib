@@ -1,3 +1,4 @@
+
 [返回](https://github.com/JadenSailing/algorithm-lib)
 ## 题单
 - [灵神试炼](https://docs.qq.com/sheet/DWGFoRGVZRmxNaXFz?tab=BB08J2)
@@ -115,6 +116,8 @@
   - [731. 我的日程安排表 II](https://leetcode.cn/problems/my-calendar-ii/) 区间更新 区间最值
   - [732. 我的日程安排表 III](https://leetcode.cn/problems/my-calendar-iii/) 区间更新 区间最值
   - [3117. 划分数组得到最小的值之和](https://leetcode.cn/problems/minimum-sum-of-values-by-dividing-array/) LogTrick 线段树优化dp
+  - [3169. 无需开会的工作日](https://leetcode.cn/problems/count-days-without-meetings/) 区间更新 求和 多解
+  - [3161. 物块放置查询](https://leetcode.cn/problems/block-placement-queries/) 接近常数极限
   - 二维偏序
       - [2736. 最大和查询](https://leetcode.cn/problems/maximum-sum-queries/)
       - [2250. 统计包含每个点的矩形数目](https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/)
