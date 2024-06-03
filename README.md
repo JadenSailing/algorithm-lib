@@ -1,3 +1,4 @@
+
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -855,202 +856,170 @@ public class BIT
  
 ### 线段树
  
-- 基本线段树模板 区间更新, 查询区间和
+- 线段树模板 支持区间更新/增加，区间求和，区间极值
+- 动态开点，延迟标记
 ```
 public class SegmentTree
-{
-    private const long Offset = (long)1e10 + 5;
-    public class Node
     {
-        //是否包含有效数据
-        public bool isValid = false;
-        public Node left, right;
-        public long sum;
-        public long max = 0;
-        public long min = 0;
-        public bool flag = false; //是否有数据
-        public long val;
-    }
-    //是否是添加值/更新值
-    private bool isAdd = true;
-    private long n = (long)1e12 + 10;
-    private Node root = new Node();
-
-    public SegmentTree(bool isAdd = true, long n = (long)1e12 + 10) { this.isAdd = isAdd; this.n = n; }
-    public bool IsValid(long L, long R) { return IsValid(root, 0, n, L + Offset, R + Offset); }
-    public long Sum(long L, long R) { return Sum(root, 0, n, L + Offset, R + Offset); }
-    public long Min(long L, long R) { return Min(root, 0, n, L + Offset, R + Offset); }
-    public long Max(long L, long R) { return Max(root, 0, n, L + Offset, R + Offset); }
-    public void Update(long L, long R, long val) { Update(root, 0, n, L + Offset, R + Offset, val); }
-
-    private bool IsValid(Node node, long start, long end, long l, long r)
-    {
-        if (l <= start && end <= r)
+        public class Node
         {
-            return node.isValid;
+            public bool valid = false; //是否是有效区间
+            public Node left, right;
+            public long sum, max, min;
+            public bool flag = false; //延迟标记
+            public long val; //延迟数据
         }
-        long mid = (start + end) >> 1;
-        PushDown(node, mid - start + 1, end - mid);
-        bool res = false;
-        if (l <= mid) res = res || IsValid(node.left, start, mid, l, r);
-        if (r > mid) res = res || IsValid(node.right, mid + 1, end, l, r);
-        return res;
-    }
+        private long n = (long)1e9 + 10; //一般不会超过这个上界
+        private Node root = new Node();
+        public bool isAdd = true; //默认是区间增加的形式，否则是区间覆盖
+        public SegmentTree(bool isAdd = true) { this.isAdd = isAdd; }
+        public bool IsValid(long L, long R) { return IsValid(root, 0, n, L, R); }
+        public long Sum(long L, long R) { return Sum(root, 0, n, L, R); }
+        public long Min(long L, long R) { return Min(root, 0, n, L, R); }
+        public long Max(long L, long R) { return Max(root, 0, n, L, R); }
+        public void Update(long L, long R, long val) { Update(root, 0, n, L, R, val); }
 
-    private void Update(Node node, long start, long end, long l, long r, long val)
-    {
-        if (l <= start && end <= r)
+        private bool IsValid(Node node, long start, long end, long l, long r)
         {
-            if (isAdd)
-            {
-                node.sum += (end - start + 1) * val;
-                node.val += val;
-            }
-            else
-            {
-                node.sum = (end - start + 1) * val;
-                node.val = val;
-            }
-            if (!node.isValid) node.max = val;
-            else
-            {
-                if (isAdd) node.max += val;
-                else node.max = val;
-            }
-            if (!node.isValid) node.min = val;
-            else
-            {
-                if (isAdd) node.min += val;
-                else node.min = val;
-            }
-            node.isValid = true;
-            node.flag = true;
-            return;
+            if (l <= start && end <= r) return node.valid;
+            long mid = (start + end) >> 1;
+            PushDown(node, mid - start + 1, end - mid);
+            bool res = false;
+            if (l <= mid) res |= IsValid(node.left, start, mid, l, r);
+            if (r > mid) res |= IsValid(node.right, mid + 1, end, l, r);
+            return res;
         }
-        long mid = (start + end) >> 1;
-        PushDown(node, mid - start + 1, end - mid);
-        if (l <= mid) Update(node.left, start, mid, l, r, val);
-        if (r > mid) Update(node.right, mid + 1, end, l, r, val);
-        PushUp(node);
-    }
-    private long Sum(Node node, long start, long end, long l, long r)
-    {
-        if (l <= start && end <= r)
+
+        private void Update(Node node, long start, long end, long l, long r, long val)
         {
-            return node.sum;
+            if (l <= start && end <= r)
+            {
+                if (isAdd)
+                {
+                    node.sum += (end - start + 1) * val;
+                    node.val += val;
+                    if (!node.valid)
+                    {
+                        node.max = node.min = val;
+                    }
+                    else
+                    {
+                        node.max += val;
+                        node.min += val;
+                    }
+                }
+                else
+                {
+                    node.sum = (end - start + 1) * val;
+                    node.val = val;
+                    node.max = node.min = val;
+                }
+                node.valid = true;
+                node.flag = true;
+                return;
+            }
+            long mid = (start + end) >> 1;
+            PushDown(node, mid - start + 1, end - mid);
+            if (l <= mid) Update(node.left, start, mid, l, r, val);
+            if (r > mid) Update(node.right, mid + 1, end, l, r, val);
+            PushUp(node);
         }
-        long mid = (start + end) >> 1, ans = 0;
-        PushDown(node, mid - start + 1, end - mid);
-        if (l <= mid) ans += Sum(node.left, start, mid, l, r);
-        if (r > mid) ans += Sum(node.right, mid + 1, end, l, r);
-        return ans;
-    }
-
-    private long Max(Node node, long start, long end, long l, long r)
-    {
-        if (l <= start && end <= r) return node.max;
-        long mid = (start + end) >> 1, ans = long.MinValue;
-        PushDown(node, mid - start + 1, end - mid);
-        if (l <= mid && node.left.isValid) ans = Math.Max(ans, Max(node.left, start, mid, l, r));
-        if (r > mid && node.right.isValid) ans = Math.Max(ans, Max(node.right, mid + 1, end, l, r));
-        return ans;
-    }
-
-    private long Min(Node node, long start, long end, long l, long r)
-    {
-        if (l <= start && end <= r) return node.min;
-        long mid = (start + end) >> 1, ans = long.MaxValue;
-        PushDown(node, mid - start + 1, end - mid);
-        if (l <= mid && node.left.isValid) ans = Math.Min(ans, Min(node.left, start, mid, l, r));
-        if (r > mid && node.right.isValid) ans = Math.Min(ans, Min(node.right, mid + 1, end, l, r));
-        return ans;
-    }
-
-    private void PushUp(Node node)
-    {
-        node.sum = node.left.sum + node.right.sum;
-        if (!node.isValid)
+        private long Sum(Node node, long start, long end, long l, long r)
         {
+            if (l <= start && end <= r) return node.sum;
+            long mid = (start + end) >> 1, ans = 0;
+            PushDown(node, mid - start + 1, end - mid);
+            if (l <= mid) ans += Sum(node.left, start, mid, l, r);
+            if (r > mid) ans += Sum(node.right, mid + 1, end, l, r);
+            return ans;
+        }
+
+        private long Max(Node node, long start, long end, long l, long r)
+        {
+            if (l <= start && end <= r) return node.max;
+            long mid = (start + end) >> 1, ans = long.MinValue;
+            PushDown(node, mid - start + 1, end - mid);
+            if (l <= mid && node.left.valid) ans = Math.Max(ans, Max(node.left, start, mid, l, r));
+            if (r > mid && node.right.valid) ans = Math.Max(ans, Max(node.right, mid + 1, end, l, r));
+            return ans;
+        }
+
+        private long Min(Node node, long start, long end, long l, long r)
+        {
+            if (l <= start && end <= r) return node.min;
+            long mid = (start + end) >> 1, ans = long.MaxValue;
+            PushDown(node, mid - start + 1, end - mid);
+            if (l <= mid && node.left.valid) ans = Math.Min(ans, Min(node.left, start, mid, l, r));
+            if (r > mid && node.right.valid) ans = Math.Min(ans, Min(node.right, mid + 1, end, l, r));
+            return ans;
+        }
+
+        private void PushUp(Node node)
+        {
+            node.sum = node.left.sum + node.right.sum;
             node.max = long.MinValue;
             node.min = long.MaxValue;
+            if (node.left.valid)
+            {
+                node.min = Math.Min(node.min, node.left.min);
+                node.max = Math.Max(node.max, node.left.max);
+            }
+            if (node.right.valid)
+            {
+                node.min = Math.Min(node.min, node.right.min);
+                node.max = Math.Max(node.max, node.right.max);
+            }
+            node.valid = node.valid || node.left.valid;
+            node.valid = node.valid || node.right.valid;
         }
-        if (node.left.isValid)
+        private void PushDown(Node node, long leftNum, long rightNum)
         {
-            node.min = Math.Min(node.min, node.left.min);
-            node.max = Math.Max(node.max, node.left.max);
+            if (node.left == null) node.left = new Node();
+            if (node.right == null) node.right = new Node();
+            if (!node.flag) return;
+            if (isAdd)
+            {
+                node.left.sum += node.val * leftNum;
+                node.right.sum += node.val * rightNum;
+                if (node.left.valid)
+                {
+                    node.left.max += node.val;
+                    node.left.min += node.val;
+                }
+                else
+                {
+                    node.left.max = node.val;
+                    node.left.min = node.val;
+                }
+                if (node.right.valid)
+                {
+                    node.right.max += node.val;
+                    node.right.min += node.val;
+                }
+                else
+                {
+                    node.right.max = node.val;
+                    node.right.min = node.val;
+                }
+                node.left.val += node.val;
+                node.right.val += node.val;
+            }
+            else
+            {
+                node.left.sum = node.val * leftNum;
+                node.right.sum = node.val * rightNum;
+                node.left.max = node.val;
+                node.left.min = node.val;
+                node.right.max = node.val;
+                node.right.min = node.val;
+                node.left.val = node.right.val = node.val;
+            }
+            node.left.valid = node.right.valid = true;
+            node.left.flag = node.right.flag = true;
+            node.val = 0;
+            node.flag = false;
         }
-        if (node.right.isValid)
-        {
-            node.min = Math.Min(node.min, node.right.min);
-            node.max = Math.Max(node.max, node.right.max);
-        }
-        node.isValid = node.isValid || node.left.isValid;
-        node.isValid = node.isValid || node.right.isValid;
     }
-    private void PushDown(Node node, long leftNum, long rightNum)
-    {
-        if (node.left == null) node.left = new Node();
-        if (node.right == null) node.right = new Node();
-        if (!node.flag) return;
-        if (isAdd)
-        {
-            node.left.sum += node.val * leftNum;
-            node.right.sum += node.val * rightNum;
-            if (node.left.isValid)
-            {
-                node.left.max += node.val;
-                node.left.min += node.val;
-            }
-            else
-            {
-                node.left.max = node.val;
-                node.left.max = node.val;
-            }
-            if (node.right.isValid)
-            {
-                node.right.max += node.val;
-                node.right.min += node.val;
-            }
-            else
-            {
-                node.right.max = node.val;
-                node.right.max = node.val;
-            }
-            node.left.val += node.val;
-            node.right.val += node.val;
-        }
-        else
-        {
-            node.left.sum = node.val * leftNum;
-            node.right.sum = node.val * rightNum;
-            if (node.left.isValid)
-            {
-                node.left.max = Math.Max(node.left.max, node.val);
-                node.left.min = Math.Min(node.left.min, node.val);
-            }
-            else
-            {
-                node.left.max = node.val;
-                node.left.max = node.val;
-            }
-            if (node.right.isValid)
-            {
-                node.right.max = Math.Max(node.right.max, node.val);
-                node.right.min = Math.Min(node.right.min, node.val);
-            }
-            else
-            {
-                node.right.max = node.val;
-                node.right.max = node.val;
-            }
-            node.left.val = node.right.val = node.val;
-        }
-        node.left.isValid = node.right.isValid = true;
-        node.left.flag = node.right.flag = true;
-        node.val = 0;
-        node.flag = false;
-    }
-}
 ```
  
  
