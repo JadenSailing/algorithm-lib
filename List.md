@@ -146,6 +146,12 @@
 - 最小生成树
 - Tarjan
   - [CF923-div3-F.Microcycle-求带权无向图中最短边权重最小的简单环](https://codeforces.com/contest/1927/submission/245749383)
+- 网络流
+  - 2662
+  - 2172
+  - lcp38
+  - 741
+  - 2463
 - 并查集
   - [547. 省份数量](https://leetcode.cn/problems/number-of-provinces/)
   - [3108. 带权图里旅途的最小代价](https://leetcode.cn/problems/minimum-cost-walk-in-weighted-graph/)
