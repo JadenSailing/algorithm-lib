@@ -20,6 +20,7 @@ public static long LCM(long a, long b) { return a / GCD(a, b) * b; }
 public static long Power(long x, long y, long p)
 {
     long res = 1L;
+    x %= p; //注意
     while(y > 0)
     {
         if (y % 2 == 1) res = res * x % p;
@@ -1154,6 +1155,11 @@ private void Tarjan(HashSet<int>[] g, int u, int fa, int time)
 [CF923-div3-F.Microcycle-求带权无向图中最短边权重最小的简单环](https://codeforces.com/contest/1927/submission/245749383)
 
 本题解包含了Tarjan求环 Dijkstra求最短路 记录path等
+
+### 网络流
+[Dinic模板](https://github.com/JadenSailing/algorithm-lib/blob/main/NetWorkFlow/T_Graph.cs)
+[最大流模板题](https://www.luogu.com.cn/problem/P3376)
+[奶牛的电信](https://www.luogu.com.cn/problem/P1345) 拆点最小割
  
 ## 并查集
  
@@ -1639,6 +1645,11 @@ private Dictionary<int, int[]>[] LogTrick(int[] nums)
     return res;
 }
 ```
+### 珂朵莉树
+链表实现的[珂朵莉树](https://github.com/JadenSailing/algorithm-lib/blob/main/Other/T_ODT.cs)
+
+[模板题](https://codeforces.com/contest/896/problem/C) [题解](https://codeforces.com/contest/896/submission/267813264)
+
 ## C#语法
 ### PriorityQueue用法
  主要是简单Compare无法解决的情况下 需要构造比较器实例
