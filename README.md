@@ -1,4 +1,3 @@
-
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -83,6 +82,56 @@ Power(a, p- 1, mod) = 1
 Power(a, p- 2, mod) = (1 / a) % mod
 a / b % mod = a * Power(b, mod- 2, mod) % mod
 ```
+### 高精度
+- 高精度乘法
+```
+//高精度乘法 AB均为非负整数
+public static string Mul(string A, string B)
+{
+    const int MX = (int)1e5;
+    int[] listA = new int[MX], listB = new int[MX], listC = new int[MX];
+    int nA = A.Length, nB = B.Length;
+    //A = "123", listA = [0 3 2 1 0 ...]
+    for (int i = nA - 1; i >= 0; i--) listA[nA - i] = A[i] - '0';
+    for (int i = nB - 1; i >= 0; i--) listB[nB - i] = B[i] - '0';
+    //Ai * Bj = Ci+j-1
+    for (int i = 1; i <= nA; i++) for (int j = 1; j <= nB; j++) listC[i + j - 1] += listA[i] * listB[j];
+    //进位
+    for (int i = 1; i <= nA + nB; i++)
+    {
+        listC[i + 1] += listC[i] / 10;
+        listC[i] %= 10;
+    }
+    StringBuilder s = new StringBuilder();
+    if (listC[nA + nB] > 0) s.Append(listC[nA + nB]);//判断第i+j位上的数字是不是0
+    for (int i = nA + nB - 1; i >= 1; i--) s.Append(listC[i]);
+    return s.ToString();
+}
+```
+- 高精度加法
+```
+//高精度加法 AB均为非负整数
+public static string Sum(string A, string B)
+{
+    const int MX = (int)1e5;
+    int[] listA = new int[MX], listB = new int[MX], listC = new int[MX];
+    int nA = A.Length, nB = B.Length;
+    for (int i = nA - 1; i >= 0; i--) listA[nA - i] = A[i] - '0';
+    for (int i = nB - 1; i >= 0; i--) listB[nB - i] = B[i] - '0';
+    int n = Math.Max(nA, nB) + 1;
+    for (int i = 1; i < n; i++)
+    {
+        listC[i] += listA[i] + listB[i]; //注意不是=
+        listC[i + 1] += listC[i] / 10;
+        listC[i] %= 10;
+    }
+    StringBuilder s = new StringBuilder();
+    if (listC[n] > 0) s.Append(listC[n]);
+    for (int i = n - 1; i >= 1; i--) s.Append(listC[i]);
+    return s.ToString();
+}
+```
+
 ### 区间交集
 ```
 //区间[a,b]和[c,d] (a<=b, c<=d)的交集
