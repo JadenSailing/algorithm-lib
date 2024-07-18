@@ -1190,7 +1190,49 @@ return dis[node2] == int.MaxValue ? -1 : dis[node2];
 - A*
  
 ### 最小生成树
- 
+- Kruskal
+排序所有边，并查集记录合并信息，如果最后连通分量=1 表示一颗完整最小生成树，自动处理重边
+```
+Array.Sort(connections, (A, B) => (A[2] - B[2]));
+UnionFind uf = new UnionFind(n);
+int ans = 0;
+foreach (int[] v in connections)
+{
+    int L, R, W; (L, R, W) = (v[0], v[1], v[2]);
+    if (uf.Connect(L - 1, R - 1)) ans += W;
+}
+return uf.setCount == 1 ? ans : -1;
+```
+- Prim
+任选起点，类似dijkstra逐个添加，但是dis[v]记录是整体到v的距离 而非从起点到v的距离，注意建图重边问题
+```
+int MX = int.MaxValue / 2;
+int[] dis = new int[n];
+int[] vis = new int[n];
+Array.Fill(dis, MX);
+dis[0] = 0;
+PriorityQueue<int, int> pq = new PriorityQueue<int, int>();
+pq.Enqueue(0, dis[0]);
+int ans = 0;
+while (pq.Count > 0)
+{
+    int u = pq.Dequeue();
+    if (vis[u] == 1) continue;
+    vis[u] = 1;
+    ans += dis[u];
+    foreach (int v in g[u].Keys)
+    {
+        int d = g[u][v]; //note: dijkstra d = dis[u] + g[u][v]
+        if (d < dis[v])
+        {
+            dis[v] = d;
+            pq.Enqueue(v, d);
+        }
+    }
+}
+if (vis.Sum() < n) return -1;
+return ans;
+```
 ### Tarjan
 - 求割边(桥)
 ```
