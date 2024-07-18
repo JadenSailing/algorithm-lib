@@ -1107,7 +1107,23 @@ public class SegmentTree
  
 ### 最短路
 - Floyd
+```
+//处理无负权回路的任意两点最短路
+//f[i][j]初始化为邻接矩阵 表示i-j的距离 如果无直接连接边 则为INF
+for (int k = 0; k < n; k++)
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            f[i][j] = Math.Min(f[i][j], f[i][k] + f[k][j]);
+        }
+    }
+}
+```
 - Dijkstra
+    
+    - 无负权 
 	- 基于节点 复杂度O(n^2)
    ```
 	public int ShortestPath(int node1, int node2)
@@ -1142,7 +1158,7 @@ public class SegmentTree
 	- 基于优先队列优化 复杂度O(m*logm)
 
 ```
-//纺锤形图会卡遍历 所以要用vis标记
+//双纺锤形图会卡遍历 所以要用vis标记
 int[] dis = new int[n];
 int[] vis = new int[n];
 Array.Fill(dis, int.MaxValue);
