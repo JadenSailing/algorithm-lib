@@ -798,6 +798,27 @@ private TreeNode DFS(int[] preorder, int[] postorder, Dictionary<int, int> index
  
  [树的直径](https://github.com/JadenSailing/algorithm-lib/blob/main/Tree/Solution_LC_543_%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84.cs)
 ### 树的重心
+树的重心如果不唯一，则至多有两个，且这两个重心相邻。
+以树的重心为根时，所有子树的大小都不超过整棵树大小的一半。
+简单树形DP即可
+```
+//sz[u]表示根节点为0时，u节点的子树大小+1(自身)
+private static void DFS(int u, int p)
+{
+	sz[u] = 1;
+	int max = 0;
+	foreach (int v in g[u])
+	{
+		if (v == p) continue;
+		DFS(v, u);
+		max = Math.Max(max, sz[v]);
+		sz[u] += sz[v];
+	}
+	max = Math.Max(max, n - sz[u]);
+	if (max <= n / 2) ans = max;
+}
+```
+
  
 ### LCA
 - 倍增计算节点的第K个父节点
