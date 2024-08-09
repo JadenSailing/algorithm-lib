@@ -1,3 +1,4 @@
+
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -1092,7 +1093,7 @@ public class SegmentTree
         }
     }
 ```
- 
+ - 主席树[模板](https://github.com/JadenSailing/algorithm-lib/blob/main/SegmentTree/T_SegmentTreePersistent.cs)
  
 ### 字典树
 - 基本字典树模型
