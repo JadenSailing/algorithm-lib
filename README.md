@@ -1093,7 +1093,7 @@ public class SegmentTree
         }
     }
 ```
- - 主席树[模板](https://github.com/JadenSailing/algorithm-lib/blob/main/SegmentTree/T_SegmentTreePersistent.cs)
+ - 可持久化线段树[模板](https://github.com/JadenSailing/algorithm-lib/blob/main/SegmentTree/T_SegmentTreePersistent.cs)
  
 ### 字典树
 - 基本字典树模型
