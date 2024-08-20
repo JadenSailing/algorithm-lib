@@ -1,4 +1,5 @@
 
+
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -1646,6 +1647,36 @@ return (int)(ans % mod);
 ```
 
 ### 组合数学
+- 排列组合
+  - 排列
+  $A_n^m=\frac{n!}{(n-m)!}$
+  - 组合
+  $C_n^m=\frac{n!}{(n-m)!m!}=\frac{A_n^m}{A_m^m}$
+```
+public static long[] factCache = new long[(int)1e6 + 5];
+public static void InitFact(long n = (long)1e6, long mod = (long)1e9 + 7) { long res = 1; for (int i = 1; i <= n; i++) { res = (res * i) % mod; factCache[i] = res; } factCache[0] = 1; }
+public static long Fact(long x, long p) { return factCache[x]; }
+public static long Anm(long n, long m, long p) { long x = Fact(n, p); long y = Fact(n - m, p); return x * Power(y, p - 2, p) % p; }
+public static long Cnm(long n, long m, long p) { long x = Fact(n, p); long y = Fact(m, p) * Fact(n - m, p) % p; return x * Power(y, p - 2, p) % p; }
+```
+[3154. 到达第 K 级台阶的方案数](https://leetcode.cn/problems/find-number-of-ways-to-reach-the-k-th-stair/)
+```
+long ans = 0;
+InitFact(100);
+for (int i = 0; i < 32; i++)
+{
+    for (int j = 0; j <= i + 1; j++)
+    {
+        int target = (1 << i) - j;
+        if (target == k)
+        {
+            ans += Cnm(i + 1, j, mod);
+        }
+    }
+}
+return (int)ans;
+```
+
 - 容斥原理
 ```
 //计算<=x所有数中至少是coins之一倍数的个数
