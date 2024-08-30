@@ -1,5 +1,3 @@
-
-
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -1809,6 +1807,55 @@ private Dictionary<int, int[]>[] LogTrick(int[] nums)
 链表实现的[珂朵莉树](https://github.com/JadenSailing/algorithm-lib/blob/main/Other/T_ODT.cs)
 
 [模板题](https://codeforces.com/contest/896/problem/C) [题解](https://codeforces.com/contest/896/submission/267813264)
+
+### 莫队
+[3261. 统计满足 K 约束的子字符串数量 II](https://leetcode.cn/problems/count-substrings-that-satisfy-k-constraint-ii/)
+```
+public long[] CountKConstraintSubstrings(string s, int k, int[][] queries)
+{
+    int n = s.Length;
+    int m = queries.Length;
+    int[] left, right;
+    (left, right) = CalcMax(s, k);
+    int bSize = (int)(Math.Ceiling(Math.Pow(n, 0.5)));
+    int[][] comb = new int[m][];
+    for (int i = 0; i < m; i++) comb[i] = new int[] { i, queries[i][0], queries[i][1] };
+    Array.Sort(comb, (A, B) =>
+    {
+        if (A[1] / bSize != B[1] / bSize) return A[1] / bSize - B[1] / bSize;
+        return A[2] - B[2];
+    });
+    int L = 0, R = -1;
+    long total = 0;
+    long[] ans = new long[m];
+    for (int i = 0; i < m; ++i)
+    {
+        int[] q = comb[i];
+        while (L > q[1])
+        {
+            L--;
+            total += Math.Min(right[L], R) - L + 1;
+        }
+        while (R < q[2])
+        {
+            R++;
+            total += R - Math.Max(left[R], L) + 1;
+        }
+        while (L < q[1])
+        {
+            total -= Math.Min(right[L], R) - L + 1;
+            L++;
+        }
+        while (R > q[2])
+        {
+            total -= R - Math.Max(left[R], L) + 1;
+            R--;
+        }
+        ans[q[0]] = total;
+    }
+    return ans;
+}
+```
 
 ## C#语法
 ### PriorityQueue用法
