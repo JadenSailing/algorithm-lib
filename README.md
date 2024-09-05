@@ -1657,6 +1657,30 @@ public static long Fact(long x, long p) { return factCache[x]; }
 public static long Anm(long n, long m, long p) { long x = Fact(n, p); long y = Fact(n - m, p); return x * Power(y, p - 2, p) % p; }
 public static long Cnm(long n, long m, long p) { long x = Fact(n, p); long y = Fact(m, p) * Fact(n - m, p) % p; return x * Power(y, p - 2, p) % p; }
 ```
+- 枚举排列
+```
+private static bool NextPermutation(int[] p)
+{
+    int n = p.Length, t = -1;
+    for (int i = 0; i < n - 1; i++) if (p[i + 1] - p[i] > 0) t = i;
+    if (t == -1) return false;
+    for (int i = n - 1; ; i--)
+    {
+        if (p[i] > p[t])
+        {
+            (p[i], p[t]) = (p[t], p[i]);
+            break;
+        }
+    }
+    Array.Sort(p, t + 1, n - t - 1);
+    return true;
+}
+```
+```
+//使用方式
+int[] p = new int[4] { 0, 1, 2, 3 };
+do { Print(p); } while (NextPermutation(p));
+```
 [3154. 到达第 K 级台阶的方案数](https://leetcode.cn/problems/find-number-of-ways-to-reach-the-k-th-stair/)
 ```
 long ans = 0;
