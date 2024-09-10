@@ -1288,6 +1288,28 @@ private void Tarjan(HashSet<int>[] g, int u, int fa, int time)
 [Dinic模板](https://github.com/JadenSailing/algorithm-lib/blob/main/NetWorkFlow/T_Graph.cs)
 [最大流模板题](https://www.luogu.com.cn/problem/P3376)
 [奶牛的电信](https://www.luogu.com.cn/problem/P1345) 拆点最小割
+
+[最小费用最大流Dinic模板](https://github.com/JadenSailing/algorithm-lib/blob/main/NetWorkFlow/T_MCMF.cs)
+[3276. 选择矩阵中单元格的最大得分](https://leetcode.cn/problems/select-cells-in-grid-with-maximum-score/)
+```
+//最大费用最小流 费用取反转换为最小费用最大流
+public int MaxScore(IList<IList<int>> grid)
+{
+    int n = grid.Count, m = grid[0].Count;
+    int mv = 100;
+    MCMF_Dinic g = new MCMF_Dinic(mv + n + 2);
+    int s = 0, t = mv + n + 1;
+    //超级源点->每个值 容量1 费用 取反
+    //这保证了每个值只能使用一次
+    for (int i = 1; i <= mv; i++) g.AddEdge(s, i, 1, -i);
+    //每一行->超级汇点 容量1 费用 0
+    //这保证了每一行只能使用一次
+    for (int i = 0; i < n; i++) g.AddEdge(i + mv + 1, t, 1, 0);
+    //每个值->对应行 容量1 费用 0
+    for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) g.AddEdge(grid[i][j], i + mv + 1, 1, 0);
+    return -(int)(g.Dinic(s, t).Item2);
+}
+```
  
 ## 并查集
  
