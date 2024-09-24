@@ -1,13 +1,8 @@
 ﻿
 namespace LeetCode
 {
-    //标准平衡树/有序集合 支持以下接口 复杂度O(logn)
-    //插入/删除元素X
-    //返回>x的第一个位置 即UpperBound
-	//返回>=x的第一个位置 即LowerBound
-    //计算X的排名 返回下标从0开始
-	//计算Kth(k) 下标从0开始
-    public class Map<T> where T : IComparable
+    //标准平衡树(有序集合)实现
+    public class Map<T> where T : IComparable, IEquatable<T>
     {
         class Node<TKey> where TKey : IComparable
         {
@@ -22,25 +17,21 @@ namespace LeetCode
 
         private Random randGenterator = new Random(new DateTime().Millisecond);
 
-        //如果没有则插入值x O(logn)
         public bool Insert(T x)
         {
             if (x == null) return false;
             root = Insert(root, x);
             return true;
         }
-        //如果有则删除值x O(logn)
         public bool Delete(T x)
         {
             root = Delete(root, x);
             return true;
         }
-        //返回>x的第一个位置
         public int UpperBound(T x)
         {
             return UpperBound(root, x);
         }
-        //返回>=x的第一个位置
         public int LowerBound(T x)
         {
             return LowerBound(root, x);
@@ -50,7 +41,6 @@ namespace LeetCode
         {
             return Kth(root, k);
         }
-        //树中不同元素个数
         public int Count { get { return root == null ? 0 : root.size; } }
 
         private int RandomPriority() { return randGenterator.Next(); }
