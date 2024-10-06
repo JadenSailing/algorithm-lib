@@ -1,3 +1,4 @@
+
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -77,10 +78,10 @@ private int[][] Mul(int[][] x, int[][] y)
 ### 逆元
 费马小定理 a^p ≡ a (mod p)
 ```
-Power(a, p, mod) = a % mod
-Power(a, p- 1, mod) = 1
-Power(a, p- 2, mod) = (1 / a) % mod
-a / b % mod = a * Power(b, mod- 2, mod) % mod
+Power(a, p, p) = a % p
+Power(a, p - 1, p) = 1
+Power(a, p - 2, p) = (1 / a) % p
+a / b % p= a * Power(b, p - 2, p) % p
 ```
 ### 高精度
 - 高精度乘法
