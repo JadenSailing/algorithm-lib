@@ -1,4 +1,3 @@
-
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -925,6 +924,44 @@ public class BIT
 ```
  
 - [区域和检索-数组可修改](https://github.com/JadenSailing/algorithm-lib/blob/main/BinaryIndexedTree/Solution_LC_307_%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E5%8F%AF%E4%BF%AE%E6%94%B9.cs)
+ 
+ - 二维树状数组 $O(logn*logm)$
+```
+public class BIT2D
+{
+    int n, m;
+    int[][] tree;
+    public BIT2D(int n, int m)
+    {
+        this.n = n; this.m = m;
+        tree = new int[n + 1][];
+        for (int i = 0; i <= n; i++) tree[i] = new int[m + 1];
+    }
+    private int LowBIT(int x) { return x & -x; }
+    public void Add(int row, int col, int v)
+    {
+        for (int i = row + 1; i <= n; i += LowBIT(i))
+        {
+            for (int j = col + 1; j <= m; j += LowBIT(j))
+            {
+                tree[i][j] += v;
+            }
+        }
+    }
+    public int Sum(int row, int col)
+    {
+        int res = 0;
+        for (int i = row + 1; i > 0; i -= LowBIT(i))
+        {
+            for (int j = col + 1; j > 0; j -= LowBIT(j))
+            {
+                res += tree[i][j];
+            }
+        }
+        return res;
+    }
+}
+```
  
 ### 线段树
  
