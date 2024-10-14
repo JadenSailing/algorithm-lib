@@ -1,3 +1,4 @@
+
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -395,8 +396,67 @@ public class Heap
 	- Heapify from n / 2 -> 0
 	- Pop & Swap(1, Size--)
 
-- 双堆结构
+- 对顶堆
 [数据流的中位数](https://github.com/JadenSailing/algorithm-lib/blob/main/Heap/Solution_LC_295_%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0.cs)
+
+- 对顶Map 
+[3321. 计算子数组的 x-sum II](https://leetcode.cn/problems/find-x-sum-of-all-k-long-subarrays-ii/)
+```
+public class MinMaxHeap<T> where T : IComparable, IEquatable<T>
+{
+    private Map<T> kHeap = new Map<T>();
+    private Map<T> oHeap = new Map<T>();
+    private long sum = 0;
+    private int k = 1;
+    private Func<T, long> calc;
+    public MinMaxHeap(int k, Func<T, long> calcSum = null)
+    {
+        this.k = k;
+        this.calc = calcSum;
+    }
+    private void Refresh()
+    {
+        while(kHeap.Count > k)
+        {
+            var node = kHeap.Kth(0);
+            kHeap.Delete(node);
+            if (calc != null) sum -= calc(node);
+            oHeap.Insert(node);
+        }
+        while (kHeap.Count < k && oHeap.Count > 0)
+        {
+            var node = oHeap.Kth(oHeap.Count - 1);
+            oHeap.Delete(node);
+            kHeap.Insert(node);
+            if(calc != null) sum += calc(node);
+        }
+
+    }
+    public long Sum() { return sum; }
+    public T TopK() { return kHeap.Kth(0); }
+
+    public void Insert(T node)
+    {
+        if (kHeap.Count < k || kHeap.Kth(0).CompareTo(node) < 0)
+        {
+            kHeap.Insert(node);
+            if (calc != null) sum += calc(node);
+        }
+        else oHeap.Insert(node);
+        Refresh();
+    }
+    public void Delete(T node)
+    {
+        if(kHeap.Contains(node))
+        {
+            kHeap.Delete(node);
+            if (calc != null) sum -= calc(node);
+        }
+        if (oHeap.Contains(node)) oHeap.Delete(node);
+        Refresh();
+    }
+}
+```
 
 - 延迟删除
 队列元素额外存储标记数据 检测是额外处理标记是否合法。
@@ -1141,10 +1201,170 @@ public class SegmentTree
  
 - 红黑树
 - Treap
+```
+//标准平衡树(有序集合)实现
+public class Map<T> where T : IComparable, IEquatable<T>
+{
+    class Node<TKey> where TKey : IComparable
+    {
+        public Node<TKey> left;
+        public Node<TKey> right;
+        public TKey key;
+        public int priority;
+        public int size;
+        public int count;
+    }
+    private Node<T> root = null;
 
-  - [Treap实现的Map模板](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%B9%B3%E8%A1%A1%E6%A0%91/T_Map.cs)
-	
-	>平衡树全接口支持Insert/Delete/Kth/Rank/LowerBound/UpperBound
+    private Random randGenterator = new Random(new DateTime().Millisecond);
+
+    public bool Insert(T x)
+    {
+        if (x == null) return false;
+        root = Insert(root, x);
+        return true;
+    }
+    public bool Delete(T x)
+    {
+        root = Delete(root, x);
+        return true;
+    }
+    public int UpperBound(T x)
+    {
+        return UpperBound(root, x);
+    }
+    public int LowerBound(T x)
+    {
+        return LowerBound(root, x);
+    }
+
+    public bool Contains(T x)
+    {
+        int k = LowerBound(x);
+        if (k < Count && Kth(k).Equals(x)) return true;
+        return false;
+    }
+    public T Kth(int k)
+    {
+        return Kth(root, k);
+    }
+    public int Count { get { return root == null ? 0 : root.size; } }
+
+    private int RandomPriority() { return randGenterator.Next(); }
+    private Node<T> NewNode(T x)
+    {
+        Node<T> node = new Node<T>() { size = 1, count = 1, key = x, priority = RandomPriority() };
+        return node;
+    }
+    private void Update(Node<T> u)
+    {
+        int size = u.count;
+        if (u.left != null) size += u.left.size;
+        if (u.right != null) size += u.right.size;
+        u.size = size;
+    }
+    private Node<T> Rotate(Node<T> o, bool leftRotate)
+    {
+        Node<T> k;
+        if (leftRotate)
+        {
+            k = o.right;
+            o.right = k.left;
+            k.left = o;
+        }
+        else
+        {
+            k = o.left;
+            o.left = k.right;
+            k.right = o;
+        }
+        Update(o);
+        Update(k);
+        return k;
+    }
+    private Node<T> Insert(Node<T> node, T x)
+    {
+        if (node == null)
+        {
+            node = NewNode(x);
+            return node;
+        }
+        int compare = x.CompareTo(node.key);
+        if (compare == 0)
+        {
+            node.count++;
+            Update(node);
+        }
+        else if (compare > 0) node.right = Insert(node.right, x);
+        else node.left = Insert(node.left, x);
+        if (node.left != null && node.priority > node.left.priority) node = Rotate(node, false);
+        if (node.right != null && node.priority > node.right.priority) node = Rotate(node, true);
+        Update(node);
+        return node;
+    }
+
+    private Node<T> Delete(Node<T> node, T x)
+    {
+        if (node.key.Equals(x))
+        {
+            if (node.count > 1)
+            {
+                node.count--;
+                Update(node);
+                return node;
+            }
+            if (node.left == null && node.right == null) return null;
+            if (node.left == null) return node.right;
+            if (node.right == null) return node.left;
+            if (node.left.priority < node.right.priority)
+            {
+                node = Rotate(node, false);
+                node.right = Delete(node.right, x);
+                Update(node);
+                return node;
+            }
+            else
+            {
+                node = Rotate(node, true);
+                node.left = Delete(node.left, x);
+                Update(node);
+                return node;
+            }
+        }
+        if (node.key.CompareTo(x) > 0) node.left = Delete(node.left, x);
+        else node.right = Delete(node.right, x);
+        Update(node);
+        return node;
+    }
+
+    private int UpperBound(Node<T> u, T x)
+    {
+        if (u == null) return 0;
+        int compare = x.CompareTo(u.key);
+        int lSize = (u.left == null ? 0 : u.left.size);
+        if (compare >= 0) return lSize + u.count + UpperBound(u.right, x);
+        return UpperBound(u.left, x);
+    }
+    private int LowerBound(Node<T> u, T x)
+    {
+        if (u == null) return 0;
+        int compare = x.CompareTo(u.key);
+        int lSize = (u.left == null ? 0 : u.left.size);
+        if (compare == 0) return lSize;
+        if (compare > 0) return lSize + u.count + LowerBound(u.right, x);
+        return LowerBound(u.left, x);
+    }
+
+    private T Kth(Node<T> u, int k)
+    {
+        if (k < 0 || k >= Count) return default(T);
+        int lSize = (u.left == null ? 0 : u.left.size);
+        if (lSize > k) return Kth(u.left, k);
+        if (lSize + u.count > k) return u.key;
+        return Kth(u.right, k - lSize - u.count);
+    }
+}
+```
 	
   - [避免洪水泛滥](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%B9%B3%E8%A1%A1%E6%A0%91/Solution_LC_1488_%E9%81%BF%E5%85%8D%E6%B4%AA%E6%B0%B4%E6%B3%9B%E6%BB%A5.cs)
     
