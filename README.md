@@ -1931,11 +1931,43 @@ return (int)(ans % mod);
   - 组合
   $C_n^m=\frac{n!}{(n-m)!m!}=\frac{A_n^m}{A_m^m}$
 ```
-public static long[] factCache = new long[(int)1e6 + 5];
-public static void InitFact(long n = (long)1e6, long mod = (long)1e9 + 7) { long res = 1; for (int i = 1; i <= n; i++) { res = (res * i) % mod; factCache[i] = res; } factCache[0] = 1; }
-public static long Fact(long x, long p) { return factCache[x]; }
-public static long Anm(long n, long m, long p) { long x = Fact(n, p); long y = Fact(n - m, p); return x * Power(y, p - 2, p) % p; }
-public static long Cnm(long n, long m, long p) { long x = Fact(n, p); long y = Fact(m, p) * Fact(n - m, p) % p; return x * Power(y, p - 2, p) % p; }
+public static long fp = (long)1e9 + 7;
+public static long[] fMem = new long[(int)1e6 + 5];
+public static void InitFact(long n = (long)1e6, long mod = (long)1e9 + 7) 
+{
+	fp = mod;
+	fMem[0] = 1; 
+	long res = 1; 
+	for (int i = 1; i <= n; i++)
+	{
+		res = (res * i) % fp; 
+		fMem[i] = res;
+	}
+}
+public static long Fact(long x) { return fMem[x]; }
+public static long Anm(long n, long m) 
+{
+	long x = Fact(n); 
+	long y = Fact(n - m); 
+	return x * Power(y, fp - 2, fp) % fp; 
+}
+public static long Cnm(long n, long m) 
+{ 
+	long x = Fact(n); 
+	long y = Fact(m) * Fact(n - m) % fp;
+	return x * Power(y, fp - 2, fp) % fp; 
+}
+public static long Power(long x, long y, long p) 
+{ 
+	long res = 1L; 
+	while (y > 0) 
+	{
+		if (y % 2 == 1) res = res * x % p;
+		y /= 2; 
+		x = x * x % p; 
+	} 
+	return res; 
+}
 ```
 - 枚举排列
 ```
