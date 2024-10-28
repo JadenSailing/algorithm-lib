@@ -1,4 +1,3 @@
-
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -2242,3 +2241,10 @@ foreach((int, int) key in dict.Keys)
     Print(key.Item1, key.Item2, dict[key]);
 }
 ```
+### 形形色色爆int
+- 可能出现的异常提示
+`Unhandled exception. System.OverflowException: Arithmetic operation resulted in an overflow.`
+ - 除零
+ - new负长度数组
+ - int相加 `a + b > int.MaxValue` 特别注意 `a + b + 0L`无效，必须是`0L + a + b`
+ - int相乘 `a * b > int.MaxValue` 特别注意 `a * b * 1L`无效，必须是`1L * a * b`
