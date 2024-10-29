@@ -1,3 +1,5 @@
+
+
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -2316,4 +2318,8 @@ foreach((int, int) key in dict.Keys)
 ```
 v += (int)(1L * x[i][k] * y[k][j] % mod);
 v %= mod;
+```
+ - 意外的较快增长
+```
+count[v] += count[v - 1]; //v重复时指数增长
 ```
