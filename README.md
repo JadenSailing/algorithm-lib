@@ -1397,6 +1397,41 @@ public class Map<T> where T : IComparable, IEquatable<T>
     
 
   - [序列顺序查询](https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/) [[代码]](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%B9%B3%E8%A1%A1%E6%A0%91/Solution_LC_2102_%E5%BA%8F%E5%88%97%E9%A1%BA%E5%BA%8F%E6%9F%A5%E8%AF%A2.cs)
+  - [683. K 个关闭的灯泡](https://leetcode.cn/problems/k-empty-slots/)  自定义类型
+```
+class Node : IComparable, IEquatable<Node>
+{
+    public int L, R;
+    public Node(int L, int R) { this.L = L; this.R = R; }
+    public int CompareTo(object other)
+    {
+        var target = other as Node;
+        return R - target.R;
+    }
+    public bool Equals(Node other)
+    {
+        return L == other.L && R == other.R;
+    }
+}
+public int KEmptySlots(int[] bulbs, int k)
+{
+    int n = bulbs.Length;
+    Map<Node> map = new Map<Node>();
+    map.Insert(new Node(0, n - 1));
+    for (int i = 0; i < n; i++)
+    {
+        int v = bulbs[i] - 1;
+        int kth = map.LowerBound(new Node(v, v));
+        var pre = map.Kth(kth);
+        if (v - pre.L == k && pre.L != 0) return i + 1;
+        if (pre.R - v == k && pre.R != n - 1) return i + 1;
+        map.Delete(pre);
+        if (v > pre.L) map.Insert(new Node(pre.L, v - 1));
+        if (pre.R > v) map.Insert(new Node(v + 1, pre.R));
+    }
+    return -1;
+}
+```
  
 ## 图论
  
