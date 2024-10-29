@@ -2248,3 +2248,4 @@ foreach((int, int) key in dict.Keys)
  - new负长度数组
  - int相加 `a + b > int.MaxValue` 特别注意 `a + b + 0L`无效，必须是`0L + a + b`
  - int相乘 `a * b > int.MaxValue` 特别注意 `a * b * 1L`无效，必须是`1L * a * b`
+ - 多int连加/乘 比如三项相加必须是`((r1 + r2) % mod + r3) % mod`
