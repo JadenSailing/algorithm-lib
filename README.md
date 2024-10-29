@@ -31,45 +31,73 @@ public static long Power(long x, long y, long p)
 ```
 
 - 矩阵快速幂
+[3337. 字符串转换后的长度 II](https://leetcode.cn/problems/total-characters-in-string-after-transformations-ii/)
 ```
-private int[][] Pow(int[][] mat, int p)
+public class Solution
 {
-    //单位矩阵
-    int[][] ret = new int[2][]
+    int mod = (int)1e9 + 7;
+    public int LengthAfterTransformations(string s, int t, IList<int> nums)
     {
-        new int[] { 1, 0 },
-        new int[] { 0, 1 },
-    };
-    while (p > 0)
-    {
-        if ((p & 1) == 1)
+        int E = 26;
+        int[] count = new int[E];
+        foreach (var v in s) count[v - 'a']++;
+        int[][] mat = new int[E][];
+        for (int i = 0; i < E; i++) mat[i] = new int[E];
+        for (int i = 0; i < E; i++)
         {
-            ret = Mul(ret, mat);
-        }
-        p >>= 1;
-        mat = Mul(mat, mat);
-    }
-    return ret;
-}
-
-private int[][] Mul(int[][] x, int[][] y)
-{
-    int n = x.Length, p = x[0].Length, m = y[0].Length;
-    int[][] res = new int[n][];
-    for (int i = 0; i < n; i++) res[i] = new int[m];
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            int v = 0;
-            for (int k = 0; k < p; k++)
+            //枚举nums的每个位置x 会对[x + 1, x + y]位置影响
+            for (int j = 0; j < nums[i]; j++)
             {
-                v += x[i][k] * y[k][j];
+                mat[i][(i + j + 1) % 26] = 1;
             }
-            res[i][j] = v;
         }
+        int[] res = Mul(new int[][] { count }, Power(mat, E, t, mod), mod)[0];
+        int ans = 0;
+        foreach (var v in res) ans = (ans + v) % mod;
+        return ans;
     }
-    return res;
+
+    private int[][] Power(int[][] mat, int size, int p, int mod)
+    {
+        //单位矩阵
+        int[][] ret = new int[size][];
+        for (int i = 0; i < size; i++)
+        {
+            ret[i] = new int[size];
+            ret[i][i] = 1;
+        }
+        while (p > 0)
+        {
+            if ((p & 1) == 1)
+            {
+                ret = Mul(ret, mat, mod);
+            }
+            p >>= 1;
+            mat = Mul(mat, mat, mod);
+        }
+        return ret;
+    }
+
+    private int[][] Mul(int[][] x, int[][] y, int mod)
+    {
+        int n = x.Length, p = x[0].Length, m = y[0].Length;
+        int[][] res = new int[n][];
+        for (int i = 0; i < n; i++) res[i] = new int[m];
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                int v = 0;
+                for (int k = 0; k < p; k++)
+                {
+                    v += (int)(1L * x[i][k] * y[k][j] % mod);
+                    v %= mod;
+                }
+                res[i][j] = v;
+            }
+        }
+        return res;
+    }
 }
 ```
 矩阵快速幂求[斐波那契数](https://github.com/JadenSailing/algorithm-lib/blob/main/%E5%9F%BA%E7%A1%80/%E5%BF%AB%E9%80%9F%E5%B9%82/Solution_LC_509_%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0.cs)
@@ -2249,3 +2277,8 @@ foreach((int, int) key in dict.Keys)
  - int相加 `a + b > int.MaxValue` 特别注意 `a + b + 0L`无效，必须是`0L + a + b`
  - int相乘 `a * b > int.MaxValue` 特别注意 `a * b * 1L`无效，必须是`1L * a * b`
  - 多int连加/乘 比如三项相加必须是`((r1 + r2) % mod + r3) % mod`
+ - 总之 **可能爆int的地方一定会爆int**
+```
+v += (int)(1L * x[i][k] * y[k][j] % mod);
+v %= mod;
+```
