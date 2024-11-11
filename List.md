@@ -94,6 +94,7 @@
     - [2926. 平衡子序列的最大和](https://leetcode.cn/problems/maximum-balanced-subsequence-sum/) 线段树优化
     - [3117. 划分数组得到最小的值之和](https://leetcode.cn/problems/minimum-sum-of-values-by-dividing-array/) 线段树优化
     - [3337. 字符串转换后的长度 II](https://leetcode.cn/problems/total-characters-in-string-after-transformations-ii/) 矩阵快速幂
+    - [2912. 在网格上移动到目的地的方法数](https://leetcode.cn/problems/number-of-ways-to-reach-destination-in-the-grid/) 矩阵快速幂
     - [3333. 找到初始输入字符串 II](https://leetcode.cn/problems/find-the-original-typed-string-ii/) 前缀和优化
 - 字符串哈希
   - [3093. 最长公共后缀查询](https://leetcode.cn/problems/longest-common-suffix-queries/) 双哈希的必要性
