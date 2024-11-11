@@ -32,38 +32,42 @@ public static long Power(long x, long y, long p)
 
 - 矩阵快速幂
 [3337. 字符串转换后的长度 II](https://leetcode.cn/problems/total-characters-in-string-after-transformations-ii/)
+[2912. 在网格上移动到目的地的方法数](https://leetcode.cn/problems/number-of-ways-to-reach-destination-in-the-grid/)
 ```
 public class Solution
 {
     int mod = (int)1e9 + 7;
-    public int LengthAfterTransformations(string s, int t, IList<int> nums)
+    public int NumberOfWays(int n, int m, int k, int[] source, int[] dest)
     {
-        int E = 26;
-        int[] count = new int[E];
-        foreach (var v in s) count[v - 'a']++;
-        int[][] mat = new int[E][];
-        for (int i = 0; i < E; i++) mat[i] = new int[E];
-        for (int i = 0; i < E; i++)
+        //与终点是否是 相同点/同行/同列/均不同 的方案数
+        long[][] f = new long[][] { new long[4]};
+        //初值
+        bool fx = source[0] == dest[0];
+        bool fy = source[1] == dest[1];
+        if (fx && fy) f[0][0] = 1;
+        else if (fx && !fy) f[0][1] = 1;
+        else if (!fx && fy) f[0][2] = 1;
+        else f[0][3] = 1;
+        long[][] mat = new long[4][]
         {
-            //枚举nums的每个位置x 会对[x + 1, x + y]位置影响
-            for (int j = 0; j < nums[i]; j++)
-            {
-                mat[i][(i + j + 1) % 26] = 1;
-            }
-        }
-        int[] res = Mul(new int[][] { count }, Power(mat, E, t, mod), mod)[0];
-        int ans = 0;
-        foreach (var v in res) ans = (ans + v) % mod;
-        return ans;
+            new long[] {0, m - 1, n - 1, 0 },
+            new long[] {1, m - 2, 0, n - 1 }, 
+            new long[] {1, 0, n - 2, m - 1 }, 
+            new long[] {0, 1, 1, (n - 2) + (m - 2) }, 
+        };
+        f = Mul(f, Power(mat, k, mod), mod);
+        return (int)f[0][3];
     }
 
-    private int[][] Power(int[][] mat, int size, int p, int mod)
+    private long[][] Power(long[][] mat, long p, long mod)
     {
+        p %= mod;
+        int size = mat.Length;
         //单位矩阵
-        int[][] ret = new int[size][];
+        long[][] ret = new long[size][];
         for (int i = 0; i < size; i++)
         {
-            ret[i] = new int[size];
+            ret[i] = new long[size];
             ret[i][i] = 1;
         }
         while (p > 0)
@@ -77,24 +81,34 @@ public class Solution
         }
         return ret;
     }
-
-    private int[][] Mul(int[][] x, int[][] y, int mod)
+    private long[][] Mul(long[][] x, long[][] y, long mod)
     {
         int n = x.Length, p = x[0].Length, m = y[0].Length;
-        int[][] res = new int[n][];
-        for (int i = 0; i < n; i++) res[i] = new int[m];
+        long[][] res = new long[n][];
+        for (int i = 0; i < n; i++) res[i] = new long[m];
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
             {
-                int v = 0;
+                long v = 0;
                 for (int k = 0; k < p; k++)
                 {
-                    v += (int)(1L * x[i][k] * y[k][j] % mod);
+                    v += (1L * x[i][k] * y[k][j] % mod);
                     v %= mod;
                 }
                 res[i][j] = v;
             }
+        }
+        return res;
+    }
+    public static long Power(long x, long y, long p)
+    {
+        long res = 1L;
+        while (y > 0)
+        {
+            if (y % 2 == 1) res = res * x % p;
+            y /= 2;
+            x = x * x % p;
         }
         return res;
     }
