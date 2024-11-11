@@ -1,5 +1,3 @@
-
-
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -1966,6 +1964,28 @@ for(int i = 2; i < N; i++)
 for(int i = 2; i < N; i++)
 {
     if (flag[i] == false) primes.Add(i);
+}
+```
+- 分解质因数
+```
+Dictionary<int, int> count = new Dictionary<int, int>();
+void Divide(int x)
+{
+    for (int i = 2; i <= x / i; i++)
+    {
+        while (x % i == 0)
+        {
+            if (!count.ContainsKey(i)) count[i] = 0;
+            count[i]++;
+            x /= i;
+        }
+    }
+    //重要
+    if (x > 1)
+    {
+        if (!count.ContainsKey(x)) count[x] = 0;
+        count[x]++;
+    }
 }
 ```
 
