@@ -1589,31 +1589,143 @@ if (vis.Sum() < n) return -1;
 return ans;
 ```
 ### Tarjan
-- 求割边(桥)
+
+- 割点
 ```
-private void Tarjan(HashSet<int>[] g, int u, int fa, int time)
+int time = 0;
+int[] dfn = new int[n];
+int[] low = new int[n];
+void Tarjan(int u, int fa)
 {
-	dfn[u] = low[u] = time++;
-	foreach(int v in g[u])
+	low[u] = dfn[u] = ++time;
+	int count = 0; //需要记录子节点个数 用于根节点的判定
+    foreach(var v in g[u])
 	{
 		if(v == fa) continue;
 		if(dfn[v] == 0)
 		{
-			Tarjan(g, v, u, time);
-			low[u] = Math.Min(low[u], low[v]);
-			if(low[v] > dfn[u])
-			{
-				bridges.Add(new List<int>(){u, v});
-			}
+			Tarjan(v, u);
+            low[u] = Math.Min(low[u], low[v]);
+			count++;
+			if(u == 0 && count >= 2 //如果是根节点且子图>=2
+			|| u > 0 && low[v] >= dfn[u]) //如果是非根节点且low[v]>=dfn[u]
+				flag[u] = true; //标记割点
 		}
-		else
-		{
-			low[u] = Math.Min(low[u], dfn[v]);
-		}
+        else low[u] = Math.Min(low[u], dfn[v]);
 	}
 }
+Tarjan(0, -1);
 ```
-- 完整模板 包括记录环个数和分组
+- 割边
+```
+int time = 0;
+int[] dfn = new int[n];
+int[] low = new int[n];
+void Tarjan(int u, int fa)
+{
+    low[u] = dfn[u] = ++time;
+    foreach(var v in g[u])
+	{
+        if (v == fa) continue;
+        if (dfn[v] == 0)
+        {
+            Tarjan(v, u);
+            low[u] = Math.Min(low[u], low[v]);
+            //只需要下面这一句
+            if (low[v] > dfn[u])
+                Console.WriteLine(u + "-" + v);//无向边u-v是割边
+        }
+        else low[u] = Math.Min(low[u], dfn[v]);
+    }
+}
+Tarjan(0, -1);
+```
+[1192. 查找集群内的关键连接](https://leetcode.cn/problems/critical-connections-in-a-network/) 
+
+- 点双连通
+```
+//tarjan
+bool[] flag = new bool[n]; //是否是割点
+int time = 0;
+int[] low = new int[n];
+int[] dfn = new int[n];
+Stack<int> st = new Stack<int>();
+List<List<int>> vbcc = new List<List<int>>(); //所有点双连通分量
+void Tarjan(int u, int p)
+{
+    low[u] = dfn[u] = ++time;
+    st.Push(u);
+    int count = 0;
+    foreach (var v in g[u])
+    {
+        if (v == p) continue;
+        if (dfn[v] == 0)
+        {
+            count++;
+            Tarjan(v, u);
+            low[u] = Math.Min(low[u], low[v]);
+            if (low[v] >= dfn[u])
+            {
+                if (u > 0) flag[u] = true;
+                List<int> list = new List<int>();
+                while (st.Peek() != v)
+                {
+                    list.Add(st.Pop());
+                }
+                list.Add(st.Pop());
+                list.Add(u);
+                vbcc.Add(list);
+            }
+        }
+        else low[u] = Math.Min(low[u], dfn[v]);
+    }
+    if (count >= 2 && u == 0) flag[u] = true;
+}
+Tarjan(0, -1);
+```
+举个例子，如图：
+
+最终的点双连通分量是
+
+[LCP 54. 夺回据点](https://leetcode.cn/problems/s5kipK/) 点双连通分量，近似模板题。
+
+- 边双连通
+
+```
+//tarjan
+bool[] flag = new bool[n]; //是否是割点
+int time = 0;
+int[] low = new int[n];
+int[] dfn = new int[n];
+Stack<int> st = new Stack<int>();
+List<List<int>> ebcc = new List<List<int>>(); //所有点双连通分量
+void Tarjan(int u, int p)
+{
+    low[u] = dfn[u] = ++time;
+    st.Push(u);
+    int count = 0;
+    foreach (var v in g[u])
+    {
+        if (v == p) continue;
+        if (dfn[v] == 0)
+        {
+            count++;
+            Tarjan(v, u);
+            low[u] = Math.Min(low[u], low[v]);
+        }
+        else low[u] = Math.Min(low[u], dfn[v]);
+    }
+    if (low[u] == dfn[u])
+    {
+        List<int> list = new List<int>();
+        while (st.Peek() != u) list.Add(st.Pop());
+        list.Add(st.Pop());
+        ebcc.Add(list);
+    }
+}
+Tarjan(0, -1);
+```
+
 [CF923-div3-F.Microcycle-求带权无向图中最短边权重最小的简单环](https://codeforces.com/contest/1927/submission/245749383)
 
 本题解包含了Tarjan求环 Dijkstra求最短路 记录path等
