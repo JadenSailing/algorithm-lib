@@ -1,3 +1,4 @@
+
 # AutumnMist's Algorithm Library
 [分类题单](List.md)
 ## C# Algorithm Contest IO Project
@@ -1065,7 +1066,64 @@ public class BIT2D
 ```
  
 ### 线段树
- 
+```
+//快一些的动态开点线段树C++
+class SegmentTree {
+    using i64 = long long;
+public:
+    struct Node {
+    public:
+        i64 sum = 0;
+        int val = 0;
+        int left = 0;
+    };
+private:
+    i64 n = 1e9 + 10;
+    int root = 0;
+    vector<Node> tree;
+public:
+    SegmentTree(i64 n = 1e9 + 10) : n(n) { tree.resize(1); }
+    i64 Sum(i64 L, i64 R) { return Sum(root, 0, n, L, R); }
+    void Update(i64 L, i64 R, i64 val) { Update(root, 0, n, L, R, val); }
+private:
+    void Update(int node, i64 start, i64 end, i64 l, i64 r, i64 val) {
+        if (l <= start && end <= r) {
+            tree[node].sum = (end - start + 1) * val;
+            tree[node].val = val;
+            return;
+        }
+        i64 mid = (start + end) >> 1;
+        PushDown(node, mid - start + 1, end - mid);
+        if (l <= mid) Update(tree[node].left, start, mid, l, r, val);
+        if (r > mid) Update((tree[node].left + 1), mid + 1, end, l, r, val);
+        PushUp(node);
+    }
+    i64 Sum(int node, i64 start, i64 end, i64 l, i64 r) {
+        if (l <= start && end <= r) return tree[node].sum;
+        i64 mid = (start + end) >> 1;
+        i64 res = 0;
+        PushDown(node, mid - start + 1, end - mid);
+        if (l <= mid) res += Sum(tree[node].left, start, mid, l, r);
+        if (r > mid) res += Sum((tree[node].left + 1), mid + 1, end, l, r);
+        return res;
+    }
+    inline void PushUp(int node) {
+        tree[node].sum = tree[tree[node].left].sum + tree[tree[node].left + 1].sum;
+    }
+    inline void PushDown(int node, i64 leftNum, i64 rightNum) {
+        if (tree[node].left == 0) {
+            tree[node].left = tree.size();
+            tree.push_back(Node());
+            tree.push_back(Node());
+        }
+        if (!tree[node].val) return;
+        tree[tree[node].left].sum = tree[node].val * leftNum;
+        tree[tree[node].left + 1].sum = tree[node].val * rightNum;
+        tree[tree[node].left].val = tree[tree[node].left + 1].val = tree[node].val;
+        tree[node].val = 0;
+    }
+};
+```
 - 线段树模板 支持区间更新/增加，区间求和，区间极值
 - 动态开点，延迟标记
 ```
