@@ -22,7 +22,7 @@
         private int[] now;
         private int[] vis;
         private int s, t;
-        const int MX = int.MaxValue / 2;
+        const long MX = long.MaxValue / 2;
         private long minCost;
         public MCMF_Dinic(int n)
         {
