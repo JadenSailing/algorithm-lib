@@ -78,7 +78,7 @@
             {
                 list.Add(node);
             }
-            list.Sort((A, B) => Math.Sign(A.val - B.val));
+            list.Sort((A, B) => A.val.CompareTo(B.val));
             foreach (var node in list)
             {
                 int count = node.R - node.L + 1;
@@ -90,7 +90,7 @@
         private long Power(long x, long y, long p)
         {
             long r = 1;
-            x %= p;
+            x = (x % p + p) % p;
             while (y > 0)
             {
                 if (y % 2 == 1) r = r * x % p;
@@ -105,9 +105,9 @@
             long res = 0;
             for (var node = bL; node != bR; node = node.next)
             {
-                res += (node.R - node.L + 1) * Power(node.val, x, y);
+                res = (res + (node.R - node.L + 1) * Power(node.val, x, y)) % y;
             }
-            return res % y;
+            return res;
         }
     }
 }

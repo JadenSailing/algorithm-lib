@@ -15,7 +15,7 @@ namespace LeetCode
         }
         private Node<T> root = null;
 
-        private Random randGenterator = new Random(new DateTime().Millisecond);
+        private Random randGenterator = new Random();
 
         public bool Insert(T x)
         {
@@ -98,6 +98,7 @@ namespace LeetCode
 
         private Node<T> Delete(Node<T> node, T x)
         {
+            if (node == null) return null;
             if (node.key.Equals(x))
             {
                 if (node.count > 1)

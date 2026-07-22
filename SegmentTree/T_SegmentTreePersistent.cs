@@ -38,8 +38,11 @@
             Node node = new Node();
             node.valid = srcNode.valid;
             node.sum = srcNode.sum;
+            node.max = srcNode.max;
+            node.min = srcNode.min;
             node.left = srcNode.left;
             node.right = srcNode.right;
+            node.flag = srcNode.flag;
             node.val = srcNode.val;
             return node;
         }
@@ -133,6 +136,8 @@
             if (node.left == null) node.left = new Node();
             if (node.right == null) node.right = new Node();
             if (!node.flag) return;
+            node.left = CopyNode(node.left);
+            node.right = CopyNode(node.right);
             if (isAdd)
             {
                 node.left.sum += node.val * leftNum;
